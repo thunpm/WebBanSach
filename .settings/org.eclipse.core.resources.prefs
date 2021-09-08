@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/main/java/controller/CheckLoginServlet.java=UTF-8
+encoding//src/main/java/model/dao/KhachHangDAO.java=UTF-8
+encoding//src/main/webapp/views/user/include/footer.jsp=UTF-8
+encoding//src/main/webapp/views/user/include/header.jsp=UTF-8
+encoding//src/main/webapp/views/user/login.jsp=UTF-8
