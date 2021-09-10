@@ -3,7 +3,7 @@ package model.bean;
 import java.sql.Date;
 
 public class KhachHang {
-	private int id;
+	private String id;
 	private String tenDangNhap;
 	private String hoTen;
 	private String soDienThoai;
@@ -16,7 +16,7 @@ public class KhachHang {
 		super();
 	}
 
-	public KhachHang(int id, String tenDangNhap, String hoTen, String soDienThoai, String matKhau, String email, String gioiTinh,
+	public KhachHang(String id, String tenDangNhap, String hoTen, String soDienThoai, String matKhau, String email, String gioiTinh,
 			Date ngaySinh) {
 		super();
 		this.id = id;
@@ -46,11 +46,11 @@ public class KhachHang {
 		this.matKhau = matKhau;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

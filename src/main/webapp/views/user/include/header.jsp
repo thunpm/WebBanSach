@@ -25,7 +25,7 @@
 	    			<ul class="dropdown-menu" style="background-color: #F0F0F0;">
 	    				<li><a class="dropdown-item" href="#">Đơn hàng của tôi</a></li>
 	    				<li><a class="dropdown-item" href="showKhachHang?tendangnhap=${sessionScope.user.tenDangNhap}">Chỉnh sửa thông tin</a></li>
-	    				<li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+	    				<li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
 	  				</ul>
 				</div>
     		</c:if>

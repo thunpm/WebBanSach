@@ -15,38 +15,58 @@
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
     <div class="main-block">
+    	<div class="sach">
+    		<div class="danh-muc">
+   				<c:forEach items="${listDanhMuc}" var="danhMuc">
+   					<div class="dropdown">
+		   				<div class="btn" data-toggle="dropdown">${danhMuc.tenDanhMuc}</div>
+					  	<ul class="dropdown-menu">
+					  		<c:forEach items="${danhMuc.listLoaiSanPham}" var="loaiSanPham">
+						    	<li><a class="dropdown-item" href="#">${loaiSanPham.tenLoaiSanPham}</a></li>
+		    				</c:forEach>
+					  	</ul>
+				  	</div>
+			  	</c:forEach>
+    		</div>
+    	</div>
         <div class="sach">
-        	<h4 class="tieu-de">SÁCH MỚI</h4>
-        	<div class="card">
-        		<div class="hinh-anh">hinh anh</div>
-        		<div class="ten-sach">ten sach</div>
-        		<div class="tac-gia">tac gia</div>
-        		<div class="da-ban">da ban</div>
-        		<div class="gia-tien">gia tien</div>
-        		<div class="khuyen-mai">khuyen mai</div>
-        	</div>
+        	<h4 class="tieu-de">SẢN PHẨM MỚI</h4>
+        	<c:forEach items="${listSanPhamBanChay}" var="sanPham">			    	
+	        	<div class="card">
+	        		<div class="hinh-anh">hinh anh</div>
+	        		<div class="ten-sach">${sanPham.tenSanPham}</div>
+	        		<div class="tac-gia">${sanPham.tacGia}</div>
+	        		<div class="da-ban">da ban</div>
+	        		<div class="gia-tien">${sanPham.gia}</div>
+	        		<div class="khuyen-mai">${sanPham.khuyenMai}</div>
+	        	</div>
+			</c:forEach>
         </div>
         <div class="sach">
-        	<h4 class="tieu-de">SÁCH BÁN CHẠY</h4>
-        	<div class="card">
-        		<div class="hinh-anh">hinh anh</div>
-        		<div class="ten-sach">ten sach</div>
-        		<div class="tac-gia">tac gia</div>
-        		<div class="da-ban">da ban</div>
-        		<div class="gia-tien">gia tien</div>
-        		<div class="khuyen-mai">khuyen mai</div>
-        	</div>
+        	<h4 class="tieu-de">SẢN PHẨM BÁN CHẠY</h4>
+        	<c:forEach items="${listSanPhamMoi}" var="sanPham">			    	
+	        	<div class="card">
+	        		<div class="hinh-anh">hinh anh</div>
+	        		<div class="ten-sach">${sanPham.tenSanPham}</div>
+	        		<div class="tac-gia">${sanPham.tacGia}</div>
+	        		<div class="da-ban">da ban</div>
+	        		<div class="gia-tien">${sanPham.gia}</div>
+	        		<div class="khuyen-mai">${sanPham.khuyenMai}</div>
+	        	</div>
+			</c:forEach>
         </div>
         <div class="sach">
-        	<h4 class="tieu-de">SÁCH KHUYẾN MÃI</h4>
-        	<div class="card">
-        		<div class="hinh-anh">hinh anh</div>
-        		<div class="ten-sach">ten sach</div>
-        		<div class="tac-gia">tac gia</div>
-        		<div class="da-ban">da ban</div>
-        		<div class="gia-tien">gia tien</div>
-        		<div class="khuyen-mai">khuyen mai</div>
-        	</div>
+        	<h4 class="tieu-de">SẢN PHẨM KHUYẾN MÃI</h4>
+        	<c:forEach items="${listSanPhamKhuyenMai}" var="sanPham">			    	
+	        	<div class="card">
+	        		<div class="hinh-anh">hinh anh</div>
+	        		<div class="ten-sach">${sanPham.tenSanPham}</div>
+	        		<div class="tac-gia">${sanPham.tacGia}</div>
+	        		<div class="da-ban">da ban</div>
+	        		<div class="gia-tien">${sanPham.gia}</div>
+	        		<div class="khuyen-mai">${sanPham.khuyenMai}</div>
+	        	</div>
+			</c:forEach>
         </div>
     </div>
     <%@ include file="include/footer.jsp" %>

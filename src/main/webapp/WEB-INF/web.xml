@@ -36,12 +36,12 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ShowIndex</display-name>
-    <servlet-name>ShowIndex</servlet-name>
-    <servlet-class>controller.ShowIndex</servlet-class>
+    <display-name>ShowIndexServlet</display-name>
+    <servlet-name>ShowIndexServlet</servlet-name>
+    <servlet-class>controller.ShowIndexServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ShowIndex</servlet-name>
+    <servlet-name>ShowIndexServlet</servlet-name>
     <url-pattern>/ShowIndex</url-pattern>
   </servlet-mapping>
   <servlet>
@@ -53,5 +53,25 @@
   <servlet-mapping>
     <servlet-name>ShowKhachHangServlet</servlet-name>
     <url-pattern>/showKhachHang</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogoutServlet</display-name>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>controller.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowTheLoaiServlet</display-name>
+    <servlet-name>ShowTheLoaiServlet</servlet-name>
+    <servlet-class>controller.ShowTheLoaiServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowTheLoaiServlet</servlet-name>
+    <url-pattern>/ShowTheLoaiServlet</url-pattern>
   </servlet-mapping>
 </web-app>
