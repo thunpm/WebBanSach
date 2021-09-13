@@ -18,20 +18,5 @@
     	<div class="cart">
 			<a href="#">GIỎ HÀNG <span class="fas fa-shopping-cart"></span></a>
     	</div>
-    	<div class="login">
-    		<c:if test="${!empty sessionScope.user}">
-    			<div class="dropdown">
-	    			<a data-toggle="dropdown" href="#"><label>CHÀO: ${sessionScope.user.tenDangNhap}</label></a>
-	    			<ul class="dropdown-menu" style="background-color: #F0F0F0;">
-	    				<li><a class="dropdown-item" href="#">Đơn hàng của tôi</a></li>
-	    				<li><a class="dropdown-item" href="showKhachHang?tendangnhap=${sessionScope.user.tenDangNhap}">Chỉnh sửa thông tin</a></li>
-	    				<li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
-	  				</ul>
-				</div>
-    		</c:if>
-    		<c:if test="${empty sessionScope.user}">
-    			<a href="showLogin">ĐĂNG NHẬP</a>
-    		</c:if>
-    	</div>
     </div>
 </div>

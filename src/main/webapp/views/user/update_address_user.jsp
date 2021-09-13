@@ -12,6 +12,11 @@
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
     <div class="main-block">
+    	<div class="menu-update-kh">
+    		<a href="showKhachHang?tendangnhap=${sessionScope.khachHang.tenDangNhap}">Thay đổi thông tin</a>
+    		<a href="#">Thay đổi mật khẩu</a>
+    		<a href="#">Cập nhật địa chỉ giao hàng</a>
+    	</div>
 	    <div class="login-block">
 	    	<p style="color: red; display: inline-block; margin-bottom: 20px;">${requestScope.message}</p>
 	        <form action="checkLogin" method="POST">

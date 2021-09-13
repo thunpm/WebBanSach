@@ -86,6 +86,11 @@
 	padding: 3px 10px 0px 10px;
 }
 
+.menu div a {
+	text-decoration: none;
+	color: white;
+}
+
 .menu div:hover {
 	background-color: #E8B243;
 	transition: 1s;
@@ -115,7 +120,7 @@
 
 .main-block .sach {
 	width: 1200px;
-	height: 520px;
+	height: 1200px;
 	background-color: white;
 	margin: auto;
 	margin-top: 20px;

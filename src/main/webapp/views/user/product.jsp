@@ -15,23 +15,23 @@
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
     <div class="main-block">
-    	<div class="">
+    	<%-- <div class="sach">
     		<div class="danh-muc">
    				<c:forEach items="${listDanhMuc}" var="danhMuc">
    					<div class="dropdown">
 		   				<div class="btn" data-toggle="dropdown">${danhMuc.tenDanhMuc}</div>
 					  	<ul class="dropdown-menu">
 					  		<c:forEach items="${danhMuc.listLoaiSanPham}" var="loaiSanPham">
-						    	<li><a class="dropdown-item" href="showProductByLoai?maLoai=${loaiSanPham.id}&tenLoai=${loaiSanPham.tenLoaiSanPham}">${loaiSanPham.tenLoaiSanPham}</a></li>
+						    	<li><a class="dropdown-item" href="showProductByLoai?maLoai=${loaiSanPham.id}">${loaiSanPham.tenLoaiSanPham}</a></li>
 		    				</c:forEach>
 					  	</ul>
 				  	</div>
 			  	</c:forEach>
     		</div>
-    	</div>
+    	</div> --%>
         <div class="sach">
-	        <div class="tieu-de">
-	        	<a href="showIndex?sanPham=sanPhamMoi">Mới</a>
+        	<div class="tieu-de">
+	        	<a href="showProductByLoai?sanPham=sanPhamMoi">Mới</a>
 	        	<a href="showIndex?sanPham=sanPhamBanChay">Bán chạy</a>
 	        	<a href="showIndex?sanPham=sanPhamKhuyenMai">Giảm giá</a>
 	        </div>	 
@@ -64,6 +64,8 @@
 	        	<a style="color: black;" href="showIndex?sanPham=${sapXep}&trangHienTai=${trangHienTai + 1}">Sau</a>
 	        </c:if>	
 		</div>
+    </div>
+        </div>
     </div>
     <%@ include file="include/footer.jsp" %>
     

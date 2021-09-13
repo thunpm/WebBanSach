@@ -19,6 +19,7 @@ public class ShowKhachHangServlet extends HttpServlet {
 		response.setCharacterEncoding("text/html");
 		
 		String tenDangNhap = request.getParameter("tendangnhap");
+		String key = request.getParameter("key");
 		System.out.println(tenDangNhap);
 		
 		ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
@@ -28,7 +29,14 @@ public class ShowKhachHangServlet extends HttpServlet {
 		
 		request.setAttribute("khachHang", khachHang);
 		
-		rd = request.getRequestDispatcher("views/user/show-user.jsp");
+		if ("information".equals(key)) {
+			rd = request.getRequestDispatcher("views/user/update_information_user.jsp");
+		} else if ("password".equals(key)) {
+			rd = request.getRequestDispatcher("views/user/update_password_user.jsp");
+		} else if ("address".equals(key)) {
+			rd = request.getRequestDispatcher("views/user/update_address_user.jsp");
+		}
+		
 		rd.forward(request, response);
 	}
 

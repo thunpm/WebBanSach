@@ -22,5 +22,9 @@ public class ShowSanPhamBO {
 		
 		return sanPhamDAO.getAllSanPhamKhuyenMai();
 	}
+	
+	public ArrayList<SanPham> getAllSanPhamByLoai(String maLoai) {
+		return sanPhamDAO.getAllSanPhamByLoai(maLoai);
+	}
 
 }

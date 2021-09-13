@@ -46,6 +46,17 @@ public class KhachHang {
 		this.matKhau = matKhau;
 	}
 
+	public KhachHang(String tenDangNhap, String hoTen, String soDienThoai, String matKhau, String email,
+			String gioiTinh) {
+		super();
+		this.tenDangNhap = tenDangNhap;
+		this.hoTen = hoTen;
+		this.soDienThoai = soDienThoai;
+		this.matKhau = matKhau;
+		this.email = email;
+		this.gioiTinh = gioiTinh;
+	}
+
 	public String getId() {
 		return id;
 	}

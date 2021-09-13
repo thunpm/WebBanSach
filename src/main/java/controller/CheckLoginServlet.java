@@ -45,7 +45,7 @@ public class CheckLoginServlet extends HttpServlet {
 			
 			session.setAttribute("user", new KhachHang(tenDangNhap, matKhau));
 			
-			rd = request.getRequestDispatcher("views/user/index.jsp");
+			rd = request.getRequestDispatcher("showIndex");
 			rd.forward(request, response);
 		}
 		

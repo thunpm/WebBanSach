@@ -7,15 +7,16 @@ USE WebBanSach
 CREATE TABLE KHACHHANG (
 	Id varchar(10) not null,
 	TenDangNhap varchar(50) not null,
-	HoTen nvarchar(50) not null,
+	HoTen nvarchar(50) null,
 	SoDienThoai varchar(12) not null,
-	MatKhau nvarchar(50),
+	MatKhau nvarchar(50) not null,
 	Email varchar(50),
 	GioiTinh nvarchar(10),
 	NgaySinh date,
 
 	primary key (id),
-	unique (SoDienThoai, TenDangNhap, Email)
+	unique (SoDienThoai),
+	unique (TenDangNhap)
 )
 
 INSERT INTO KHACHHANG

@@ -22,7 +22,7 @@
 	        	<input type="submit" value="ĐĂNG NHẬP">
 	        	<input type="button" value="THOÁT">
 	        </form>
-	        <a class="link-dang-ki" href="#">Bạn chưa có tài khoản? Đăng kí ngay!</a>
+	        <a class="link-dang-ki" href="showRegister">Bạn chưa có tài khoản? Đăng kí ngay!</a>
 	    </div>	    
     </div>
     <%@ include file="include/footer.jsp" %>

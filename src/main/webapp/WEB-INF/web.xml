@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>WebBanSach</display-name>
   <welcome-file-list>
-    <welcome-file>ShowIndex</welcome-file>
+    <welcome-file>showIndex</welcome-file>
   </welcome-file-list>
   <servlet>
     <description></description>
@@ -42,7 +42,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ShowIndexServlet</servlet-name>
-    <url-pattern>/ShowIndex</url-pattern>
+    <url-pattern>/showIndex</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -73,5 +73,45 @@
   <servlet-mapping>
     <servlet-name>ShowTheLoaiServlet</servlet-name>
     <url-pattern>/ShowTheLoaiServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CheckRegisterServlet</display-name>
+    <servlet-name>CheckRegisterServlet</servlet-name>
+    <servlet-class>controller.CheckRegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckRegisterServlet</servlet-name>
+    <url-pattern>/checkRegister</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowProductByLoaiServlet</display-name>
+    <servlet-name>ShowProductByLoaiServlet</servlet-name>
+    <servlet-class>controller.ShowProductByLoaiServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowProductByLoaiServlet</servlet-name>
+    <url-pattern>/showProductByLoai</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowDetailProductServlet</display-name>
+    <servlet-name>ShowDetailProductServlet</servlet-name>
+    <servlet-class>controller.ShowDetailProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowDetailProductServlet</servlet-name>
+    <url-pattern>/showDetailProduct</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowProductBySortServlet</display-name>
+    <servlet-name>ShowProductBySortServlet</servlet-name>
+    <servlet-class>controller.ShowProductBySortServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowProductBySortServlet</servlet-name>
+    <url-pattern>/ShowProductBySortServlet</url-pattern>
   </servlet-mapping>
 </web-app>

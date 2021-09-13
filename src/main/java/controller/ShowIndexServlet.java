@@ -27,22 +27,76 @@ public class ShowIndexServlet extends HttpServlet {
 		ShowDanhMucBO  showDanhMucBO = new ShowDanhMucBO();
 		ShowLoaiSanPhamBO showLoaiSanPhamBO = new ShowLoaiSanPhamBO();
 		ShowSanPhamBO showSanPhamBO = new ShowSanPhamBO();
-		
+	
+		int tongSoTrang = 0, batDauSP = 0, ketThucSP = 0;
+		int[] listSoTrang = new int[3];
 		ArrayList<DanhMucSanPham> listDanhMuc = showDanhMucBO.getAllDanhMuc();
 		ArrayList<LoaiSanPham> listLoaiSanPham = null;
-		ArrayList<SanPham> listSanPhamBanChay = showSanPhamBO.getAllSanPhamBanChay();
-		ArrayList<SanPham> listSanPhamMoi = showSanPhamBO.getAllSanPhamMoi();
-		ArrayList<SanPham> listSanPhamKhuyenMai = showSanPhamBO.getAllSanPhamKhuyenMai();
+		ArrayList<SanPham> listSanPham = null;
 		
+		String sapXep = request.getParameter("sanPham");
+		String trang = request.getParameter("trangHienTai");
+		
+		// lấy danh mục
 		for (int i = 0; i < listDanhMuc.size(); i++) {
 			listLoaiSanPham = showLoaiSanPhamBO.getListLoaiSanPham(listDanhMuc.get(i).getId());
 			listDanhMuc.get(i).setListLoaiSanPham(listLoaiSanPham);
 		}
 		
+		// lấy sản phẩm 
+		if (sapXep == null || "".equals(sapXep)) {
+			sapXep = "sanPhamMoi";
+		}
+		if ("sanPhamMoi".equals(sapXep)) {
+			listSanPham = showSanPhamBO.getAllSanPhamMoi();
+		} else if ("sanPhamBanChay".equals(sapXep)) {
+			listSanPham = showSanPhamBO.getAllSanPhamBanChay();
+		} else if ("sanPhamKhuyenMai".equals(sapXep)) {
+			listSanPham = showSanPhamBO.getAllSanPhamKhuyenMai();
+		}
+		
+		// đánh số trang
+		if (trang == null || "".equals(trang)) {
+			trang = "1";
+		}
+		int trangHienTai = Integer.valueOf(trang);
+		tongSoTrang = (listSanPham.size() + 11)/12;
+		
+		if (tongSoTrang <= 3) {
+			for (int i = 0; i < tongSoTrang; i++) {
+				listSoTrang[i] = i + 1;
+			}
+		} else {
+			if (trangHienTai == 1) {
+				for (int i = 0; i < 3; i++) {
+					listSoTrang[i] = i + 1;
+				}
+			} else if (trangHienTai == tongSoTrang) {
+				for (int i = 0; i < 3; i++) {
+					listSoTrang[i] = trangHienTai - 2 + i;
+				}
+			} else {
+				for (int i = 0; i < 3; i++) {
+					listSoTrang[i] = (trangHienTai - 1) + i;
+				}
+			}
+		}
+		
+		// tìm số thứ tự sản phẩm trong trang
+		batDauSP = (trangHienTai - 1)*12;
+		ketThucSP = trangHienTai*12 - 1;
+		if (ketThucSP >= listSanPham.size()) {
+			ketThucSP = listSanPham.size() - 1;
+		}
+		
 		request.setAttribute("listDanhMuc", listDanhMuc);
-		request.setAttribute("listSanPhamBanChay", listSanPhamBanChay);
-		request.setAttribute("listSanPhamMoi", listSanPhamMoi);
-		request.setAttribute("listSanPhamKhuyenMai", listSanPhamKhuyenMai);
+		request.setAttribute("listSanPham", listSanPham);
+		request.setAttribute("trangHienTai", trangHienTai);
+		request.setAttribute("tongSoTrang", tongSoTrang);
+		request.setAttribute("batDauSP", batDauSP);
+		request.setAttribute("ketThucSP", ketThucSP);
+		request.setAttribute("listSoTrang", listSoTrang);
+		request.setAttribute("sanPham", sapXep);
 		
 		rd = request.getRequestDispatcher("views/user/index.jsp");
 		rd.forward(request, response);
