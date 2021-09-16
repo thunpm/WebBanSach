@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.bean.KhachHang;
 import model.bo.ShowKhachHangBO;
@@ -18,17 +19,21 @@ public class ShowKhachHangServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("text/html");
 		
-		String tenDangNhap = request.getParameter("tendangnhap");
+		String tenDangNhap = request.getParameter("tenDangNhap");
 		String key = request.getParameter("key");
-		System.out.println(tenDangNhap);
 		
 		ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
 		RequestDispatcher rd = null;
+		HttpSession session = request.getSession();
 		
 		KhachHang khachHang = showKhachHangBO.getAccount(tenDangNhap);
 		
-		request.setAttribute("khachHang", khachHang);
+		session.setAttribute("user", khachHang);
 		
+		if (key == null || "".equals(key)) {
+			key = "information";
+		}
+		request.setAttribute("key", key);
 		if ("information".equals(key)) {
 			rd = request.getRequestDispatcher("views/user/update_information_user.jsp");
 		} else if ("password".equals(key)) {

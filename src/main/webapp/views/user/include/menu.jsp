@@ -3,25 +3,27 @@
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
 <div class="menu">
-	<div class="trang-chu">
+	<div class="menu-item">
 		<a href="showIndex">TRANG CHỦ</a>
 	</div>
-	<div class="gioi-thieu">
+	<div class="menu-item">
 		<a href="#">GIỚI THIỆU</a>
 	</div>
-	<div class="khuyen-mai">
+	<div class="menu-item">
 		<a href="#">KHUYẾN MÃI</a>
 	</div>
-	<div class="tin-tuc">
+	<div class="menu-item">
 		<a href="#">TIN TỨC</a>
 	</div>
-	<div class="login">
+	<div class="menu-item">
    		<c:if test="${!empty sessionScope.user}">
    			<div class="dropdown">
-    			<a data-toggle="dropdown" href="#"><label>CHÀO: ${sessionScope.user.tenDangNhap}</label></a>
-    			<ul class="dropdown-menu" style="background-color: #F0F0F0;">
+    			<a data-toggle="dropdown" href="#">
+    				<label style="font-size: 25px;" class="far fa-user-circle"> ${sessionScope.user.tenDangNhap}</label>
+    			</a>
+    			<ul class="dropdown-menu">
     				<li><a class="dropdown-item" href="#">Đơn hàng của tôi</a></li>
-    				<li><a class="dropdown-item" href="showKhachHang?tendangnhap=${sessionScope.user.tenDangNhap}&key=infomation">Chỉnh sửa thông tin</a></li>
+    				<li><a class="dropdown-item" href="showKhachHang?tenDangNhap=${sessionScope.user.tenDangNhap}">Chỉnh sửa thông tin</a></li>
     				<li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
   				</ul>
 			</div>

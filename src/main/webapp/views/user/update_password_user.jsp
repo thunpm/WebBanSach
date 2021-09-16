@@ -1,4 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<c:set var="root" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,26 +13,38 @@
     <link rel="stylesheet" type="text/css" href="views/lib/bootstrap/css/bootstrap.min.css"/>
 </head>
 <body>
-	<!-- làm sau -->
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
     <div class="main-block">
     	<div class="menu-update-kh">
-    		<a href="showKhachHang?tendangnhap=${sessionScope.khachHang.tenDangNhap}&key=infomation">Thay đổi thông tin</a>
-    		<a href="showKhachHang?tendangnhap=${sessionScope.khachHang.tenDangNhap}&key=password">Thay đổi mật khẩu</a> 
+    		<a href="showKhachHang?tenDangNhap=${sessionScope.user.tenDangNhap}">Thay đổi thông tin</a>
+    		<a href="showKhachHang?tenDangNhap=${sessionScope.user.tenDangNhap}&key=password">Thay đổi mật khẩu</a>
     		<a href="#">Cập nhật địa chỉ giao hàng</a>
     	</div>
-	    <div class="login-block">
+		<div class="login-block">
+			<c:set var="key1" value="information"></c:set>
+			<c:set var="key2" value="password"></c:set>
+			<c:set var="key3" value="address"></c:set>
+			<c:if test="${key eq key1}">
+   				<h5>Thay đổi thông tin</h5>
+   			</c:if>
+   			<c:if test="${key eq key2}">
+   				<h5>Thay đổi mật khẩu</h5>
+   			</c:if>
+   			<c:if test="${key eq key3}">
+   				<h5>Thay đổi địa chỉ giao hàng</h5>
+   			</c:if>
 	    	<p style="color: red; display: inline-block; margin-bottom: 20px;">${requestScope.message}</p>
-	        <form action="checkUpdatePasswordUser" method="POST">
+	        <form action="updateKhachHang" method="POST">
+	        	<input type="hidden" name="key" value="${key}">
+	        	<input type="hidden" name="tenDangNhap" value="${sessionScope.user.tenDangNhap}">
 	        	<label>Mật khẩu cũ:</label>
-	        	<input type="text" name="matKhau" value="">
+	        	<input type="text" name="matKhauCu" value="">
 	        	<label>Mật khẩu mới:</label>
 	        	<input type="text" name="matKhauMoi" value="">
-	        	<label>Nhập lại mật khẩu mới:</label>
-	        	<input type="text" name="nhapLaiMatKhauMoi" value="">
-	        	<input type="submit" value="CẬP NHẬT">
-	        	<input type="button" value="RESET">
+	        	<label>Nhập lại mật khẩu:</label>
+	        	<input type="text" name="nhapLaiMatKhau" value="">
+	        	<input type="submit" value="CHỈNH SỬA">
 	        </form>
 	    </div>	    
     </div>

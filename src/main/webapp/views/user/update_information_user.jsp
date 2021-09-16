@@ -1,4 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<c:set var="root" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,30 +17,63 @@
     <%@ include file="include/menu.jsp" %>
     <div class="main-block">
     	<div class="menu-update-kh">
-    		<a href="showKhachHang?tendangnhap=${sessionScope.khachHang.tenDangNhap}">Thay đổi thông tin</a>
-    		<a href="#">Thay đổi mật khẩu</a>
+    		<a href="showKhachHang?tenDangNhap=${sessionScope.user.tenDangNhap}">Thay đổi thông tin</a>
+    		<a href="showKhachHang?tenDangNhap=${sessionScope.user.tenDangNhap}&key=password">Thay đổi mật khẩu</a>
     		<a href="#">Cập nhật địa chỉ giao hàng</a>
     	</div>
-	    <div class="login-block">
+		<div class="login-block">
+			<c:set var="key1" value="information"></c:set>
+			<c:set var="key2" value="password"></c:set>
+			<c:set var="key3" value="address"></c:set>
+			<c:if test="${key eq key1}">
+   				<h5>Thay đổi thông tin</h5>
+   			</c:if>
+   			<c:if test="${key eq key2}">
+   				<h5>Thay đổi mật khẩu</h5>
+   			</c:if>
+   			<c:if test="${key eq key3}">
+   				<h5>Thay đổi địa chỉ giao hàng</h5>
+   			</c:if>
 	    	<p style="color: red; display: inline-block; margin-bottom: 20px;">${requestScope.message}</p>
-	        <form action="checkLogin" method="POST">
-	        	<label>Tên đăng nhập:</label>
-	        	<input type="text" name="tendangnhap" disabled="disabled" value="${requestScope.khachHang.tenDangNhap}">
+	        <form action="updateKhachHang" method="POST">
+	        	<input type="hidden" name="key" value="${key}">
+	        	<label>Tên đăng nhập *:</label>
+	        	<input type="hidden" name="tenDangNhap" value="${sessionScope.user.tenDangNhap}">
+	        	<input type="text" disabled="disabled" value="${sessionScope.user.tenDangNhap}">
 	        	<label>Họ tên:</label>
-	        	<input type="text" name="hoTen" value="${requestScope.khachHang.hoTen}">
-	        	<label>Số điện thoại:</label>
-	        	<input type="text" name="soDienThoai" value="${requestScope.khachHang.soDienThoai}">
+	        	<input type="text" name="hoTen" value="${sessionScope.user.hoTen}">
+	        	<label>Số điện thoại *:</label>
+	        	<input type="text" name="soDienThoai" value="${sessionScope.user.soDienThoai}">
 	        	<label>Email:</label>
-	        	<input type="text" name="email" value="${requestScope.khachHang.email}">
+	        	<input type="text" name="email" value="${sessionScope.user.email}">
 	        	<label>Giới tính:</label>
 	        	<select name="gioiTinh">
-	        		<option value="NONE" label="${requestScope.khachHang.gioiTinh}"></option>
-	        		<option value="nam" label="Nam"></option>
-	        		<option value="nu" label="Nữ"></option>
-	        		<option value="khac" label="Khác"></option>
+	        		<option value="${sessionScope.user.gioiTinh}" label="${sessionScope.user.gioiTinh}"></option>
+	        		<option value="Nam" label="Nam"></option>
+	        		<option value="Nữ" label="Nữ"></option>
+	        		<option value="Khác" label="Khác"></option>
 	        	</select>
-	        	<input type="submit" value="CẬP NHẬT">
-	        	<input type="button" value="RESET">
+				<fmt:formatDate var="day" value="${sessionScope.user.ngaySinh}" pattern="d" />
+				<fmt:formatDate var="month" value="${sessionScope.user.ngaySinh}" pattern="M" />
+				<fmt:formatDate var="year" value="${sessionScope.user.ngaySinh}" pattern="y" />
+	        	<label>Ngày sinh:</label>
+		        <div class="birthday">
+		        	<select name="ngaySinh" class="nhap">
+		        		<option value="${day}" label="${day}"></option>
+		        		<c:forEach begin="1" end="31" var="dayy">
+		        			<option value="${dayy}" label="${dayy}"></option> 
+		        		</c:forEach>
+		        	</select>
+		        	<select name="thangSinh"  class="nhap">
+		        		<option value="${month}" label="${month}"></option>
+		        		<c:forEach begin="1" end="12" var="monthh">
+		        			<option value="${monthh}" label="${monthh}"></option>
+		        		</c:forEach> 
+		        	</select>
+		        	<input class="nhap" type="text" placeholder="2021" name="namSinh" value="${year}">
+		        </div>
+	        	<input type="submit" value="CHỈNH SỬA">
+	        	<input type="reset" value="RESET">
 	        </form>
 	    </div>	    
     </div>

@@ -3,17 +3,16 @@ package model.bo;
 import java.sql.Date;
 
 import common.DateCommon;
-import common.StringCommon;
 import common.ValidateCommon;
 import model.dao.KhachHangDAO;
 
-public class CheckRegisterBO {
+public class UpdateKhachHangBO {
 	KhachHangDAO khachHangDAO = new KhachHangDAO();
 
-	public int checkRegister(String tenDangNhap, String hoTen, String soDienThoai, String email, String gioiTinh,
-			String ngaySinh, String thangSinh, String namSinh, String matKhau, String nhapLaiMatKhau) {
+	public int checkUpdateInformation(String tenDangNhap, String hoTen, String soDienThoai, String email,
+			String gioiTinh, String ngaySinh, String thangSinh, String namSinh) {
 		
-		if (! ValidateCommon.checkRequiredFileds(tenDangNhap, soDienThoai, matKhau, nhapLaiMatKhau)) {
+		if (! ValidateCommon.checkRequiredFileds(tenDangNhap, soDienThoai)) {
 			return 1;
 		}
 		if (! soDienThoai.matches("^0[1-9][0-9]{8}$")) {
@@ -41,22 +40,20 @@ public class CheckRegisterBO {
 			}
 		}
 		
-		if (! matKhau.equals(nhapLaiMatKhau)) {
+		return khachHangDAO.updateInformationKhachHang(tenDangNhap, hoTen, soDienThoai, email, gioiTinh, date);
+	}
+
+	public int checkUpdateInformation(String tenDangNhap, String matKhauCu, String matKhauMoi, String nhapLaiMatKhau) {
+		if (! ValidateCommon.checkRequiredFileds(matKhauCu, matKhauMoi, nhapLaiMatKhau)) {
+			return 1;
+		}
+		if (! matKhauMoi.equals(nhapLaiMatKhau)) {
 			return 5;
 		}
 		
-		String lastestMaKH = khachHangDAO.getLastestMaKH();
-		String id = "";
+		return khachHangDAO.updatePasswordKhachHang(tenDangNhap, matKhauCu, matKhauMoi);
 		
-		if ("".equals(lastestMaKH)) {
-			id = "KH0001";
-		} else {
-			int ma = Integer.valueOf(lastestMaKH.substring(2));
-			ma++;
-			id = "KH" + StringCommon.convertNumberToString(ma, 4);
-		}
-		
-		return khachHangDAO.insertKhachHang(id, tenDangNhap, hoTen, soDienThoai, matKhau, email, gioiTinh, date);
 	}
-
+	
+	
 }

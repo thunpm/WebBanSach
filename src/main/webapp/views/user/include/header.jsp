@@ -3,20 +3,18 @@
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
 <div class="header">
-    <div class="header-2">
-    	<div class="logo">NPMT BOOK</div>
-    	<div class="find">
-    		<div>
-    			<div>
-                	<input type="text" placeholder="Bạn cần tìm gì?" name="#">
-                </div>
-                <div>
-                	<span class="fa fa-search"></span>
-            	</div>
-            </div>
-    	</div>
-    	<div class="cart">
-			<a href="#">GIỎ HÀNG <span class="fas fa-shopping-cart"></span></a>
-    	</div>
-    </div>
+   	<div class="logo">
+   		<a href="showIndex">NPMT BOOK</a>
+   	</div>
+   	<div class="find">
+		<div class="search-box">
+			<form action="#" method="POST">
+           		<input type="text" placeholder="Bạn cần tìm gì?" name="search-text" value="">
+           		<button type="submit" class="fa fa-search"></button>
+           	</form>
+        </div>
+   	</div>
+   	<div class="cart">
+		<a href="#">GIỎ HÀNG <span class="fas fa-shopping-cart"></span></a>
+   	</div>
 </div>

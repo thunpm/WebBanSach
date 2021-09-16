@@ -27,4 +27,20 @@ public class ShowSanPhamBO {
 		return sanPhamDAO.getAllSanPhamByLoai(maLoai);
 	}
 
+	public ArrayList<SanPham> getAllSanPhamMoi(String maLoai) {
+		return sanPhamDAO.getAllSanPhamMoi(maLoai);
+	}
+
+	public ArrayList<SanPham> getAllSanPhamBanChay(String maLoai) {
+		return sanPhamDAO.getAllSanPhamBanChay(maLoai);
+	}
+
+	public ArrayList<SanPham> getAllSanPhamKhuyenMai(String maLoai) {
+		return sanPhamDAO.getAllSanPhamKhuyenMai(maLoai);
+	}
+
+	public SanPham getSanPhamById(String id) {
+		return sanPhamDAO.getSanPhamById(id);
+	}
+
 }

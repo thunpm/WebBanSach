@@ -13,13 +13,13 @@
     <%@ include file="include/menu.jsp" %>
     <div class="main-block">
 	    <div class="login-block">
-	    	<lable style="color: red; display: inline-block; margin-bottom: 20px;">${requestScope.message}</lable>
+	    	<p style="color: red; display: inline-block; margin-bottom: 20px;">${requestScope.message}</p>
 	        <form action="checkLogin" method="POST">
 	        	<label>Tên đăng nhập:</label>
-	        	<input type="text" name="tendangnhap" value="${requestScope.user.tenDangNhap}">
+        		<input type="text" name="tendangnhap" value="${requestScope.user.tenDangNhap}">
 	        	<label>Mật khẩu:</label>
 	        	<input type="text" name="matkhau" value="${requestScope.user.matKhau}">
-	        	<input type="submit" value="ĐĂNG NHẬP">
+	        	<input style=""type="submit" value="ĐĂNG NHẬP">
 	        	<input type="button" value="THOÁT">
 	        </form>
 	        <a class="link-dang-ki" href="showRegister">Bạn chưa có tài khoản? Đăng kí ngay!</a>

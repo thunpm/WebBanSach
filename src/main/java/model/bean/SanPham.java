@@ -10,6 +10,9 @@ public class SanPham {
 	private double soLuongCo;
 	private String moTa;
 	private String idTheLoai;
+	private String giaString;
+	private String khuyenMaiString;
+	private String soLuongCoString;
 	
 	public SanPham(String id, String tenSanPham, String tacGia, String nhaXuatBan, double gia, double khuyenMai,
 			double soLuongCo, String moTa, String idTheLoai) {
@@ -99,6 +102,30 @@ public class SanPham {
 
 	public void setIdTheLoai(String idTheLoai) {
 		this.idTheLoai = idTheLoai;
+	}
+
+	public String getGiaString() {
+		return giaString;
+	}
+
+	public void setGiaString(String giaString) {
+		this.giaString = giaString;
+	}
+
+	public String getKhuyenMaiString() {
+		return khuyenMaiString;
+	}
+
+	public void setKhuyenMaiString(String khuyenMaiString) {
+		this.khuyenMaiString = khuyenMaiString;
+	}
+
+	public String getSoLuongCoString() {
+		return soLuongCoString;
+	}
+
+	public void setSoLuongCoString(String soLuongCoString) {
+		this.soLuongCoString = soLuongCoString;
 	}
 	
 }

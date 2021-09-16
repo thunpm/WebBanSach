@@ -123,4 +123,52 @@ public class KhachHangDAO extends BaseDAO {
         return "";
 	}
 
+	public int updateInformationKhachHang(String tenDangNhap, String hoTen, String soDienThoai, String email,
+			String gioiTinh, Date date) {
+		Connection connection = getConnection();
+        String sql = "UPDATE KHACHHANG SET HoTen = ?, SoDienThoai = ?, Email = ?, GioiTinh = ?, NgaySinh = ? WHERE TenDangNhap = ?";
+        PreparedStatement pstmt = null;
+
+        try {
+        	pstmt = connection.prepareStatement(sql);
+        	pstmt.setString(1, hoTen);
+        	pstmt.setString(2, soDienThoai);
+        	pstmt.setString(3, email);
+        	pstmt.setString(4, gioiTinh);
+        	pstmt.setDate(5, date);
+        	pstmt.setString(6, tenDangNhap);
+        	pstmt.executeUpdate();
+
+        } catch (SQLException e) {	
+        	e.printStackTrace();
+        	return 6;
+        } finally {
+        	closeConnection(connection, pstmt, null);
+        }
+        return 0;
+	}
+
+	public int updatePasswordKhachHang(String tenDangNhap, String matKhauCu, String matKhauMoi) {
+		if (isValidAccount(tenDangNhap, matKhauCu)) {
+			Connection connection = getConnection();
+	        String sql = "UPDATE KHACHHANG SET MatKhau = ? WHERE TenDangNhap = ?";
+	        PreparedStatement pstmt = null;
+	
+	        try {
+	        	pstmt = connection.prepareStatement(sql);
+	        	pstmt.setString(1, matKhauMoi);
+	        	pstmt.setString(2, tenDangNhap);
+	        	pstmt.executeUpdate();
+	
+	        } catch (SQLException e) {	
+	        	e.printStackTrace();
+	        } finally {
+	        	closeConnection(connection, pstmt, null);
+	        }
+	        return 0;
+		} else {
+			return 6;
+		}
+	}
+
 }

@@ -114,4 +114,24 @@
     <servlet-name>ShowProductBySortServlet</servlet-name>
     <url-pattern>/ShowProductBySortServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateKhachHangServlet</display-name>
+    <servlet-name>UpdateKhachHangServlet</servlet-name>
+    <servlet-class>controller.UpdateKhachHangServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateKhachHangServlet</servlet-name>
+    <url-pattern>/updateKhachHang</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddToCartServlet</display-name>
+    <servlet-name>AddToCartServlet</servlet-name>
+    <servlet-class>controller.AddToCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddToCartServlet</servlet-name>
+    <url-pattern>/addToCart</url-pattern>
+  </servlet-mapping>
 </web-app>
