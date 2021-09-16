@@ -15,16 +15,12 @@
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
     <div class="main-block">
-		<div>
-			<div>${sanPham.tenSanPham}</div>
-			<div>${sanPham.tacGia}</div>
-			<div>${sanPham.nhaXuatBan}</div>
-			<div>${sanPham.gia}</div>
-			<div>${sanPham.khuyenMai}</div>
-			<div>${sanPham.soLuongCo}</div>
-			<div>${sanPham.moTa}</div>
-			<a href="addToCart?idProduct=${sanPham.id}">Thêm vào giỏ hàng</a>
-		</div>		
+    	<div class="content">
+			<c:forEach items="${sessionScope.cart.matHang}" var="matHang">
+				<div>${matHang.sanPham.tenSanPham}</div> 
+				<div>${matHang.soLuong}</div>
+			</c:forEach>
+		</div>	
     </div>
     <%@ include file="include/footer.jsp" %>
     

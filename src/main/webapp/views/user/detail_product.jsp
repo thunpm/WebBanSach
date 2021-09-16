@@ -33,7 +33,7 @@
 					<a class="them" href="addToCart?idProduct=${sanPham.id}">THÊM GIỎ HÀNG</a>
 				</div>
 			</div>	
-			<div class="mo-ta">
+			<div class="mo-ta-sp">
 				<h5>Mô tả sản phẩm</h5>
 				<div>${sanPham.moTa}</div>	
 			</div>
