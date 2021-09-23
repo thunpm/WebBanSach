@@ -20,6 +20,9 @@ public class CheckRegisterServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("text/html");
 		
+		RequestDispatcher rd = null;
+		HttpSession session = request.getSession();
+		
 		String tenDangNhap = request.getParameter("tenDangNhap");
 		String hoTen = request.getParameter("hoTen");
 		String soDienThoai = request.getParameter("soDienThoai");
@@ -32,16 +35,11 @@ public class CheckRegisterServlet extends HttpServlet {
 		String nhapLaiMatKhau = request.getParameter("nhapLaiMatKhau");
 		
 		String message = "";
-		RequestDispatcher rd = null;
-		HttpSession session = request.getSession();
-		
 		CheckRegisterBO checkRegisterBO = new CheckRegisterBO();
-		
 		int check = checkRegisterBO.checkRegister(tenDangNhap, hoTen, soDienThoai, email, gioiTinh, ngaySinh, thangSinh, namSinh, matKhau, nhapLaiMatKhau);
 		
 		if (check == 0) {
 			rd = request.getRequestDispatcher("showLogin");
-			rd.forward(request, response);
 		} else {
 			if (check == 1) {
 				message = "Vui lòng điền đầy đủ thông tin cần thiết!";
@@ -56,16 +54,20 @@ public class CheckRegisterServlet extends HttpServlet {
 			} else if (check == 6) {
 				message = "Tên đăng nhập hoặc số điện thoại đã tồn tại!";
 			}
-			Date date = Date.valueOf("01-01-2021");
-			if (check != 4) {
+			
+			Date date = Date.valueOf("2021-01-01");
+			try {
 				date = Date.valueOf(namSinh + "-" + thangSinh + "-"  + ngaySinh);
+			} catch (Exception e) {
+				
 			}
 			request.setAttribute("message", message);
 			request.setAttribute("khachHang", new KhachHang(tenDangNhap, hoTen, soDienThoai, matKhau, email, gioiTinh, date));
 			
 			rd = request.getRequestDispatcher("views/user/register.jsp");
-			rd.forward(request, response);
 		}
+		
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -7,7 +7,7 @@ USE WebBanSach
 CREATE TABLE KHACHHANG (
 	Id varchar(10) not null,
 	TenDangNhap varchar(50) not null,
-	HoTen nvarchar(50) null,
+	HoTen nvarchar(50),
 	SoDienThoai varchar(12) not null,
 	MatKhau nvarchar(50) not null,
 	Email varchar(50),

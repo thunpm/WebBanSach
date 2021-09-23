@@ -1,6 +1,7 @@
 package common;
 
 public class DateCommon {
+	
 	public static boolean isValidDate(int ngay, int thang, int nam) {
 		if (thang == 4 || thang == 6 || thang == 9 || thang == 11) {
 			if (ngay == 31) {

@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>TRANG CHỦ</title>
+    <title>Cảm ơn</title>
     <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
     <link rel="stylesheet" type="text/css" href="views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="views/lib/bootstrap/css/bootstrap.min.css"/>
@@ -14,10 +14,16 @@
 <body>
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
-	Cảm ơn quý khách đã tin tưởng lựa chọn cửa hàng của chúng tôi!
+    
+	<div class="thong-tin-thanh-toan">
+		Cảm ơn quý khách đã tin tưởng lựa chọn cửa hàng của chúng tôi!
+	</div>
+	
     <%@ include file="include/footer.jsp" %>
+    
    	<script src="views/lib/jquery-3.3.1.min.js"></script>
     <script src="views/lib/popper.min.js"></script>
     <script src="views/lib/bootstrap/js/bootstrap.min.js"></script>
+    
 </body>
 </html>

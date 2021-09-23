@@ -19,15 +19,14 @@ public class CheckLoginServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("text/html");
 		
+		RequestDispatcher rd = null;
+		HttpSession session = request.getSession();
+		
 		String tenDangNhap = request.getParameter("tendangnhap");
 		String matKhau = request.getParameter("matkhau");
 		
 		String message = "";
-		RequestDispatcher rd = null;
-		HttpSession session = request.getSession();
-		
 		CheckLoginBO checkLoginBO = new CheckLoginBO();
-		
 		int check = checkLoginBO.checkLogin(tenDangNhap, matKhau);
 		
 		if (check == 0 || check == 2) {
@@ -36,18 +35,19 @@ public class CheckLoginServlet extends HttpServlet {
 			} else {
 				message = "Tên đăng nhập hoặc mật khẩu không đúng!";
 			}
+			
 			request.setAttribute("message", message);
 			request.setAttribute("user", new KhachHang(tenDangNhap, matKhau));
 			
-			rd = request.getRequestDispatcher("views/user/login.jsp");
-			rd.forward(request, response);
+			rd = request.getRequestDispatcher("views/user/login.jsp");	
 		} else if (check == 1) {
 			
 			session.setAttribute("user", new KhachHang(tenDangNhap, matKhau));
 			
 			rd = request.getRequestDispatcher("showIndex");
-			rd.forward(request, response);
 		}
+		
+		rd.forward(request, response);
 		
 	}
 

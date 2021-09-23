@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>TRANG CHỦ</title>
+    <title>Giỏ hàng</title>
     <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
     <link rel="stylesheet" type="text/css" href="views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="views/lib/bootstrap/css/bootstrap.min.css"/>
@@ -23,7 +23,7 @@
 	    	<form action="updateCart" method="post">
 			    <table class="bang-sp">
 			    	<tr style="width: 100%; height: 60px; margin-bottom: 30px; border-bottom: 20px solid #F0F0F0;">
-			    		<th>Sản phẩm</th>
+			    		<th style="width: 500px;">Sản phẩm</th>
 			    		<th>Đơn giá</th>
 			    		<th>Số lượng</th>
 			    		<th>Thành tiền</th>
@@ -31,7 +31,7 @@
 			    	</tr>
 					<c:forEach items="${sessionScope.cart.matHang}" var="matHang">
 						<tr style="width: 100%; height: 280px; margin-bottom: 30px; border-bottom: 20px solid #F0F0F0;">
-							<td>${matHang.sanPham.tenSanPham}</td> 
+							<td style="width: 500px;">${matHang.sanPham.tenSanPham}</td> 
 							<td>${matHang.sanPham.giaString} -${matHang.sanPham.khuyenMaiString}%</td>
 							<td>
 								<input type="hidden" class="gia" value="${matHang.sanPham.gia}">

@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class BaseDAO {
-	private static String hostName = "localhost"; //127.0.0.1
+	private static String hostName = "localhost"; 
     private static String password = "12345";
     private static String usename = "sa2";
     private static String database = "WebBanSach";

@@ -21,12 +21,13 @@ public class ShowKhachHangServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("text/html");
 		
+		RequestDispatcher rd = null;
+		HttpSession session = request.getSession();
+		
 		String tenDangNhap = request.getParameter("tenDangNhap");
 		String key = request.getParameter("key");
 		
 		ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
-		RequestDispatcher rd = null;
-		HttpSession session = request.getSession();
 		ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
 		DiaChi diaChiKH = new DiaChi();
 		

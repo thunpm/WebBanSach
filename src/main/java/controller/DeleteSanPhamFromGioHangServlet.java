@@ -18,11 +18,12 @@ public class DeleteSanPhamFromGioHangServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("text/html");
 		
-		String id = request.getParameter("idProduct");
-		int viTri = 0;
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = null;
 		
+		String id = request.getParameter("idProduct");
+		
+		int viTri = 0;
 		GioHang cart = (GioHang) session.getAttribute("cart");
 		
 		for (int i = 0; i < cart.getMatHang().size(); i++) {

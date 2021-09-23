@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>ĐĂNG NHẬP</title>
+    <title>Cập nhật địa chỉ</title>
     <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
     <link rel="stylesheet" type="text/css" href="views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="views/lib/bootstrap/css/bootstrap.min.css"/>
@@ -15,6 +15,7 @@
 <body>
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
+    
     <div class="main-block">
     	<div class="menu-update-kh">
     		<a href="showKhachHang?tenDangNhap=${sessionScope.user.tenDangNhap}">Thay đổi thông tin</a>
@@ -34,23 +35,24 @@
    			<c:if test="${key eq key3}">
    				<h5>Thay đổi địa chỉ giao hàng</h5>
    			</c:if>
-	    	<p style="color: red; display: inline-block; margin-bottom: 20px;">${requestScope.message}</p>
+	    	<p style="color: red; display: inline-block; margin-bottom: 20px;">${message}</p>
 	        <form action="updateKhachHang" method="POST">
 	        	<!-- phải làm sao đây, bây giờ em phải làm sao đây... -->
 	        	<input type="hidden" name="key" value="${key}">
 	        	<input type="hidden" name="idKhachHang" value="${sessionScope.user.id}">
 	        	<label>Tỉnh/Thành phố:</label>
-	        	<input type="text" name="tinh" value="${requestScope.user.diaChi}">
+	        	<input type="text" name="tinh" value="${sessionScope.user.diaChi.tinh}">
 	        	<label>Quận/Huyện:</label>
-	        	<input type="text" name="huyen" value="${requestScope.user.diaChi.huyen}">
+	        	<input type="text" name="huyen" value="${sessionScope.user.diaChi.huyen}">
 	        	<label>Xã/Phường:</label>
-	        	<input type="text" name="xa" value="${requestScope.user.diaChi.xa}">
+	        	<input type="text" name="xa" value="${sessionScope.user.diaChi.xa}">
 	        	<label>Địa chỉ:</label>
-	        	<input type="text" name="diaChi" value="${requestScope.user.diaChi.diaChi}">
+	        	<input type="text" name="diaChi" value="${sessionScope.user.diaChi.diaChi}">
 	        	<input type="submit" value="CẬP NHẬT">
 	        </form>
 	    </div>	    
     </div>
+    
     <%@ include file="include/footer.jsp" %>
     
    	<script src="views/lib/jquery-3.3.1.min.js"></script>

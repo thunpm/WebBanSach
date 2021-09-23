@@ -19,14 +19,13 @@ public class SearchSanPhamServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("text/html");
 		
+		RequestDispatcher rd = null;
+		
 		String searchText = request.getParameter("searchText");
 		String trang = request.getParameter("trangHienTai");
 		
-		RequestDispatcher rd = null;
 		ShowSanPhamBO showSanPhamBO = new ShowSanPhamBO();
-		
-		ArrayList<SanPham> listSanPham = showSanPhamBO.getSanPhamBySearch(searchText);
-				
+		ArrayList<SanPham> listSanPham = showSanPhamBO.getSanPhamBySearch(searchText);		
 		int tongSoTrang = 0, batDauSP = 0, ketThucSP = 0;
 		int[] listSoTrang;
 		
@@ -36,7 +35,7 @@ public class SearchSanPhamServlet extends HttpServlet {
 		}
 		int trangHienTai = Integer.valueOf(trang);
 		tongSoTrang = (listSanPham.size() + 11)/12;
-		listSoTrang = new int[tongSoTrang + 1];
+		listSoTrang = new int[Math.min(tongSoTrang, 3)];
 		
 		if (tongSoTrang <= 3) {
 			for (int i = 0; i < tongSoTrang; i++) {

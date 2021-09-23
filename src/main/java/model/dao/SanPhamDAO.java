@@ -16,7 +16,7 @@ public class SanPhamDAO extends BaseDAO {
 
 	public ArrayList<SanPham> getAllSanPhamMoi() {
 		Connection connection = getConnection();
-        String sql = "SELECT * FROM SANPHAM ORDER BY id DESC";
+        String sql = "SELECT * FROM SANPHAM ORDER BY Id DESC";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<SanPham> listSanPham = new ArrayList<SanPham>();
@@ -29,7 +29,7 @@ public class SanPhamDAO extends BaseDAO {
         	while (rs.next()) {
         		sanPham = new SanPham();
         		
-        		sanPham.setId(rs.getString("id"));
+        		sanPham.setId(rs.getString("Id"));
         		sanPham.setTenSanPham(rs.getString("TenSanPham"));
         		sanPham.setTacGia(rs.getString("TacGia"));
         		sanPham.setNhaXuatBan(rs.getString("NhaXuatBan"));
@@ -60,7 +60,7 @@ public class SanPhamDAO extends BaseDAO {
 	
 	public ArrayList<SanPham> getAllSanPhamBanChay() {
 		Connection connection = getConnection();
-        String sql = "SELECT * FROM SANPHAM ORDER BY id DESC";
+        String sql = "SELECT * FROM SANPHAM ORDER BY Id DESC";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<SanPham> listSanPham = new ArrayList<SanPham>();
@@ -73,7 +73,7 @@ public class SanPhamDAO extends BaseDAO {
         	while (rs.next()) {
         		sanPham = new SanPham();
         		
-        		sanPham.setId(rs.getString("id"));
+        		sanPham.setId(rs.getString("Id"));
         		sanPham.setTenSanPham(rs.getString("TenSanPham"));
         		sanPham.setTacGia(rs.getString("TacGia"));
         		sanPham.setNhaXuatBan(rs.getString("NhaXuatBan"));
@@ -149,7 +149,7 @@ public class SanPhamDAO extends BaseDAO {
 
 	public ArrayList<SanPham> getAllSanPhamByLoai(String maLoai) {
 		Connection connection = getConnection();
-        String sql = "SELECT * FROM SANPHAM WHERE idTheLoai = ?";
+        String sql = "SELECT * FROM SANPHAM WHERE IdTheLoai = ?";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<SanPham> listSanPham = new ArrayList<SanPham>();
@@ -163,7 +163,7 @@ public class SanPhamDAO extends BaseDAO {
         	while (rs.next()) {
         		sanPham = new SanPham();
         		
-        		sanPham.setId(rs.getString("id"));
+        		sanPham.setId(rs.getString("Id"));
         		sanPham.setTenSanPham(rs.getString("TenSanPham"));
         		sanPham.setTacGia(rs.getString("TacGia"));
         		sanPham.setNhaXuatBan(rs.getString("NhaXuatBan"));
@@ -208,7 +208,7 @@ public class SanPhamDAO extends BaseDAO {
         	while (rs.next()) {
         		sanPham = new SanPham();
         		
-        		sanPham.setId(rs.getString("id"));
+        		sanPham.setId(rs.getString("Id"));
         		sanPham.setTenSanPham(rs.getString("TenSanPham"));
         		sanPham.setTacGia(rs.getString("TacGia"));
         		sanPham.setNhaXuatBan(rs.getString("NhaXuatBan"));
@@ -253,7 +253,7 @@ public class SanPhamDAO extends BaseDAO {
         	while (rs.next()) {
         		sanPham = new SanPham();
         		
-        		sanPham.setId(rs.getString("id"));
+        		sanPham.setId(rs.getString("Id"));
         		sanPham.setTenSanPham(rs.getString("TenSanPham"));
         		sanPham.setTacGia(rs.getString("TacGia"));
         		sanPham.setNhaXuatBan(rs.getString("NhaXuatBan"));
@@ -299,7 +299,7 @@ public class SanPhamDAO extends BaseDAO {
         	while (rs.next()) {
         		sanPham = new SanPham();
         		
-        		sanPham.setId(rs.getString("id"));
+        		sanPham.setId(rs.getString("Id"));
         		sanPham.setTenSanPham(rs.getString("TenSanPham"));
         		sanPham.setTacGia(rs.getString("TacGia"));
         		sanPham.setNhaXuatBan(rs.getString("NhaXuatBan"));
@@ -343,7 +343,7 @@ public class SanPhamDAO extends BaseDAO {
         	if (rs.next()) {
         		sanPham = new SanPham();
         		
-        		sanPham.setId(rs.getString("id"));
+        		sanPham.setId(rs.getString("Id"));
         		sanPham.setTenSanPham(rs.getString("TenSanPham"));
         		sanPham.setTacGia(rs.getString("TacGia"));
         		sanPham.setNhaXuatBan(rs.getString("NhaXuatBan"));
@@ -408,7 +408,7 @@ public class SanPhamDAO extends BaseDAO {
         	while (rs.next()) {
         		sanPham = new SanPham();
         		
-        		sanPham.setId(rs.getString("id"));
+        		sanPham.setId(rs.getString("Id"));
         		sanPham.setTenSanPham(rs.getString("TenSanPham"));
         		sanPham.setTacGia(rs.getString("TacGia"));
         		sanPham.setNhaXuatBan(rs.getString("NhaXuatBan"));

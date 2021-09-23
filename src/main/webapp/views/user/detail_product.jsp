@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>TRANG CHỦ</title>
+    <title>Chi tiết sản phẩm</title>
     <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
     <link rel="stylesheet" type="text/css" href="views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="views/lib/bootstrap/css/bootstrap.min.css"/>

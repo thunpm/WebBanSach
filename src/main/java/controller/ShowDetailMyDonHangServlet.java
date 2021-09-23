@@ -21,12 +21,12 @@ public class ShowDetailMyDonHangServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("text/html");
 		
-		String idDonHang = request.getParameter("idDonHang");
-		
 		RequestDispatcher rd = null;
 		HttpSession session = request.getSession();
-		ShowDetailMyDonHangBO showDetailMyDonHangBO = new ShowDetailMyDonHangBO();
 		
+		String idDonHang = request.getParameter("idDonHang");
+		
+		ShowDetailMyDonHangBO showDetailMyDonHangBO = new ShowDetailMyDonHangBO();
 		KhachHang khachHang = (KhachHang) session.getAttribute("user");
 		ArrayList<MatHang> listMatHang = showDetailMyDonHangBO.getMatHangByIdHoaDon(idDonHang);
 		

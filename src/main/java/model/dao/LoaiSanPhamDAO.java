@@ -26,7 +26,7 @@ public class LoaiSanPhamDAO extends BaseDAO {
         	while (rs.next()) {
         		loaiSanPham = new LoaiSanPham();
         		
-        		loaiSanPham.setId(rs.getString("id"));
+        		loaiSanPham.setId(rs.getString("Id"));
         		loaiSanPham.setTenLoaiSanPham(rs.getString("TenLoaiSanPham"));
         		loaiSanPham.setIdDanhMuc(rs.getString("IdDanhMuc"));
         			

@@ -21,10 +21,12 @@ public class AddToCartServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("text/html");
 		
-		String id = request.getParameter("idProduct");
-		ShowSanPhamBO showSanPhamBo = new ShowSanPhamBO();
 		RequestDispatcher rd = null;
 		HttpSession session = request.getSession();
+		
+		String id = request.getParameter("idProduct");
+		
+		ShowSanPhamBO showSanPhamBo = new ShowSanPhamBO();
 		SanPham sanPham = showSanPhamBo.getSanPhamById(id);
 		GioHang cart = null;
 		

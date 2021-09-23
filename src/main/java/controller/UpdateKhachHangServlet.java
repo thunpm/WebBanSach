@@ -121,6 +121,7 @@ public class UpdateKhachHangServlet extends HttpServlet {
 			rd = request.getRequestDispatcher("views/user/update_address_user.jsp");
 			
 		}
+		
 		request.setAttribute("message", message);
 		request.setAttribute("key", key);
 		

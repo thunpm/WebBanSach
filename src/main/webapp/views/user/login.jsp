@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>ĐĂNG NHẬP</title>
+    <title>Đăng nhập</title>
     <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
     <link rel="stylesheet" type="text/css" href="views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="views/lib/bootstrap/css/bootstrap.min.css"/>
@@ -14,7 +14,7 @@
     
     <div class="main-block">
 	    <div class="login-block">
-	    	<p style="color: red; display: inline-block; margin-bottom: 20px;">${requestScope.message}</p>
+	    	<p style="color: red; display: inline-block; margin-bottom: 20px;">${message}</p>
 	        <form action="checkLogin" method="POST">
 	        	<label>Tên đăng nhập:</label>
         		<input type="text" name="tendangnhap" value="${requestScope.user.tenDangNhap}">

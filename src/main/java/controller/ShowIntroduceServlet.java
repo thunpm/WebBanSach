@@ -15,6 +15,7 @@ public class ShowIntroduceServlet extends HttpServlet {
 		response.setCharacterEncoding("text/html");
 		
 		RequestDispatcher rd = null;
+		
 		rd = request.getRequestDispatcher("views/user/introduce.jsp");
 		rd.forward(request, response);
 	}

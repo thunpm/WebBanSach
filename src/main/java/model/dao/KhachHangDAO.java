@@ -52,7 +52,7 @@ public class KhachHangDAO extends BaseDAO {
         	if (rs.next()) {
         		khachHang = new KhachHang();
         		
-        		khachHang.setId(rs.getString("id"));
+        		khachHang.setId(rs.getString("Id"));
         		khachHang.setTenDangNhap(rs.getString("TenDangNhap"));
         		khachHang.setHoTen(rs.getString("HoTen"));
         		khachHang.setSoDienThoai(rs.getString("SoDienThoai"));

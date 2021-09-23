@@ -22,10 +22,11 @@ public class ShowMyDonHangServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("text/html");
 		
-		String tenDangNhap = request.getParameter("tenDangNhap");
-		
 		RequestDispatcher rd = null;
 		HttpSession session = request.getSession();
+		
+		String tenDangNhap = request.getParameter("tenDangNhap");
+		
 		ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
 		ShowMyDonHangBO showMyDonHangBO = new ShowMyDonHangBO();
 		

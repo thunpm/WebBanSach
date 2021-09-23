@@ -16,6 +16,7 @@ public class ShowRegisterServlet extends HttpServlet {
 		response.setCharacterEncoding("text/html");
 		
 		RequestDispatcher rd = null;
+		
 		rd = request.getRequestDispatcher("views/user/register.jsp");
 		rd.forward(request, response);
 	}

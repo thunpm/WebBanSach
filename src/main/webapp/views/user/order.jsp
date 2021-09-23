@@ -18,7 +18,7 @@
     <div class="main-block">
     	<div class="thong-tin-thanh-toan">
     		<c:if test="${! empty sessionScope.user}">
-	    		<p style="color: red; display: inline-block; margin-bottom: 20px;">${requestScope.message}</p>
+	    		<p style="color: red; display: inline-block; margin-bottom: 20px;">${message}</p>
 		    	<form action="order" method="post">
 			    	<div>
 			    		<!-- khúc này chỉ xử lí client cho vui chớ chưa đưa vô cơ sở dữ liệu -->

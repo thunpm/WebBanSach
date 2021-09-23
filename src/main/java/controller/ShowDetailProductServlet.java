@@ -22,6 +22,7 @@ public class ShowDetailProductServlet extends HttpServlet {
 		ShowDetailSanPhamBO showDetailSanPhamBO = new ShowDetailSanPhamBO();
 		
 		String id = request.getParameter("idProduct");
+		
 		SanPham sanPham = showDetailSanPhamBO.getSanPhamById(id);
 		
 		request.setAttribute("sanPham", sanPham);

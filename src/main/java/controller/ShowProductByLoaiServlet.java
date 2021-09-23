@@ -24,10 +24,12 @@ public class ShowProductByLoaiServlet extends HttpServlet {
 		response.setCharacterEncoding("text/html");
 		
 		RequestDispatcher rd = null;
+		
 		String maLoai = request.getParameter("maLoai");
 		String tenLoai = request.getParameter("tenLoai");
 		String sapXep = request.getParameter("sanPham");
 		String trang = request.getParameter("trangHienTai");
+		
 		ShowSanPhamBO showSanPhamBO = new ShowSanPhamBO();
 		ShowDanhMucBO  showDanhMucBO = new ShowDanhMucBO();
 		ShowLoaiSanPhamBO showLoaiSanPhamBO = new ShowLoaiSanPhamBO();
@@ -42,7 +44,6 @@ public class ShowProductByLoaiServlet extends HttpServlet {
 		
 		ArrayList<SanPham> listSanPham = showSanPhamBO.getAllSanPhamByLoai(maLoai);
 		int tongSoTrang = 0, batDauSP = 0, ketThucSP = 0;
-		int[] listSoTrang = new int[3];
 		
 		if (sapXep == null || "".equals(sapXep)) {
 			sapXep = "sanPhamMoi";
@@ -63,6 +64,7 @@ public class ShowProductByLoaiServlet extends HttpServlet {
 		}
 		int trangHienTai = Integer.valueOf(trang);
 		tongSoTrang = (listSanPham.size() + 11)/12;
+		int[] listSoTrang = new int[Math.min(tongSoTrang, 3)];
 		
 		if (tongSoTrang <= 3) {
 			for (int i = 0; i < tongSoTrang; i++) {
