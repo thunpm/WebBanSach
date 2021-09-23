@@ -232,8 +232,6 @@
 	float: left;
 }
 
-/* ksksksk */
-
 .main-block .login-block {
 	width: 600px;
 	background-color: white;
@@ -261,10 +259,7 @@
 
 .main-block .login-block .birthday {
 	width: 500px;
-	height: 40px;
-	padding-left: 20px;
-	font-size: 18px;
-	margin-top: 20px;
+    height: 65px;
 	margin-bottom: 20px;
 }
 
@@ -274,14 +269,13 @@
 	margin-right: 10px;
 }
 
-.main-block .login-block input[type="submit"], 
-.main-block .login-block input[type="button"],
-.main-block .login-block input[type="reset"] { 
+.main-block input[type="submit"], 
+.main-block input[type="button"],
+.main-block input[type="reset"] { 
 	cursor: pointer;
 	font-size: 18px;
 	font-weight: bold;
 	background-color: #FAC47C;
-	margin-left: 100px;
 	padding: 5px;
 	border: 1px solid #FAC47C;
 	margin-top: 30px;
@@ -344,6 +338,17 @@
     font-weight: bold;
 }
 
+.main-block .content-gio-hang {
+	width: 1200px;
+	margin: auto;
+	display: flex;
+	flex-direction: row;
+}
+
+.main-block .content-gio-hang th, .main-block .content-gio-hang td {
+	padding-left: 10px;
+}
+
 .main-block .mo-ta-sp {
 	width: 900px;
 	background-color: white;
@@ -351,6 +356,39 @@
 	padding: 30px;
 }
 
+.main-block .bang-sp {
+	width: 910px;
+	background-color: white;
+}
+
+.main-block .bang-sp th {
+	margin-bottom: 20px;
+}
+
+.main-block .thanh-toan {
+	width: 300px;
+	height: 430px;
+	margin-left: 10px;
+}
+
+.main-block .thong-tin-thanh-toan {
+	 width: 1000px; 
+	 background-color: white; 
+	 margin: auto; 
+	 padding: 20px;
+}
+
+.main-block .thong-tin-thanh-toan {
+	 width: 1000px; 
+	 background-color: white; 
+	 margin: auto; 
+	 padding: 20px;
+}
+
+.main-block .thong-tin-thanh-toan input {
+	 margin-bottom: 20px;
+	 margin-left: 20px; margin-right: 5px;
+}
 
 
 

@@ -8,13 +8,13 @@
    	</div>
    	<div class="find">
 		<div class="search-box">
-			<form action="#" method="POST">
-           		<input type="text" placeholder="Bạn cần tìm gì?" name="search-text" value="">
+			<form action="searchSanPham" method="POST">
+           		<input type="text" placeholder="Bạn cần tìm gì?" name="searchText" value="${searchText}">
            		<button type="submit" class="fa fa-search"></button>
            	</form>
         </div>
    	</div>
    	<div class="cart">
-		<a href="#">GIỎ HÀNG <span class="fas fa-shopping-cart"></span></a>
+		<a href="showCart">GIỎ HÀNG <span class="fas fa-shopping-cart"></span></a>
    	</div>
 </div>

@@ -56,8 +56,12 @@ public class CheckRegisterServlet extends HttpServlet {
 			} else if (check == 6) {
 				message = "Tên đăng nhập hoặc số điện thoại đã tồn tại!";
 			}
+			Date date = Date.valueOf("01-01-2021");
+			if (check != 4) {
+				date = Date.valueOf(namSinh + "-" + thangSinh + "-"  + ngaySinh);
+			}
 			request.setAttribute("message", message);
-			request.setAttribute("khachHang", new KhachHang(tenDangNhap, hoTen, soDienThoai, matKhau, email, gioiTinh));
+			request.setAttribute("khachHang", new KhachHang(tenDangNhap, hoTen, soDienThoai, matKhau, email, gioiTinh, date));
 			
 			rd = request.getRequestDispatcher("views/user/register.jsp");
 			rd.forward(request, response);

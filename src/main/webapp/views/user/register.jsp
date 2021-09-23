@@ -1,4 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<c:set var="root" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +15,7 @@
 <body>
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
+    
     <div class="main-block">
 	    <div class="login-block">
 	    	<p style="color: red; display: inline-block; margin-bottom: 20px;">${requestScope.message}</p>
@@ -34,61 +39,26 @@
 	        		<option value="Nữ" label="Nữ"></option>
 	        		<option value="Khác" label="Khác"></option>
 	        	</select>
+	        	<fmt:formatDate var="day" value="${user.ngaySinh}" pattern="d" />
+				<fmt:formatDate var="month" value="${sessionScope.user.ngaySinh}" pattern="M" />
+				<fmt:formatDate var="year" value="${sessionScope.user.ngaySinh}" pattern="y" />
 	        	<label>Ngày sinh:</label>
 		        <div class="birthday">
 		        	<select name="ngaySinh" class="nhap">
-		        		<option value="" label=""></option>
-		        		<option value="1" label="01"></option> 
-		        		<option value="2" label="02"></option> 
-		        		<option value="3" label="03"></option>
-		        		<option value="4" label="04"></option> 
-		        		<option value="5" label="05"></option> 
-		        		<option value="6" label="06"></option>
-		        		<option value="7" label="07"></option> 
-		        		<option value="8" label="08"></option> 
-		        		<option value="9" label="09"></option>
-		        		<option value="10" label="10"></option> 
-		        		<option value="11" label="11"></option> 
-		        		<option value="12" label="12"></option>
-		        		<option value="13" label="13"></option> 
-		        		<option value="14" label="14"></option> 
-		        		<option value="15" label="15"></option>
-		        		<option value="16" label="16"></option> 
-		        		<option value="17" label="17"></option> 
-		        		<option value="18" label="18"></option>
-		        		<option value="19" label="19"></option> 
-		        		<option value="20" label="20"></option> 
-		        		<option value="21" label="21"></option>
-		        		<option value="22" label="22"></option> 
-		        		<option value="23" label="23"></option> 
-		        		<option value="24" label="24"></option>
-		        		<option value="25" label="25"></option> 
-		        		<option value="26" label="26"></option> 
-		        		<option value="27" label="27"></option>
-		        		<option value="28" label="28"></option> 
-		        		<option value="29" label="29"></option> 
-		        		<option value="30" label="30"></option>
-		        		<option value="31" label="31"></option>
+		        		<option value="1" label="1"></option>
+		        		<c:forEach begin="1" end="31" var="dayy">
+		        			<option value="${dayy}" label="${dayy}"></option> 
+		        		</c:forEach>
 		        	</select>
 		        	<select name="thangSinh" class="nhap">
-		        		<option value="" label=""></option>
-		        		<option value="1" label="01"></option> 
-		        		<option value="2" label="02"></option> 
-		        		<option value="3" label="03"></option>
-		        		<option value="4" label="04"></option> 
-		        		<option value="5" label="05"></option> 
-		        		<option value="6" label="06"></option>
-		        		<option value="7" label="07"></option> 
-		        		<option value="8" label="08"></option> 
-		        		<option value="9" label="09"></option>
-		        		<option value="10" label="10"></option> 
-		        		<option value="11" label="11"></option> 
-		        		<option value="12" label="12"></option>
+		        		<option value="1" label="1"></option>
+		        		<c:forEach begin="1" end="12" var="monthh">
+		        			<option value="${monthh}" label="${monthh}"></option>
+		        		</c:forEach>
 		        	</select>
 		        	<input class="nhap" type="text" placeholder="2021" name="namSinh" value="">
 		        </div>
 	        	<input type="submit" value="ĐĂNG KÍ">
-	        	<input type="reset" value="RESET">
 	        </form>
 	    </div>	    
     </div>

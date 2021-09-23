@@ -14,6 +14,7 @@
 <body>
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
+    
     <div class="main-block">
     	<div class="content">
 	   		<div class="danh-muc">
@@ -23,7 +24,9 @@
 						<div class="ten-danh-muc" data-toggle="dropdown">${danhMuc.tenDanhMuc}</div>
 	  					<ul class="dropdown-menu">
 							<c:forEach items="${danhMuc.listLoaiSanPham}" var="loaiSanPham">
-	   							<li><a class="dropdown-item" href="showProductByLoai?maLoai=${loaiSanPham.id}&tenLoai=${loaiSanPham.tenLoaiSanPham}">${loaiSanPham.tenLoaiSanPham}</a></li>
+	   							<li>
+	   								<a class="dropdown-item" href="showProductByLoai?maLoai=${loaiSanPham.id}&tenLoai=${loaiSanPham.tenLoaiSanPham}">${loaiSanPham.tenLoaiSanPham}</a>
+   								</li>
 							</c:forEach>
 	  					</ul>
 	 				</div>
@@ -38,10 +41,10 @@
 		        <div class="san-pham">
 		        	<c:forEach items="${listSanPham}" var="sanPham" begin="${batDauSP}" end="${ketThucSP}">		
 		        		<a href="showDetailProduct?idProduct=${sanPham.id}" class="card">	   	    	
-			        		<img class="hinh-anh" src="views/images/doc-vi-bat-ki-ai.jpg"></img>
+			        		<img class="hinh-anh" src="views/images/${sanPham.anhSanPham.tenHinhAnh}"></img>
 			        		<div class="mo-ta">
 				        		<div class="ten-sach">${sanPham.tenSanPham}</div>
-				        		<div style="color: #525852;" class="da-ban">Đã bán ...</div>
+				        		<div style="color: #525852;" class="da-ban">Đã bán ${sanPham.daBan}</div>
 				        		<div>
 				        			<div style="float: left; font-weight: bold; margin-right: 5px; font-size: 17px;" class="gia-tien">${sanPham.giaString}</div>
 				        			<div style="color: red;" class="khuyen-mai">-${sanPham.khuyenMaiString}%</div>
@@ -74,5 +77,6 @@
    	<script src="views/lib/jquery-3.3.1.min.js"></script>
     <script src="views/lib/popper.min.js"></script>
     <script src="views/lib/bootstrap/js/bootstrap.min.js"></script>
+    
 </body>
 </html>

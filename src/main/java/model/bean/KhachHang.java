@@ -1,6 +1,7 @@
 package model.bean;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class KhachHang {
 	private String id;
@@ -11,6 +12,7 @@ public class KhachHang {
 	private String email;
 	private String gioiTinh;
 	private Date ngaySinh;
+	private DiaChi diaChi = new DiaChi();
 	
 	public KhachHang() {
 		super();
@@ -119,6 +121,14 @@ public class KhachHang {
 
 	public void setNgaySinh(Date ngaySinh) {
 		this.ngaySinh = ngaySinh;
+	}
+
+	public DiaChi getDiaChi() {
+		return diaChi;
+	}
+
+	public void setDiaChi(DiaChi diaChi) {
+		this.diaChi = diaChi;
 	}
 
 }

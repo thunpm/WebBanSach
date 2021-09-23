@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.bean.DiaChi;
 import model.bean.KhachHang;
+import model.bo.ShowDiaChiBO;
 import model.bo.ShowKhachHangBO;
+import model.bo.UpdateDiaChiBO;
 import model.bo.UpdateKhachHangBO;
 
 public class UpdateKhachHangServlet extends HttpServlet {
@@ -20,17 +24,19 @@ public class UpdateKhachHangServlet extends HttpServlet {
 		response.setCharacterEncoding("text/html");
 		
 		RequestDispatcher rd = null;
+		HttpSession session = request.getSession();
+		
 		String key = request.getParameter("key");
-		String tenDangNhap = request.getParameter("tenDangNhap");
 
-		UpdateKhachHangBO updateKhachHangBO = new UpdateKhachHangBO();
-		ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
 		int check = 0;
 		String message = "";
-		HttpSession session = request.getSession();
 		KhachHang khachHang;
-		request.setAttribute("key", key);
+		
 		if ("information".equals(key)) {
+			UpdateKhachHangBO updateKhachHangBO = new UpdateKhachHangBO();
+			ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
+			
+			String tenDangNhap = request.getParameter("tenDangNhap");
 			String hoTen = request.getParameter("hoTen");
 			String soDienThoai = request.getParameter("soDienThoai");
 			String email = request.getParameter("email");
@@ -56,9 +62,14 @@ public class UpdateKhachHangServlet extends HttpServlet {
 					message = "Đã xảy ra lỗi, vui lòng thử lại!";
 				}
 			}
-			request.setAttribute("message", message);
+			
 			rd = request.getRequestDispatcher("views/user/update_information_user.jsp");
+			
 		} else if ("password".equals(key)) {
+			UpdateKhachHangBO updateKhachHangBO = new UpdateKhachHangBO();
+			ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
+			
+			String tenDangNhap = request.getParameter("tenDangNhap");
 			String matKhauCu = request.getParameter("matKhauCu");
 			String matKhauMoi = request.getParameter("matKhauMoi");
 			String nhapLaiMatKhau = request.getParameter("nhapLaiMatKhau"); 
@@ -73,12 +84,46 @@ public class UpdateKhachHangServlet extends HttpServlet {
 				} else if (check == 6) {
 					message = "Mật khẩu cũ không đúng, vui lòng thử lại!";
 				}
-				request.setAttribute("message", message);
+
 				rd = request.getRequestDispatcher("views/user/update_password_user.jsp");
+				
 			}	
 		} else if ("address".equals(key)) {
-			// tính sau
+			UpdateDiaChiBO updateDiaChiBO = new UpdateDiaChiBO();
+			
+			String idKhachHang = request.getParameter("idKhachHang");
+			String tinh = request.getParameter("tinh");
+			String huyen = request.getParameter("huyen");
+			String xa = request.getParameter("xa");
+			String diaChi = request.getParameter("diaChi");
+			
+			check = updateDiaChiBO.insertDiaChi(idKhachHang, tinh, huyen, xa, diaChi);
+			
+			if (check == 0) {
+				message = "Đã cập nhật thành công!";
+				
+				ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
+				DiaChi diaChiKH = new DiaChi();
+				
+				diaChiKH = showDiaChiBO.getDiaChi(idKhachHang);
+				khachHang = (KhachHang) session.getAttribute("user");
+				khachHang.setDiaChi(diaChiKH);
+				session.setAttribute("user", khachHang);
+				
+			} else {
+				if (check == 1) {
+					message = "Vui lòng điền đầy đủ thông tin cần thiết!";
+				} else if (check == 6) {
+					message = "Đã xảy ra lỗi, vui lòng thử lại sau!";
+				}
+				
+			}
+			rd = request.getRequestDispatcher("views/user/update_address_user.jsp");
+			
 		}
+		request.setAttribute("message", message);
+		request.setAttribute("key", key);
+		
 		rd.forward(request, response);
 	}
 

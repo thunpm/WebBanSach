@@ -1,5 +1,7 @@
 package model.bean;
 
+import java.util.Date;
+
 public class SanPham {
 	private String id;
 	private String tenSanPham;
@@ -13,6 +15,8 @@ public class SanPham {
 	private String giaString;
 	private String khuyenMaiString;
 	private String soLuongCoString;
+	private int daBan;
+	private AnhSanPham anhSanPham = new AnhSanPham();
 	
 	public SanPham(String id, String tenSanPham, String tacGia, String nhaXuatBan, double gia, double khuyenMai,
 			double soLuongCo, String moTa, String idTheLoai) {
@@ -126,6 +130,27 @@ public class SanPham {
 
 	public void setSoLuongCoString(String soLuongCoString) {
 		this.soLuongCoString = soLuongCoString;
+	}
+
+	public int getDaBan() {
+		return daBan;
+	}
+
+	public void setDaBan(int daBan) {
+		this.daBan = daBan;
+	}
+
+	public AnhSanPham getAnhSanPham() {
+		return anhSanPham;
+	}
+
+	public void setAnhSanPham(AnhSanPham anhSanPham) {
+		this.anhSanPham = anhSanPham;
+	}
+	
+	public static void main(String[] args) {
+		Date date = new Date();
+		System.out.println(date.toString());
 	}
 	
 }

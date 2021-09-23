@@ -181,8 +181,170 @@ VALUES
 	('SP0088', N'Hộp Thiết Đựng Tiền S-247 - Màu Hồng', N'Trung Quốc', N'Trung Quốc', 71000, 0, 100, N'Hộp Thiếc Đựng Tiền S-247 sẽ là cách giữ tiền tiết kiệm mới, là người bạn đặc biệt được yêu thích của các em nhỏ từ bé.', 'LSP17'),
 	('SP0089', N'Vòng Hoa Trang Trí Giáng Sinh', N'Trung Quốc', N'Trung Quốc', 72000, 0, 100, N'Vòng hoa hay còn được gọi là kiểu vòng nguyệt quế, là một trong những món đồ không thể thiếu đế có một mùa noel thật trọn vẹn.', 'LSP17')
 
+CREATE TABLE ANHSANPHAM (
+	Id int identity not null,
+	IdSanPham varchar(10) not null,
+	TenHinhAnh varchar(max) not null,
+
+	primary key (Id),
+	constraint fk_hinhanh_sanpham
+	foreign key (IdSanPham)
+	references SANPHAM(Id)
+)
+
+INSERT INTO ANHSANPHAM 
+	(IdSanPham, TenHinhAnh)
+VALUES
+	('SP0001', 'nha-gia-kim.jpg'),
+	('SP0002', 'cay-cam-ngot-cua-toi.jpg'),
+	('SP0003', 'to-binh-yen-ve-hanh-phuc.jpg'),
+	('SP0004', 'tu-dien-tieng-em.jpg'),
+	('SP0005', 'your-name.jpg'),
+	('SP0006', 'khu-vuon-ngon-tu.jpg'),
+	('SP0007', 'day-con-lam-giau.jpg'),
+	('SP0008', 'nghi-giau-lam-giau.jpg'),
+	('SP0009', 'vi-tu-si-ban-chiec-ferrari.jpg'),
+	('SP0010', 'nha-lanh-dao-khong-chuc-danh.jpg'),
+	('SP0011', 'nha-dau-tu-thong-minh.jpg'),
+	('SP0012', 'day-con-lam-giau-2.jpg'),
+	('SP0013', 'doc-vi-bat-ki-ai.jpg'),
+	('SP0014', 'kheo-an-kheo-noi-se-co-duoc-thien-ha.jpg'),
+	('SP0015', 'dai-duong-den.jpg'),
+	('SP0016', 'nghe-thuat-tinh-te-cau-viec-dech-quan-tam.jpg'),
+	('SP0017', 'tren-duong-bang.jpg'),
+	('SP0018', 'luoc-su-tuong-lai.jpg'),
+	('SP0019', 'nhat-ky-dang-thuy-tram.jpg'),
+	('SP0020', 'trump-dung-bao-gio-bo-cuoc.jpg'),
+	('SP0021', 'cach-mang-cong-nghiep-lan-thu-tu.jpg'),
+	('SP0022', 'thu-tinh-gui-mot-nguoi.jpg'),
+	('SP0023', 'nuoi-con-khong-phai-cuoc-chien.jpg'),
+	('SP0024', 'cach-khen-cach-che-cach-phat-con.jpg'),
+	('SP0025', 'phuong-phap-giao-duc-con-cua-nguoi-do-thai-sach.jpg'),
+	('SP0026', 'lam-cha-me-tinh-thuc.jpg'),
+	('SP0027', 'de-con-duoc-om.jpg'),
+	('SP0028', 'be-tap-doc-chu-va-so.jpg'),
+	('SP0029', 'be-tap-to-chu-so-danh-cho-be-4-5-tuoi.jpg'),
+	('SP0030', 'luyen-net-chu-ren-net-nguoi.jpg'),
+	('SP0031', 'be-tap-to-va-lam-quen-voi-chu-so.jpg'),
+	('SP0032', 'vo-o-ly-tap-to-chu-so.jpg'),
+	('SP0033', 'bo-sach-giao-khoa-lop-3.jpg'),
+	('SP0034', 'bo-sach-giao-khoa-lop-1.jpg'),
+	('SP0035', 'bo-sach-giao-khoa-lop-6.jpg'),
+	('SP0036', 'bo-sach-giao-khoa-lop-8.jpg'),
+	('SP0037', 'bo-sach-giao-khoa-lop-9.jpg'),
+	('SP0038', 'tu-hoc-2000-tu-vung-tieng-anh.jpg'),
+	('SP0039', 'Cambridge-Ielts-11-Academic-With-Answers.jpg'),
+	('SP0040', 'tieng-nhat-cho-moi-nguoi.jpg'),
+	('SP0041', '25-chuyen-de-ngu-phap-trong-tam.jpg'),
+	('SP0042', 'giai-thich-ngu-phap-tieng-anh.jpg'),
+	('SP0043', 'Song-of-Achilles.jpg'),
+	('SP0044', 'Five-People-You-Meet-in-Heaven.jpg'),
+	('SP0045', 'Find-Me-A-Novel.jpg'),
+	('SP0046', 'Circe.jpg'),
+	('SP0047', 'Normal-People-A-Novel.jpg'),
+	('SP0048', 'Creativity.jpg'),
+	('SP0049', 'Zere-to-One.jpg'),
+	('SP0050', 'The-Tipping-Point.jpg'),
+	('SP0051', 'Bad-Blood.jpg'),
+	('SP0052', 'No-Rules-Rules.jpg'),
+	('SP0053', 'Atomic-Habits.jpg'),
+	('SP0054', 'The-Subtle-Art-of-Not-Giving.jpg'),
+	('SP0055', 'Rich-Dad-Poor-Dad.jpg'),
+	('SP0056', 'the_power_of_habit.jpg'),
+	('SP0057', 'Barking-Up-The-Wrong-Tree.jpg'),
+	('SP0058', 'Women-Who-Run-with-the-Wolves.jpg'),
+	('SP0059', 'Harry-Potter-And-The-Half.jpg'),
+	('SP0060', 'The-Very-Hungry-Caterpillar.jpg'),
+	('SP0061', 'Harry-Potter-and-the-Philosopher.jpg'),
+	('SP0062', 'Harry-Potter-And-The-Half-Blood-Prince.jpg'),
+	('SP0063', 'Lift-the-flap-Very-First-Questions-and-Answers-What-is-poo.jpg'),
+	('SP0064', 'Harry-Potter-and-the-Philosopher.jpg'),
+	('SP0065', 'Family-And-Friends-Special-Edition-4.jpg'),
+	('SP0066', 'Access-Grade-7-Student.jpg'),
+	('SP0067', 'Access-Grade-7-Workbook.jpg'),
+	('SP0068', 'English-Grammar-in-Use-Book-w-Ans.jpg'),
+	('SP0069', 'Family-And-Friends-Special-Editio-3.jpg'),
+	('SP0070', 'ba-lo-chong-gu-be-trai.jpg'),
+	('SP0071', 'bao-tap.jpg'),
+	('SP0072', 'thuoc-ke.jpg'),
+	('SP0073', 'bop-viet.jpg'),
+	('SP0074', 'bop-viet-vai-tiger.jpg'),
+	('SP0075', 'file-tai-lieu-dung-campus.jpg'),
+	('SP0076', 'bam-kim-so-10.jpg'),
+	('SP0077', 'bia-cong-xanh-chuoi.jpg'),
+	('SP0078', 'bia-nut.jpg'),
+	('SP0079', 'ong-dung-but.jpg'),
+	('SP0080', 'vo-ve-crabit.jpg'),
+	('SP0081', 'bo-mau-ve-masterart.jpg'),
+	('SP0082', 'bo-mau-ve-masterart-12-mau.jpg'),
+	('SP0083', 'tap-ve-401.jpg'),
+	('SP0084', 'tuyp-mau-poster.jpg'),
+	('SP0085', 'mouse-bitis-lam-hoa.jpg'),
+	('SP0086', 'giay-soi-size-s-mau-cam.jpg'),
+	('SP0087', 'tui-giay-hoa-tiet.jpg'),
+	('SP0088', 'hop-thiet-dung-tien.jpg'),
+	('SP0089', 'vong-hoa-trang-tri-giang-sinh.jpg')
 
 
+CREATE TABLE DIACHI (
+	Id int identity not null,
+	IdKhachHang varchar(10) not null,
+	Tinh nvarchar(50),
+	Huyen nvarchar(50),
+	Xa nvarchar(50),
+	DiaChi nvarchar(50),
+	
+	primary key (Id),
+	constraint fk_diachi_kh
+	foreign key (IdKhachHang)
+	references KHACHHANG(Id)
+)
 
+CREATE TABLE HOADON (
+	Id varchar(10) not null,
+	IdKhachHang varchar(10) not null,
+	ThoiGianLap datetime,
+	TrangThai nvarchar(50),
+	
+	primary key (Id),
+	constraint fk_hoadon_kh
+	foreign key (IdKhachHang)
+	references KHACHHANG(Id)
+)
 
+CREATE TABLE CHITIETHOADON (
+	IdHoaDon varchar(10) not null,
+	IdHangHoa varchar(10) not null,
+	SoLuong int not null,
+	
+	primary key (IdHoaDon, IdHangHoa),
+	constraint fk_chitiet_hoadon
+	foreign key (IdHoaDon)
+	references HOADON(Id),
+	constraint fk_chitiet_sanpham
+	foreign key (IdHangHoa)
+	references SANPHAM(Id)
+)
 
+CREATE TABLE ADM (
+	Id varchar(10) not null,
+	TenDangNhap varchar(50) not null,
+	HoTen nvarchar(50) null,
+	MatKhau nvarchar(50) not null,
+
+	primary key (id)
+)
+
+SELECT SANPHAM.*, CASE WHEN SoLuong IS NULL THEN 0 ELSE SoLuong END AS DaBan FROM SANPHAM
+LEFT JOIN
+	(SELECT IdHangHoa, SUM(SoLuong) AS SoLuong FROM CHITIETHOADON
+	FULL JOIN SANPHAM ON SANPHAM.Id = CHITIETHOADON.IdHangHoa
+	WHERE SANPHAM.id = CHITIETHOADON.IdHangHoa
+	GROUP BY CHITIETHOADON.IdHangHoa) AS B ON SANPHAM.Id = B.IdHangHoa
+ORDER BY DaBan DESC 
+
+SELECT TenSanPham, Gia, KhuyenMai, SoLuong FROM CHITIETHOADON
+INNER JOIN SANPHAM ON CHITIETHOADON.IdHangHoa = SANPHAM.Id
+WHERE IdHoaDon = 'HD0001'
+
+SELECT * FROM SANPHAM WHERE TenSanPham LIKE '%?%' OR TacGia LIKE '%?%' OR NhaXuatBan LIKE '%?%'

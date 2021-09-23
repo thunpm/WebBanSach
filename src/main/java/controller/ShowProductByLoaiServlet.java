@@ -93,7 +93,6 @@ public class ShowProductByLoaiServlet extends HttpServlet {
 
 		request.setAttribute("listDanhMuc", listDanhMuc);
 		request.setAttribute("listSanPham", listSanPham);
-		request.setAttribute("listSanPham", listSanPham);
 		request.setAttribute("tenLoai", tenLoai);
 		request.setAttribute("maLoai", maLoai);
 		request.setAttribute("trangHienTai", trangHienTai);

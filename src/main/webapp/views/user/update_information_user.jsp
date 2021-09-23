@@ -19,7 +19,7 @@
     	<div class="menu-update-kh">
     		<a href="showKhachHang?tenDangNhap=${sessionScope.user.tenDangNhap}">Thay đổi thông tin</a>
     		<a href="showKhachHang?tenDangNhap=${sessionScope.user.tenDangNhap}&key=password">Thay đổi mật khẩu</a>
-    		<a href="#">Cập nhật địa chỉ giao hàng</a>
+    		<a href="showKhachHang?tenDangNhap=${sessionScope.user.tenDangNhap}&key=address">Cập nhật địa chỉ giao hàng</a>
     	</div>
 		<div class="login-block">
 			<c:set var="key1" value="information"></c:set>

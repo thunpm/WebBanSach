@@ -14,15 +14,16 @@
 <body>
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
+    
     <div class="main-block">
     	<div class="content">
 			<div class="chi-tiet-sp">
 				<div class="hinh-anh">
-					<img src="views/images/doc-vi-bat-ki-ai.jpg">
+					<img src="views/images/${sanPham.anhSanPham.tenHinhAnh}">
 				</div>
 				<div class="noi-dung">
 					<div style="font-size: 25px; font-weight: bold;">${sanPham.tenSanPham}</div>
-					<div style="color: #525852; margin-left: 400px;" class="da-ban">Đã bán ...</div>
+					<div style="color: #525852; margin-left: 400px;" class="da-ban">Đã bán ${sanPham.daBan}</div>
 					<div>Tác giả/Xuất xứ: ${sanPham.tacGia}</div>
 					<div>Nhà xuất bản/Nơi sản xuất: ${sanPham.nhaXuatBan}</div>
 					<div>Còn ${sanPham.soLuongCoString} sản phẩm</div>
@@ -39,10 +40,12 @@
 			</div>
 		</div>	
     </div>
+    
     <%@ include file="include/footer.jsp" %>
     
    	<script src="views/lib/jquery-3.3.1.min.js"></script>
     <script src="views/lib/popper.min.js"></script>
     <script src="views/lib/bootstrap/js/bootstrap.min.js"></script>
+    
 </body>
 </html>

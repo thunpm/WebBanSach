@@ -43,4 +43,8 @@ public class ShowSanPhamBO {
 		return sanPhamDAO.getSanPhamById(id);
 	}
 
+	public ArrayList<SanPham> getSanPhamBySearch(String searchText) {
+		return sanPhamDAO.getSanPhamBySearch(searchText);
+	}
+
 }
