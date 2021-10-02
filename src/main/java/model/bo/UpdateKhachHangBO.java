@@ -54,6 +54,18 @@ public class UpdateKhachHangBO {
 		return khachHangDAO.updatePasswordKhachHang(tenDangNhap, matKhauCu, matKhauMoi);
 		
 	}
+
+	public int updatePassword(String idKhachHang, String matKhau, String nhapLaiMatKhau) {
+		if (! ValidateCommon.checkRequiredFileds(matKhau, nhapLaiMatKhau)) {
+			return 1;
+		}
+		if (! matKhau.equals(nhapLaiMatKhau)) {
+			return 2;
+		}
+		
+		return khachHangDAO.setPassword(idKhachHang, matKhau);
+	}
+	
 	
 	
 }

@@ -16,7 +16,7 @@ public class SanPhamDAO extends BaseDAO {
 
 	public ArrayList<SanPham> getAllSanPhamMoi() {
 		Connection connection = getConnection();
-        String sql = "SELECT * FROM SANPHAM ORDER BY Id DESC";
+        String sql = "SELECT * FROM SANPHAM WHERE del_flag = 1 ORDER BY Id DESC";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<SanPham> listSanPham = new ArrayList<SanPham>();
@@ -60,7 +60,7 @@ public class SanPhamDAO extends BaseDAO {
 	
 	public ArrayList<SanPham> getAllSanPhamBanChay() {
 		Connection connection = getConnection();
-        String sql = "SELECT * FROM SANPHAM ORDER BY Id DESC";
+        String sql = "SELECT * FROM SANPHAM WHERE del_flag = 1 ORDER BY Id DESC";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<SanPham> listSanPham = new ArrayList<SanPham>();
@@ -105,7 +105,7 @@ public class SanPhamDAO extends BaseDAO {
 
 	public ArrayList<SanPham> getAllSanPhamKhuyenMai() {
 		Connection connection = getConnection();
-        String sql = "SELECT * FROM SANPHAM ORDER BY KhuyenMai DESC";
+        String sql = "SELECT * FROM SANPHAM WHERE del_flag = 1 ORDER BY KhuyenMai DESC";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<SanPham> listSanPham = new ArrayList<SanPham>();
@@ -149,7 +149,7 @@ public class SanPhamDAO extends BaseDAO {
 
 	public ArrayList<SanPham> getAllSanPhamByLoai(String maLoai) {
 		Connection connection = getConnection();
-        String sql = "SELECT * FROM SANPHAM WHERE IdTheLoai = ?";
+        String sql = "SELECT * FROM SANPHAM WHERE IdTheLoai = ? AND del_flag = 1 ";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<SanPham> listSanPham = new ArrayList<SanPham>();
@@ -194,7 +194,7 @@ public class SanPhamDAO extends BaseDAO {
 
 	public ArrayList<SanPham> getAllSanPhamMoi(String maLoai) {
 		Connection connection = getConnection();
-        String sql = "SELECT * FROM SANPHAM WHERE IdTheLoai = ? ORDER BY id DESC";
+        String sql = "SELECT * FROM SANPHAM WHERE IdTheLoai = ? AND del_flag = 1 ORDER BY id DESC";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<SanPham> listSanPham = new ArrayList<SanPham>();
@@ -239,7 +239,7 @@ public class SanPhamDAO extends BaseDAO {
 
 	public ArrayList<SanPham> getAllSanPhamBanChay(String maLoai) {
 		Connection connection = getConnection();
-        String sql = "SELECT * FROM SANPHAM WHERE IdTheLoai = ? ORDER BY id DESC"; 
+        String sql = "SELECT * FROM SANPHAM WHERE IdTheLoai = ? AND del_flag = 1 ORDER BY id DESC"; 
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<SanPham> listSanPham = new ArrayList<SanPham>();
@@ -285,7 +285,7 @@ public class SanPhamDAO extends BaseDAO {
 
 	public ArrayList<SanPham> getAllSanPhamKhuyenMai(String maLoai) {
 		Connection connection = getConnection();
-        String sql = "SELECT * FROM SANPHAM WHERE IdTheLoai = ? ORDER BY KhuyenMai DESC";
+        String sql = "SELECT * FROM SANPHAM WHERE IdTheLoai = ? AND del_flag = 1 ORDER BY KhuyenMai DESC";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<SanPham> listSanPham = new ArrayList<SanPham>();
@@ -330,7 +330,7 @@ public class SanPhamDAO extends BaseDAO {
 
 	public SanPham getSanPhamById(String id) {
 		Connection connection = getConnection();
-        String sql = "SELECT * FROM SANPHAM WHERE Id = ?";
+        String sql = "SELECT * FROM SANPHAM WHERE Id = ? AND del_flag = 1";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         SanPham sanPham = null;
@@ -373,7 +373,7 @@ public class SanPhamDAO extends BaseDAO {
 
 	public void updateSoLuong(String idHangHoa, int soLuong) {
 		Connection connection = getConnection();
-        String sql = "UPDATE SANPHAM SET SoLuongCo = ? WHERE Id = ?";
+        String sql = "UPDATE SANPHAM SET SoLuongCo = ? WHERE Id = ? AND del_flag = 1";
         PreparedStatement pstmt = null;
         SanPham sanPham = getSanPhamById(idHangHoa);
 
@@ -392,7 +392,7 @@ public class SanPhamDAO extends BaseDAO {
 	
 	public ArrayList<SanPham> getSanPhamBySearch(String searchText) {
 		Connection connection = getConnection();
-        String sql = "SELECT * FROM SANPHAM WHERE TenSanPham LIKE ? OR TacGia LIKE ? OR NhaXuatBan LIKE ? ";
+        String sql = "SELECT * FROM SANPHAM WHERE (TenSanPham LIKE ? OR TacGia LIKE ? OR NhaXuatBan LIKE ?) AND del_flag = 1 ";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<SanPham> listSanPham = new ArrayList<SanPham>();
@@ -449,6 +449,125 @@ public class SanPhamDAO extends BaseDAO {
 			return 0;
 		}
 
+	}
+
+	public int delete(String id) {
+		Connection connection = getConnection();
+        String sql = "UPDATE SANPHAM SET del_flag = 0 WHERE Id = ?";
+        PreparedStatement pstmt = null;
+
+        try {
+        	pstmt = connection.prepareStatement(sql);
+        	pstmt.setString(1, id);
+        	pstmt.executeUpdate();
+        	
+        	return 0;
+        } catch (SQLException e) {	
+        	e.printStackTrace();
+        } finally {
+        	closeConnection(connection, pstmt, null);
+        }
+        
+        return 1;
+	}
+
+	public String getLastestMaSP() {
+		Connection connection = getConnection();
+        String sql = "SELECT TOP 1 Id FROM SANPHAM ORDER BY Id DESC";
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+        	pstmt = connection.prepareStatement(sql);
+        	rs = pstmt.executeQuery();
+        	
+        	if (rs.next()) {
+        		return rs.getString("Id");
+        	}
+
+        } catch (SQLException e) {	
+        	e.printStackTrace();
+        } finally {
+        	closeConnection(connection, pstmt, rs);
+        }
+        
+        return "";
+	}
+
+	public int add(String idSP, String tenSanPham, String tacGia, String nhaXuatBan, double gia, double khuyenMai,
+			double soLuongCo, String moTa, String idTheLoai, String hinhAnh) {
+		Connection connection = getConnection();
+        String sql = "INSERT INTO SANPHAM (Id, TenSanPham, TacGia, NhaXuatBan, Gia, KhuyenMai, SoLuongCo, MoTa, IdTheLoai)"
+        		+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement pstmt = null;
+
+        try {
+        	pstmt = connection.prepareStatement(sql);
+        	pstmt.setString(1, idSP);
+        	pstmt.setString(2, tenSanPham);
+        	pstmt.setString(3, tacGia);
+        	pstmt.setString(4, nhaXuatBan);
+        	pstmt.setDouble(5, gia);
+        	pstmt.setDouble(6, khuyenMai);
+        	pstmt.setDouble(7, soLuongCo);
+        	pstmt.setString(8, moTa);
+        	pstmt.setString(9, idTheLoai);
+        	
+        	AnhSanPhamDAO anhSanPhamDAO = new AnhSanPhamDAO();
+        	
+        	if (! anhSanPhamDAO.add(idSP, hinhAnh)) {
+        		return 2;
+        	}
+        	pstmt.executeUpdate();
+        	
+        	
+        	
+        } catch (SQLException e) {	
+        	e.printStackTrace();
+        	return 6;
+        } finally {
+        	closeConnection(connection, pstmt, null);
+        }
+		
+		return 0;
+	}
+
+	public int update(String id, String tenSanPham, String tacGia, String nhaXuatBan, double gia, double khuyenMai,
+			double soLuongCo, String moTa, String idTheLoai, String hinhAnh) {
+		Connection connection = getConnection();
+        String sql = "UPDATE SANPHAM SET TenSanPham = ?, TacGia = ?, NhaXuatBan = ?, Gia = ?, "
+        		+ "KhuyenMai = ?, SoLuongCo = ?, MoTa = ?, IdTheLoai = ?"
+        		+ " WHERE Id = ?";
+        PreparedStatement pstmt = null;
+
+        try {
+        	pstmt = connection.prepareStatement(sql);
+        	pstmt.setString(1, tenSanPham);
+        	pstmt.setString(2, tacGia);
+        	pstmt.setString(3, nhaXuatBan);
+        	pstmt.setDouble(4, gia);
+        	pstmt.setDouble(5, khuyenMai);
+        	pstmt.setDouble(6, soLuongCo);
+        	pstmt.setString(7, moTa);
+        	pstmt.setString(8, idTheLoai);
+        	pstmt.setString(9, id);
+        	
+        	AnhSanPhamDAO anhSanPhamDAO = new AnhSanPhamDAO();
+        	
+        	if (! anhSanPhamDAO.update(id, hinhAnh)) {
+        		return 2;
+        	}
+        	
+        	pstmt.executeUpdate();
+        	
+        } catch (SQLException e) {	
+        	e.printStackTrace();
+        	return 6;
+        } finally {
+        	closeConnection(connection, pstmt, null);
+        }
+		
+		return 0;
 	}
 
 }

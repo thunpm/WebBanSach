@@ -1,5 +1,7 @@
 package model.bo;
 
+import java.util.ArrayList;
+
 import model.bean.KhachHang;
 import model.dao.KhachHangDAO;
 
@@ -8,6 +10,10 @@ public class ShowKhachHangBO {
 	
 	public KhachHang getAccount(String tenDangNhap) {
 		return khachHangDAO.getAccount(tenDangNhap);
+	}
+
+	public ArrayList<KhachHang> getAllKhachHang() {
+		return khachHangDAO.getAllKhachHang();
 	}
 
 }

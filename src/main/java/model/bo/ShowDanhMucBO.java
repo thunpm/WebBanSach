@@ -12,4 +12,8 @@ public class ShowDanhMucBO {
 		return danhMucSanPhamDAO.getAllDanhMuc();
 	}
 
+	public DanhMucSanPham getDanhMucById(String idDanhMuc) {
+		return danhMucSanPhamDAO.getDanhMucById(idDanhMuc);
+	}
+
 }

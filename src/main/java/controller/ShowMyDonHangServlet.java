@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import model.bean.HoaDon;
 import model.bean.KhachHang;
 import model.bo.ShowKhachHangBO;
-import model.bo.ShowMyDonHangBO;
+import model.bo.ShowDonHangBO;
 
 public class ShowMyDonHangServlet extends HttpServlet {
 
@@ -28,10 +28,10 @@ public class ShowMyDonHangServlet extends HttpServlet {
 		String tenDangNhap = request.getParameter("tenDangNhap");
 		
 		ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
-		ShowMyDonHangBO showMyDonHangBO = new ShowMyDonHangBO();
+		ShowDonHangBO showDonHangBO = new ShowDonHangBO();
 		
 		KhachHang khachHang = showKhachHangBO.getAccount(tenDangNhap);
-		ArrayList<HoaDon> listHoaDon = showMyDonHangBO.getHoaDonByIdKhachHang(khachHang.getId());
+		ArrayList<HoaDon> listHoaDon = showDonHangBO.getHoaDonByIdKhachHang(khachHang.getId());
 		
 		request.setAttribute("listHoaDon", listHoaDon);
 		session.setAttribute("user", khachHang);

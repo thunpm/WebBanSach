@@ -42,4 +42,48 @@ public class AnhSanPhamDAO extends BaseDAO {
         return anhSanPham;
 	}
 
+	public boolean add(String idSP, String hinhAnh) {
+		Connection connection = getConnection();
+        String sql = "INSERT INTO ANHSANPHAM (IdSanPham, TenHinhAnh)"
+        		+ " VALUES (?, ?)";
+        PreparedStatement pstmt = null;
+
+        try {
+        	pstmt = connection.prepareStatement(sql);
+        	pstmt.setString(1, idSP);
+        	pstmt.setString(2, hinhAnh);
+        	pstmt.executeUpdate();
+
+        } catch (SQLException e) {	
+        	e.printStackTrace();
+        	return false;
+        } finally {
+        	closeConnection(connection, pstmt, null);
+        }
+		
+		return true;
+	}
+
+	public boolean update(String id, String hinhAnh) {
+		Connection connection = getConnection();
+        String sql = "UPDATE ANHSANPHAM SET TenHinhAnh = ?"
+        		+ " WHERE IdSanPham = ?";
+        PreparedStatement pstmt = null;
+
+        try {
+        	pstmt = connection.prepareStatement(sql);
+        	pstmt.setString(1, hinhAnh);
+        	pstmt.setString(2, id);
+        	pstmt.executeUpdate();
+
+        } catch (SQLException e) {	
+        	e.printStackTrace();
+        	return false;
+        } finally {
+        	closeConnection(connection, pstmt, null);
+        }
+		
+		return true;
+	}
+
 }

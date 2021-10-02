@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.bean.DiaChi;
 import model.bean.GioHang;
 import model.bean.KhachHang;
+import model.bo.ShowDiaChiBO;
 import model.bo.ShowKhachHangBO;
 import model.bo.UpdateChiTietHoaDonBO;
 import model.bo.UpdateHoaDonBO;
@@ -29,10 +31,13 @@ public class OrderServlet extends HttpServlet {
 		GioHang gioHang = (GioHang) session.getAttribute("cart");
 		KhachHang khachHang = (KhachHang) session.getAttribute("user");
 		String message = "";
+		ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
+		DiaChi diaChiKH = showDiaChiBO.getDiaChi(khachHang.getId());
 		
 		// chưa cập nhật địa chỉ
-		if (khachHang.getDiaChi() == null || khachHang.getDiaChi().getId() == 0) {
-			message = "Có vẻ như bạn chưa cập nhật địa chỉ để chúng tôi giao hàng tới! /n Vui lòng cập nhật thông tin và quay lại mua nhé!";
+		if (diaChiKH == null || diaChiKH.getId() == 0 || diaChiKH.getTinh() == "" || diaChiKH.getHuyen() == "" 
+				|| diaChiKH.getXa() == "" || diaChiKH.getDiaChi() == "") {
+			message = "Có vẻ như bạn chưa cập nhật địa chỉ để chúng tôi giao hàng tới! Vui lòng cập nhật thông tin và quay lại mua nhé!";
 			
 			request.setAttribute("message", message);
 			
@@ -61,6 +66,7 @@ public class OrderServlet extends HttpServlet {
 				}
 			}
 			
+			session.removeAttribute("cart");
 			rd = request.getRequestDispatcher("views/user/thanksyou.jsp");		
 		}
 		rd.forward(request, response);

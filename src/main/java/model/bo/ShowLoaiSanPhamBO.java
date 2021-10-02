@@ -12,4 +12,12 @@ public class ShowLoaiSanPhamBO {
 		return loaiSanPhamDAO.getListLoaiSanPham(id);
 	}
 
+	public LoaiSanPham getTheLoaiById(String idTheLoai) {
+		return loaiSanPhamDAO.getTheLoaiById(idTheLoai);
+	}
+
+	public ArrayList<LoaiSanPham> getAllLoaiSanPham() {
+		return loaiSanPhamDAO.getAllLoaiSanPham();
+	}
+
 }

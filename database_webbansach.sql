@@ -13,6 +13,7 @@ CREATE TABLE KHACHHANG (
 	Email varchar(50),
 	GioiTinh nvarchar(10),
 	NgaySinh date,
+	del_flag bit default(1),
 
 	primary key (id),
 	unique (SoDienThoai),
@@ -27,6 +28,7 @@ VALUES
 CREATE TABLE DANHMUCSANPHAM (
 	Id varchar(10) not null,
 	TenDanhMuc nvarchar(50) not null,
+	del_flag bit default(1),
 	
 	primary key (id)
 )
@@ -43,6 +45,7 @@ CREATE TABLE LOAISANPHAM (
 	Id varchar(10) not null,
 	TenLoaiSanPham nvarchar(50) not null,
 	IdDanhMuc varchar(10) not null,
+	del_flag bit default(1),
 
 	primary key (Id),
 	constraint fk_danhmuc_loai
@@ -81,6 +84,7 @@ CREATE TABLE SANPHAM (
 	SoLuongCo money,
 	MoTa nvarchar(max),
 	IdTheLoai varchar(10) not null,
+	del_flag bit default(1),
 
 	primary key (Id),
 	constraint fk_loai_sanpham
@@ -185,6 +189,7 @@ CREATE TABLE ANHSANPHAM (
 	Id int identity not null,
 	IdSanPham varchar(10) not null,
 	TenHinhAnh varchar(max) not null,
+	del_flag bit default(1),
 
 	primary key (Id),
 	constraint fk_hinhanh_sanpham
@@ -285,7 +290,6 @@ VALUES
 	('SP0088', 'hop-thiet-dung-tien.jpg'),
 	('SP0089', 'vong-hoa-trang-tri-giang-sinh.jpg')
 
-
 CREATE TABLE DIACHI (
 	Id int identity not null,
 	IdKhachHang varchar(10) not null,
@@ -293,6 +297,7 @@ CREATE TABLE DIACHI (
 	Huyen nvarchar(50),
 	Xa nvarchar(50),
 	DiaChi nvarchar(50),
+	del_flag bit default(1),
 	
 	primary key (Id),
 	constraint fk_diachi_kh
@@ -305,6 +310,7 @@ CREATE TABLE HOADON (
 	IdKhachHang varchar(10) not null,
 	ThoiGianLap datetime,
 	TrangThai nvarchar(50),
+	del_flag bit default(1),
 	
 	primary key (Id),
 	constraint fk_hoadon_kh
@@ -316,6 +322,7 @@ CREATE TABLE CHITIETHOADON (
 	IdHoaDon varchar(10) not null,
 	IdHangHoa varchar(10) not null,
 	SoLuong int not null,
+	del_flag bit default(1),
 	
 	primary key (IdHoaDon, IdHangHoa),
 	constraint fk_chitiet_hoadon
@@ -331,9 +338,14 @@ CREATE TABLE ADM (
 	TenDangNhap varchar(50) not null,
 	HoTen nvarchar(50) null,
 	MatKhau nvarchar(50) not null,
+	del_flag bit default(1),
 
 	primary key (id)
 )
+
+INSERT INTO ADM(Id, TenDangNhap, MatKhau, HoTen)
+VALUES
+	('AD01', 'admin', '123', N'Nguyễn Phan Minh Thư')
 
 SELECT SANPHAM.*, CASE WHEN SoLuong IS NULL THEN 0 ELSE SoLuong END AS DaBan FROM SANPHAM
 LEFT JOIN
@@ -347,4 +359,17 @@ SELECT TenSanPham, Gia, KhuyenMai, SoLuong FROM CHITIETHOADON
 INNER JOIN SANPHAM ON CHITIETHOADON.IdHangHoa = SANPHAM.Id
 WHERE IdHoaDon = 'HD0001'
 
-SELECT * FROM SANPHAM WHERE TenSanPham LIKE '%?%' OR TacGia LIKE '%?%' OR NhaXuatBan LIKE '%?%'
+DELETE FROM DIACHI WHERE IdKhachHang = 'KH0002'
+
+DELETE FROM KHACHHANG WHERE Id = 'KH003'
+
+SELECT LOAISANPHAM.*, TenDanhMuc FROM LOAISANPHAM 
+INNER JOIN DANHMUCSANPHAM ON LOAISANPHAM.IdDanhMuc = DANHMUCSANPHAM.Id
+WHERE LOAISANPHAM.Id = 'LSP01'
+
+SELECT IdHangHoa, TenSanPham, Gia, KhuyenMai, SUM(SoLuong) AS DaBan FROM CHITIETHOADON
+INNER JOIN SANPHAM ON CHITIETHOADON.IdHangHoa = SANPHAM.Id
+INNER JOIN HOADON ON HOADON.Id = CHITIETHOADON.IdHoaDon
+WHERE ThoiGianLap BETWEEN '09/28/2021' AND '09/29/2021'
+GROUP BY IdHangHoa, TenSanPham, Gia, KhuyenMai
+ORDER BY SUM(SoLuong) DESC

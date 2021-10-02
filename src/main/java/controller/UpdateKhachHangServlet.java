@@ -81,6 +81,8 @@ public class UpdateKhachHangServlet extends HttpServlet {
 			} else {
 				if (check == 1) {
 					message = "Vui lòng điền đầy đủ thông tin cần thiết!";
+				} else if (check == 5) {
+					message = "Mật khẩu không khớp!";
 				} else if (check == 6) {
 					message = "Mật khẩu cũ không đúng, vui lòng thử lại!";
 				}

@@ -68,4 +68,21 @@ public class DiaChiDAO extends BaseDAO {
         return diaChi;
 	}
 
+//	public void deleteDiaChi(String idKhachHang) {
+//		Connection connection = getConnection();
+//        String sql = "DELETE FROM DIACHI WHERE IdKhachHang = ?";
+//        PreparedStatement pstmt = null;
+//
+//        try {
+//        	pstmt = connection.prepareStatement(sql);
+//        	pstmt.setString(1, idKhachHang);
+//        	pstmt.executeUpdate();
+//
+//        } catch (SQLException e) {	
+//        	e.printStackTrace();
+//        } finally {
+//        	closeConnection(connection, pstmt, null);
+//        }
+//	}
+
 }
