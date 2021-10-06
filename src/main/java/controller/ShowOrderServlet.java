@@ -19,6 +19,11 @@ public class ShowOrderServlet extends HttpServlet {
 		RequestDispatcher rd = null;
 		HttpSession session = request.getSession();
 		
+		if (session.getAttribute("user") == null) {
+			rd = request.getRequestDispatcher("showLogin");
+			rd.forward(request, response);
+		} 
+		
 		String tongTien = request.getParameter("tongTien");
 		
 		request.setAttribute("tongTien", tongTien);

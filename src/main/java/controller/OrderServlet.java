@@ -1,7 +1,8 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,6 +29,11 @@ public class OrderServlet extends HttpServlet {
 		RequestDispatcher rd = null;
 		HttpSession session = request.getSession();
 		
+		if (session.getAttribute("user") == null) {
+			rd = request.getRequestDispatcher("showLogin");
+			rd.forward(request, response);
+		} 
+		
 		GioHang gioHang = (GioHang) session.getAttribute("cart");
 		KhachHang khachHang = (KhachHang) session.getAttribute("user");
 		String message = "";
@@ -37,7 +43,7 @@ public class OrderServlet extends HttpServlet {
 		// chưa cập nhật địa chỉ
 		if (diaChiKH == null || diaChiKH.getId() == 0 || diaChiKH.getTinh() == "" || diaChiKH.getHuyen() == "" 
 				|| diaChiKH.getXa() == "" || diaChiKH.getDiaChi() == "") {
-			message = "Có vẻ như bạn chưa cập nhật địa chỉ để chúng tôi giao hàng tới! Vui lòng cập nhật thông tin và quay lại mua nhé!";
+			message = "Bạn chưa cập nhật địa chỉ để chúng tôi giao hàng tới! Vui lòng cập nhật thông tin và quay lại mua nhé!";
 			
 			request.setAttribute("message", message);
 			
@@ -48,8 +54,9 @@ public class OrderServlet extends HttpServlet {
 			UpdateHoaDonBO updateHoaDonBO = new UpdateHoaDonBO();
 			ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
 			khachHang = showKhachHangBO.getAccount(khachHang.getTenDangNhap());
-			Date thoiGian = new Date(System.currentTimeMillis());
-			check = updateHoaDonBO.insertHoaDon(khachHang.getId(), thoiGian, "Đang chuẩn bị hàng");
+			Timestamp thoiGian = new Timestamp(System.currentTimeMillis());
+			System.out.print(thoiGian);
+			check = updateHoaDonBO.insertHoaDon(khachHang.getId(), thoiGian, "Đang chờ xác nhận");
 			
 			if (check == 6) {
 				message = "Đã xảy ra lỗi, vui lòng thử lại sau!";
@@ -67,7 +74,7 @@ public class OrderServlet extends HttpServlet {
 			}
 			
 			session.removeAttribute("cart");
-			rd = request.getRequestDispatcher("views/user/thanksyou.jsp");		
+			rd = request.getRequestDispatcher("showDonHang");		
 		}
 		rd.forward(request, response);
 		

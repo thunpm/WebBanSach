@@ -10,12 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.bean.HoaDon;
-import model.bean.KhachHang;
-import model.bo.ShowKhachHangBO;
-import model.bo.ShowDonHangBO;
+import model.bean.MatHang;
+import model.bo.ShowDetailDonHangBO;
 
-public class ShowMyDonHangServlet extends HttpServlet {
+public class ShowDetailDonHangServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -25,18 +23,18 @@ public class ShowMyDonHangServlet extends HttpServlet {
 		RequestDispatcher rd = null;
 		HttpSession session = request.getSession();
 		
-		String tenDangNhap = request.getParameter("tenDangNhap");
+		if (session.getAttribute("user") == null) {
+			rd = request.getRequestDispatcher("showLogin");
+			rd.forward(request, response);
+		} 
+		String idDonHang = request.getParameter("idDonHang");
 		
-		ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
-		ShowDonHangBO showDonHangBO = new ShowDonHangBO();
+		ShowDetailDonHangBO showDetailMyDonHangBO = new ShowDetailDonHangBO();
+		ArrayList<MatHang> listMatHang = showDetailMyDonHangBO.getMatHangByIdHoaDon(idDonHang);
 		
-		KhachHang khachHang = showKhachHangBO.getAccount(tenDangNhap);
-		ArrayList<HoaDon> listHoaDon = showDonHangBO.getHoaDonByIdKhachHang(khachHang.getId());
+		request.setAttribute("listMatHang", listMatHang);
 		
-		request.setAttribute("listHoaDon", listHoaDon);
-		session.setAttribute("user", khachHang);
-		
-		rd = request.getRequestDispatcher("views/user/my_order.jsp");
+		rd = request.getRequestDispatcher("views/user/detail_my_order.jsp");
 		rd.forward(request, response);
 	}
 

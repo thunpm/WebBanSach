@@ -146,16 +146,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>DeleteSanPhamFromGioHangServlet</display-name>
-    <servlet-name>DeleteSanPhamFromGioHangServlet</servlet-name>
-    <servlet-class>controller.DeleteSanPhamFromGioHangServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DeleteSanPhamFromGioHangServlet</servlet-name>
-    <url-pattern>/deleteSanPhamFromGioHang</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>ShowAddDiaChi</display-name>
     <servlet-name>ShowAddDiaChi</servlet-name>
     <servlet-class>controller.ShowAddDiaChi</servlet-class>
@@ -206,23 +196,23 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ShowMyDonHangServlet</display-name>
-    <servlet-name>ShowMyDonHangServlet</servlet-name>
-    <servlet-class>controller.ShowMyDonHangServlet</servlet-class>
+    <display-name>ShowDonHangServlet</display-name>
+    <servlet-name>ShowDonHangServlet</servlet-name>
+    <servlet-class>controller.ShowDonHangServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ShowMyDonHangServlet</servlet-name>
-    <url-pattern>/showMyDonHang</url-pattern>
+    <servlet-name>ShowDonHangServlet</servlet-name>
+    <url-pattern>/showDonHang</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ShowDetailMyDonHangServlet</display-name>
-    <servlet-name>ShowDetailMyDonHangServlet</servlet-name>
-    <servlet-class>controller.ShowDetailMyDonHangServlet</servlet-class>
+    <display-name>ShowDetailDonHangServlet</display-name>
+    <servlet-name>ShowDetailDonHangServlet</servlet-name>
+    <servlet-class>controller.ShowDetailDonHangServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ShowDetailMyDonHangServlet</servlet-name>
-    <url-pattern>/showDetailMyDonHang</url-pattern>
+    <servlet-name>ShowDetailDonHangServlet</servlet-name>
+    <url-pattern>/showDetailDonHang</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -553,5 +543,15 @@
   <servlet-mapping>
     <servlet-name>AdminLogoutServlet</servlet-name>
     <url-pattern>/admin/logoutAdmin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateDonHangServlet</display-name>
+    <servlet-name>UpdateDonHangServlet</servlet-name>
+    <servlet-class>controller.UpdateDonHangServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateDonHangServlet</servlet-name>
+    <url-pattern>/updateDonHang</url-pattern>
   </servlet-mapping>
 </web-app>

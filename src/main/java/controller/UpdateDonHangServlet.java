@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,33 +10,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.bean.GioHang;
+import model.bean.MatHang;
+import model.bo.UpdateHoaDonBO;
 
-public class DeleteSanPhamFromGioHangServlet extends HttpServlet {
+public class UpdateDonHangServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("text/html");
 		
-		HttpSession session = request.getSession();
 		RequestDispatcher rd = null;
+		HttpSession session = request.getSession();
 		
-		String id = request.getParameter("idProduct");
+		if (session.getAttribute("user") == null) {
+			rd = request.getRequestDispatcher("showLogin");
+			rd.forward(request, response);
+		} 
+		String idDonHang = request.getParameter("idDonHang");
 		
-		int viTri = 0;
-		GioHang cart = (GioHang) session.getAttribute("cart");
+		UpdateHoaDonBO updateHoaDonBO = new UpdateHoaDonBO();
+		updateHoaDonBO.huyDonHang(idDonHang);
 		
-		for (int i = 0; i < cart.getMatHang().size(); i++) {
-			if (cart.getMatHang().get(i).getSanPham().getId().equals(id)) {
-				viTri = i;
-				break;
-			}
-		}
-		cart.getMatHang().remove(viTri);
-		session.setAttribute("cart", cart);
-		
-		rd = request.getRequestDispatcher("views/user/cart.jsp");
+		rd = request.getRequestDispatcher("showDonHang");
 		rd.forward(request, response);
 	}
 

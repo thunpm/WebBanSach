@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import model.bean.LoaiSanPham;
+import model.bean.SanPham;
 import model.bo.AddSanPhamBO;
 import model.bo.ShowLoaiSanPhamBO;
+import model.bo.ShowSanPhamBO;
 import model.bo.UpdateSanPhamBO;
 
 @MultipartConfig
@@ -34,11 +36,15 @@ public class AdminUpdateSanPhamServlet extends HttpServlet {
 			String realPath = request.getServletContext().getRealPath("/views/images");
 			filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
 			
-			if (Files.exists(Paths.get(realPath))) {
-				if (Files.exists(Paths.get(realPath + "/" + filename))) {
-					filename = "1" + filename;
+			if (filename == null || "".equals(filename)) {
+				filename = request.getParameter("hinhAnhCu");
+			} else {
+				if (Files.exists(Paths.get(realPath))) {
+					if (Files.exists(Paths.get(realPath + "/" + filename))) {
+						filename = "1" + filename;
+					}
+					part.write(realPath + "/" + filename);
 				}
-				part.write(realPath + "/" + filename);
 			}
 			
 		} catch (Exception e) {
@@ -76,15 +82,9 @@ public class AdminUpdateSanPhamServlet extends HttpServlet {
 				message = "Lỗi không xác định!";
 			}
 			
-			request.setAttribute("id", id);
-			request.setAttribute("tenSanPham", tenSanPham);
-			request.setAttribute("tacGia", tacGia);
-			request.setAttribute("nhaXuatBan", nhaXuatBan);
-			request.setAttribute("gia", gia);
-			request.setAttribute("khuyenMai", khuyenMai);
-			request.setAttribute("soLuongCo", soLuongCo);
-			request.setAttribute("moTa", moTa);
-			request.setAttribute("idTheLoai", idTheLoai);
+			ShowSanPhamBO showSanPhamBO = new ShowSanPhamBO();
+			SanPham sanPham = showSanPhamBO.getSanPhamById(id);
+			request.setAttribute("sanPham", sanPham);
 			
 			ShowLoaiSanPhamBO showLoaiSanPhamBO = new ShowLoaiSanPhamBO();
 			ArrayList<LoaiSanPham> listTheLoai = showLoaiSanPhamBO.getAllLoaiSanPham();

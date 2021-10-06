@@ -24,17 +24,12 @@ public class ShowKhachHangServlet extends HttpServlet {
 		RequestDispatcher rd = null;
 		HttpSession session = request.getSession();
 		
-		String tenDangNhap = request.getParameter("tenDangNhap");
+		if (session.getAttribute("user") == null) {
+			rd = request.getRequestDispatcher("showLogin");
+			rd.forward(request, response);
+		} 
+		
 		String key = request.getParameter("key");
-		
-		ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
-		ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
-		DiaChi diaChiKH = new DiaChi();
-		
-		KhachHang khachHang = showKhachHangBO.getAccount(tenDangNhap);
-		diaChiKH = showDiaChiBO.getDiaChi(khachHang.getId());
-		khachHang.setDiaChi(diaChiKH);
-		session.setAttribute("user", khachHang);
 		
 		if (key == null || "".equals(key)) {
 			key = "information";

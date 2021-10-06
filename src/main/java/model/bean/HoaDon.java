@@ -1,14 +1,14 @@
 package model.bean;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class HoaDon {
 	private String id;
 	private String idKhachHang;
-	private Date ThoiGianLap;
+	private Timestamp ThoiGianLap;
 	private String trangThai;
 	
-	public HoaDon(String id, String idKhachHang, Date thoiGianLap, String trangThai) {
+	public HoaDon(String id, String idKhachHang, Timestamp thoiGianLap, String trangThai) {
 		super();
 		this.id = id;
 		this.idKhachHang = idKhachHang;
@@ -16,7 +16,7 @@ public class HoaDon {
 		this.trangThai = trangThai;
 	}
 
-	public HoaDon(String idKhachHang, Date thoiGianLap, String trangThai) {
+	public HoaDon(String idKhachHang, Timestamp thoiGianLap, String trangThai) {
 		super();
 		this.idKhachHang = idKhachHang;
 		ThoiGianLap = thoiGianLap;
@@ -43,11 +43,11 @@ public class HoaDon {
 		this.idKhachHang = idKhachHang;
 	}
 
-	public Date getThoiGianLap() {
+	public Timestamp getThoiGianLap() {
 		return ThoiGianLap;
 	}
 
-	public void setThoiGianLap(Date thoiGianLap) {
+	public void setThoiGianLap(Timestamp thoiGianLap) {
 		ThoiGianLap = thoiGianLap;
 	}
 

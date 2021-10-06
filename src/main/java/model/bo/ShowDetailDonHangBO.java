@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import model.bean.MatHang;
 import model.dao.ChiTietHoaDonDAO;
 
-public class ShowDetailMyDonHangBO {
+public class ShowDetailDonHangBO {
 	ChiTietHoaDonDAO chiTietHoaDonDAO = new ChiTietHoaDonDAO();
 
 	public ArrayList<MatHang> getMatHangByIdHoaDon(String idDonHang) {

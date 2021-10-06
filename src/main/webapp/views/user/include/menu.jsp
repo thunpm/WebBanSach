@@ -22,8 +22,8 @@
     				<label style="font-size: 25px;" class="far fa-user-circle"> ${sessionScope.user.tenDangNhap}</label>
     			</a>
     			<ul class="dropdown-menu">
-    				<li><a class="dropdown-item" href="showMyDonHang?tenDangNhap=${sessionScope.user.tenDangNhap}">Đơn hàng của tôi</a></li>
-    				<li><a class="dropdown-item" href="showKhachHang?tenDangNhap=${sessionScope.user.tenDangNhap}">Chỉnh sửa thông tin</a></li>
+    				<li><a class="dropdown-item" href="showDonHang">Đơn hàng của tôi</a></li>
+    				<li><a class="dropdown-item" href="showKhachHang">Chỉnh sửa thông tin</a></li>
     				<li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
   				</ul>
 			</div>

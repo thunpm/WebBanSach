@@ -26,6 +26,11 @@ public class UpdateKhachHangServlet extends HttpServlet {
 		RequestDispatcher rd = null;
 		HttpSession session = request.getSession();
 		
+		if (session.getAttribute("user") == null) {
+			rd = request.getRequestDispatcher("showLogin");
+			rd.forward(request, response);
+		} 
+		
 		String key = request.getParameter("key");
 
 		int check = 0;
@@ -34,7 +39,6 @@ public class UpdateKhachHangServlet extends HttpServlet {
 		
 		if ("information".equals(key)) {
 			UpdateKhachHangBO updateKhachHangBO = new UpdateKhachHangBO();
-			ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
 			
 			String tenDangNhap = request.getParameter("tenDangNhap");
 			String hoTen = request.getParameter("hoTen");
@@ -46,9 +50,14 @@ public class UpdateKhachHangServlet extends HttpServlet {
 			String namSinh = request.getParameter("namSinh");
 			check = updateKhachHangBO.checkUpdateInformation(tenDangNhap, hoTen, soDienThoai, email, gioiTinh, ngaySinh, thangSinh, namSinh);
 			if (check == 0) {
-				message = "Đã cập nhật thành công!";
+				ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
+				ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
+				DiaChi diaChiKH = new DiaChi();
 				khachHang = showKhachHangBO.getAccount(tenDangNhap);
-				session.setAttribute("user", khachHang);	
+				diaChiKH = showDiaChiBO.getDiaChi(khachHang.getId());
+				khachHang.setDiaChi(diaChiKH);
+				session.setAttribute("user", khachHang);
+				message = "Đã cập nhật thành công!";
 			} else {
 				if (check == 1) {
 					message = "Vui lòng điền đầy đủ thông tin cần thiết!";
@@ -67,7 +76,6 @@ public class UpdateKhachHangServlet extends HttpServlet {
 			
 		} else if ("password".equals(key)) {
 			UpdateKhachHangBO updateKhachHangBO = new UpdateKhachHangBO();
-			ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
 			
 			String tenDangNhap = request.getParameter("tenDangNhap");
 			String matKhauCu = request.getParameter("matKhauCu");

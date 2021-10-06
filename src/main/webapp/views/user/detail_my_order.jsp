@@ -16,23 +16,21 @@
     <%@ include file="include/menu.jsp" %>
     
     <div class="main-block">
-    	<h5 style="margin-left: 100px;">Chi tiết đơn hàng</h5>
-    	<div class="content-gio-hang">
+    	<div class="content">
+    		<h5 style="margin-left: 100px;">Chi tiết đơn hàng</h5>
 	    	<c:if test="${! empty listMatHang}">
    		    	<c:set var="tongTien" value="${0}"/>
 			    <table class="bang-sp">
-			    	<tr style="width: 100%; height: 60px; margin-bottom: 30px; border-bottom: 20px solid #F0F0F0;">
-			    		<th>Tên sản phẩm</th>
-			    		<th>Giá</th>
-			    		<th>Khuyến mãi</th>
-			    		<th>Số lượng</th>
-			    		<th>Thành tiền</th>
+			    	<tr style="margin-bottom: 30px; border-bottom: 10px solid #F0F0F0; padding: 10px;">
+			    		<th>Sản phẩm</th>
+			    		<th style="width: 12%;">Đơn giá</th>
+		    			<th style="width: 15%;">Số lượng</th>
+		    			<th style="width: 12%;">Thành tiền</th>
 			    	</tr>
 					<c:forEach items="${listMatHang}" var="matHang">
-						<tr style="width: 100%; height: 280px; margin-bottom: 30px; border-bottom: 20px solid #F0F0F0;">
+						<tr style="width: 100%; margin-bottom: 30px; border-bottom: 10px solid #F0F0F0;">
 							<td>${matHang.sanPham.tenSanPham}</td> 
-							<td>${matHang.sanPham.gia}</td>
-							<td>${matHang.sanPham.khuyenMai}</td>
+							<td>${matHang.sanPham.gia} -${matHang.sanPham.khuyenMai}%</td>
 							<td>${matHang.soLuong}</td>
 							<c:set var="tien" value="${matHang.soLuong * matHang.sanPham.gia*(1 - matHang.sanPham.khuyenMai/100.0)}" />
 							<c:set var="tongTien" value="${tongTien + tien}" /> 
@@ -40,10 +38,10 @@
 						</tr>	
 					</c:forEach>	
 				</table>
+				<div style="margin-left: 100px;">
+					<p>Tổng tiền phải trả: <i>${tongTien}</i></p>
+				</div>
 			</c:if>
-		</div>
-		<div style="margin-left: 100px;">
-			<p>Tạm tính: <i>${tongTien}</i></p>
 		</div>
 	</div>
 	

@@ -38,7 +38,7 @@
 			   		<a class="list-group-item" href="${root}/admin/thongKe">Thống kê</a>
 		   		</div>
 		   		<div class="content">
-		   			<h5>Chỉnh sửa thể loại</h5>
+		   			<h5>Chỉnh sửa sản phẩm</h5>
 			    	<p style="color: red;">${message}</p>
 			        <form action="${root}/admin/quanLySanPham/updated" method="POST" enctype="multipart/form-data">
 			        	<input type="hidden" name="id" value="${sanPham.id}">
@@ -47,6 +47,7 @@
 			        	<label>Tên sản phẩm:</label>
 			        	<input type="text" name="tenSanPham" value="${sanPham.tenSanPham}">
 			        	<label>Hình ảnh:</label>
+			        	<input type="hidden" name="hinhAnhCu" value="${sanPham.anhSanPham.tenHinhAnh}">
 			        	<input style="border: none;" type="file" name="hinhAnh">
 			        	<label>Tác giả:</label>
 			        	<input type="text" name="tacGia" value="${sanPham.tacGia}">

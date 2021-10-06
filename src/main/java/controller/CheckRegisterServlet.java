@@ -21,7 +21,6 @@ public class CheckRegisterServlet extends HttpServlet {
 		response.setCharacterEncoding("text/html");
 		
 		RequestDispatcher rd = null;
-		HttpSession session = request.getSession();
 		
 		String tenDangNhap = request.getParameter("tenDangNhap");
 		String hoTen = request.getParameter("hoTen");

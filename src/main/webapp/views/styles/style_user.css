@@ -16,7 +16,8 @@
 .header .logo {
 	font-size: 35px;
 	font-weight: bold;
-	margin-right: 50px;
+	text-align: center;
+	width: 280px;
 }
 
 .header .find {
@@ -112,6 +113,8 @@
 
 .footer .khoi h4 {
 	margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .footer .khoi a {
@@ -133,40 +136,34 @@
 }
 
 .main-block .content {
-	width: 1200px;
+	width: 100%;
 	margin: auto;
+    padding: 0px 60px 0px 60px;
 }
 
 .main-block .danh-muc {
-	width: 100%;
-	height: 100px;
-	display: flex;
-	align-items: center;
-	margin-bottom: 20px;
+	width: 300px;
+	margin-right: 25px;
+    padding-left: 20px;
+}
+
+.main-block .banner {
+	width: 800px;
+	margin-right: 30px;
 }
 
 .main-block .danh-muc .tieu-de {
-	width: 20%;
-	padding: 10px;
-	text-align: center;
+	padding: 18px 21px;
 	background-color: #FAC47C; 
-	margin-right: 10px;
 }
 
-.main-block .danh-muc .ten-danh-muc {
-	margin-right: 20px;
-	font-size: 20px;
-	cursor: pointer;
-	padding: 8px;
-	margin-top: -9px;
-}
-
-.main-block .danh-muc .ten-danh-muc:hover {
+.main-block .danh-muc .list-group-item:hover {
 	background-color: #FCDAB0;
+	cursor: pointer;
 }
 
 .main-block .sach {
-	height: 1250px;
+	height: auto;
 	background-color: white;
 }
 
@@ -195,6 +192,7 @@
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+	padding: 10px 0px 10px 0px;
 }
 
 .main-block .sach .card {
@@ -221,15 +219,18 @@
 }
 
 .main-block .danh-trang {
-	width: 150px;
 	float: right;
 	margin-top: 10px;
+	margin-right: 60px;
 }
 
 .main-block .danh-trang a {
 	display: block;
 	margin-right: 10px;
 	float: left;
+	text-align: center;
+	font-size: 20px;
+	
 }
 
 .main-block .login-block {
@@ -292,33 +293,31 @@
 }
 
 .main-block .chi-tiet-sp {
-	width: 1200px;
-	height: 650px;
+	height: auto;
 	background-color: white;
 	display: flex;
 	flex-direction: row;
 }
 
 .main-block .chi-tiet-sp .hinh-anh {
-    width: 450px;
+    width: 40%;
     height: 100%;
 	background-color: white;
-	border: 1px solid #F0F0F0;
+	border-right: 5px solid #F0F0F0;
 	float: left;
 }
 
 .main-block .chi-tiet-sp .hinh-anh img {
 	width: 300px;
-	height: 450px;
-	margin: 75px;
+	height: 380px;
+	margin: 60px;
 }
 
 .main-block .chi-tiet-sp .noi-dung {
-	width: 750px;
+	width: 60%;
 	height: 100%;
 	padding: 30px;
 	float: right;
-	border: 1px solid #F0F0F0;
 }
 
 .main-block .chi-tiet-sp .noi-dung div {
@@ -338,37 +337,34 @@
     font-weight: bold;
 }
 
-.main-block .content-gio-hang {
-	width: 1200px;
-	margin: auto;
-	display: flex;
-	flex-direction: row;
-}
-
-.main-block .content-gio-hang th, .main-block .content-gio-hang td {
-	padding-left: 10px;
-}
-
 .main-block .mo-ta-sp {
-	width: 900px;
+	width: 80%;
 	background-color: white;
 	margin-top: 30px;
 	padding: 30px;
 }
 
 .main-block .bang-sp {
-	width: 910px;
+	width: 90%;
 	background-color: white;
+	margin: auto;
 }
 
-.main-block .bang-sp th {
-	margin-bottom: 20px;
+.main-block .bang-sp th, .main-block .bang-sp td {
+	padding: 10px;
+}
+
+.main-block .bang-sp input.soLuong {
+    width: 50px;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid #fac47c;
 }
 
 .main-block .thanh-toan {
 	width: 300px;
 	height: 430px;
-	margin-left: 10px;
+	margin-left: 50px;
 }
 
 .main-block .thong-tin-thanh-toan {
@@ -389,6 +385,8 @@
 	 margin-bottom: 20px;
 	 margin-left: 20px; margin-right: 5px;
 }
+
+
 
 
 

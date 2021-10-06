@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.bean.DiaChi;
 import model.bean.KhachHang;
 import model.bo.CheckLoginBO;
+import model.bo.ShowDiaChiBO;
+import model.bo.ShowKhachHangBO;
 
 public class CheckLoginServlet extends HttpServlet {
 
@@ -41,8 +44,13 @@ public class CheckLoginServlet extends HttpServlet {
 			
 			rd = request.getRequestDispatcher("views/user/login.jsp");	
 		} else if (check == 1) {
-			
-			session.setAttribute("user", new KhachHang(tenDangNhap, matKhau));
+			ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
+			ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
+			DiaChi diaChiKH = new DiaChi();
+			KhachHang khachHang = showKhachHangBO.getAccount(tenDangNhap);
+			diaChiKH = showDiaChiBO.getDiaChi(khachHang.getId());
+			khachHang.setDiaChi(diaChiKH);
+			session.setAttribute("user", khachHang);
 			
 			rd = request.getRequestDispatcher("showIndex");
 		}

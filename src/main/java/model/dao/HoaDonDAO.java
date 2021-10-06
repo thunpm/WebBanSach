@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import model.bean.HoaDon;
@@ -12,7 +13,7 @@ import model.bean.LoaiSanPham;
 
 public class HoaDonDAO extends BaseDAO {
 
-	public int insertHoaDon(String id, String idKhachHang, Date thoiGianLap, String trangThai) {
+	public int insertHoaDon(String id, String idKhachHang, Timestamp thoiGian, String trangThai) {
 		Connection connection = getConnection();
         String sql = "INSERT INTO HOADON (Id, IdKhachHang, ThoiGianLap, TrangThai)"
         		+ " VALUES (?, ?, ?, ?)";
@@ -22,7 +23,7 @@ public class HoaDonDAO extends BaseDAO {
         	pstmt = connection.prepareStatement(sql);
         	pstmt.setString(1, id);
         	pstmt.setString(2, idKhachHang);
-        	pstmt.setDate(3, thoiGianLap);
+        	pstmt.setTimestamp(3, thoiGian);
         	pstmt.setString(4, trangThai);
         	pstmt.executeUpdate();
 
@@ -77,7 +78,7 @@ public class HoaDonDAO extends BaseDAO {
         		
         		hoaDon.setId(rs.getString("Id"));
         		hoaDon.setIdKhachHang(rs.getString("IdKhachHang"));
-        		hoaDon.setThoiGianLap(rs.getDate("ThoiGianLap"));
+        		hoaDon.setThoiGianLap(rs.getTimestamp("ThoiGianLap"));
         		hoaDon.setTrangThai(rs.getString("TrangThai"));
         			
         		listHoaDon.add(hoaDon);
@@ -110,7 +111,7 @@ public class HoaDonDAO extends BaseDAO {
         		
         		hoaDon.setId(rs.getString("Id"));
         		hoaDon.setIdKhachHang(rs.getString("IdKhachHang"));
-        		hoaDon.setThoiGianLap(rs.getDate("ThoiGianLap"));
+        		hoaDon.setThoiGianLap(rs.getTimestamp("ThoiGianLap"));
         		hoaDon.setTrangThai(rs.getString("TrangThai"));
         			
         		listHoaDon.add(hoaDon);
@@ -143,6 +144,24 @@ public class HoaDonDAO extends BaseDAO {
         }
         
         return 1;
+	}
+
+	public void huyDonHang(String idDonHang) {
+		Connection connection = getConnection();
+        String sql = "UPDATE HOADON SET TrangThai = N'Đã hủy' WHERE Id = ?";
+        PreparedStatement pstmt = null;
+        
+        try {
+        	pstmt = connection.prepareStatement(sql);
+        	pstmt.setString(1, idDonHang);
+        	pstmt.executeUpdate();
+        	
+        } catch (SQLException e) {	
+        	e.printStackTrace();
+        } finally {
+        	closeConnection(connection, pstmt, null);
+        }
+        
 	}
 
 }

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.bean.MatHang;
-import model.bo.ShowDetailMyDonHangBO;
+import model.bo.ShowDetailDonHangBO;
 
 public class AdminDetailDonHangServlet extends HttpServlet {
 
@@ -23,7 +23,7 @@ public class AdminDetailDonHangServlet extends HttpServlet {
 		
 		String idDonHang = request.getParameter("idDonHang");
 		
-		ShowDetailMyDonHangBO showDetailMyDonHangBO = new ShowDetailMyDonHangBO();
+		ShowDetailDonHangBO showDetailMyDonHangBO = new ShowDetailDonHangBO();
 		ArrayList<MatHang> listMatHang = showDetailMyDonHangBO.getMatHangByIdHoaDon(idDonHang);
 		
 		request.setAttribute("listMatHang", listMatHang);

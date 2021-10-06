@@ -18,9 +18,9 @@
     
     <div class="main-block">
     	<div class="menu-update-kh">
-    		<a href="showKhachHang?tenDangNhap=${sessionScope.user.tenDangNhap}">Thay đổi thông tin</a>
-    		<a href="showKhachHang?tenDangNhap=${sessionScope.user.tenDangNhap}&key=password">Thay đổi mật khẩu</a>
-    		<a href="showKhachHang?tenDangNhap=${sessionScope.user.tenDangNhap}&key=address">Cập nhật địa chỉ giao hàng</a>
+    		<a href="showKhachHang">Thay đổi thông tin</a>
+    		<a href="showKhachHang?key=password">Thay đổi mật khẩu</a>
+    		<a href="showKhachHang?key=address">Cập nhật địa chỉ giao hàng</a>
     	</div>
 	    <div class="login-block">
 	    	<c:set var="key1" value="information"></c:set>
@@ -37,7 +37,6 @@
    			</c:if>
 	    	<p style="color: red; display: inline-block; margin-bottom: 20px;">${message}</p>
 	        <form action="updateKhachHang" method="POST">
-	        	<!-- phải làm sao đây, bây giờ em phải làm sao đây... -->
 	        	<input type="hidden" name="key" value="${key}">
 	        	<input type="hidden" name="idKhachHang" value="${sessionScope.user.id}">
 	        	<label>Tỉnh/Thành phố:</label>

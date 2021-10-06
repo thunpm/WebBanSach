@@ -36,7 +36,7 @@
 			    	<div class="thanh-toan">
 						<div style="height: 200px; margin: 20px; border-top: 10px solid #F0F0F0; border-bottom: 10px solid #F0F0F0; padding: 10px; background-color: white;">
 							<p>Tiền tạm tính: <i id="tongTien">${tongTien}</i></p>
-							<p>Phí ship: <i id="phiShip">30000</i></p>
+							<!-- <p>Phí ship: <i id="phiShip">30000</i></p> -->
 							<p>Tổng thanh toán: <i id="tongThanhToan">${tongTien + 30000}</i></p>
 						</div>
 						<input type="submit" value="ĐẶT MUA">

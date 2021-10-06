@@ -1,6 +1,7 @@
 package model.bo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import common.StringCommon;
 import model.dao.HoaDonDAO;
@@ -8,7 +9,7 @@ import model.dao.HoaDonDAO;
 public class UpdateHoaDonBO {
 	HoaDonDAO hoaDonDAO = new HoaDonDAO();
 	
-	public int insertHoaDon(String idKhachHang, Date thoiGianLap, String trangThai) {
+	public int insertHoaDon(String idKhachHang, Timestamp thoiGian, String trangThai) {
 		String lastestMaHD = hoaDonDAO.getLastestMaHD();
 		String id = "";
 		
@@ -19,8 +20,12 @@ public class UpdateHoaDonBO {
 			ma++;
 			id = "HD" + StringCommon.convertNumberToString(ma, 4);
 		}
-		System.out.println(id + " " +  idKhachHang + " " + thoiGianLap + " " + trangThai);
-		return hoaDonDAO.insertHoaDon(id, idKhachHang, thoiGianLap, trangThai);
+		System.out.println(id + " " +  idKhachHang + " " + thoiGian + " " + trangThai);
+		return hoaDonDAO.insertHoaDon(id, idKhachHang, thoiGian, trangThai);
+	}
+
+	public void huyDonHang(String idDonHang) {
+		hoaDonDAO.huyDonHang(idDonHang);
 	}
 
 }

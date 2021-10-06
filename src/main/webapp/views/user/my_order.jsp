@@ -16,28 +16,34 @@
     <%@ include file="include/menu.jsp" %>
     
     <div class="main-block">
-    	<h5 style="margin-left: 100px;">Đơn hàng đã đặt</h5>
-    	<div class="content-gio-hang">
+    	<div class="content">
+    		<h5 style="margin-left: 100px;">Đơn hàng đã đặt</h5>
 	    	<c:if test="${! empty listHoaDon}">
 			    <table class="bang-sp">
-			    	<tr style="width: 100%; height: 60px; margin-bottom: 30px; border-bottom: 20px solid #F0F0F0;">
+			    	<tr style="margin-bottom: 30px; border-bottom: 10px solid #F0F0F0; padding: 10px;">
 			    		<th>Ngày đặt</th>
 			    		<th>Trạng thái</th>
 			    		<th>Xem chi tiết</th>
+			    		<th>Hủy đơn</th>
 			    	</tr>
 					<c:forEach items="${listHoaDon}" var="hoaDon">
-						<tr style="width: 100%; height: 280px; margin-bottom: 30px; border-bottom: 20px solid #F0F0F0;">
+						<tr style="width: 100%; margin-bottom: 30px; border-bottom: 10px solid #F0F0F0;">
 							<td>${hoaDon.thoiGianLap}</td> 
 							<td>${hoaDon.trangThai}</td>
 							<td>
-								<a href="showDetailMyDonHang?idDonHang=${hoaDon.id}">Chi tiết</a>
+								<a href="showDetailDonHang?idDonHang=${hoaDon.id}">Chi tiết</a>
 							</td>
+							<c:if test='${hoaDon.trangThai ne "Đang giao" and hoaDon.trangThai ne "Đã hủy"}'>
+			    				<td>
+									<a href="updateDonHang?idDonHang=${hoaDon.id}">Hủy đơn</a>
+								</td>
+			    			</c:if>
 						</tr>	
 					</c:forEach>	
 				</table>
 			</c:if>
 			<c:if test="${empty listHoaDon}">
-				<div style="width: 1200px; height: 340px; margin: auto; background-color: white; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+				<div style="margin: 30px 60px 10px 60px; height: 340px; background-color: white; display: flex; justify-content: center; align-items: center; flex-direction: column;">
 					<div style="margin-bottom: 30px;">Bạn chưa đặt đơn hàng nào cả!.</div>
 					<a style="display: block;" href="showIndex">Mua sắm ngay nào!</a>
 				</div>
