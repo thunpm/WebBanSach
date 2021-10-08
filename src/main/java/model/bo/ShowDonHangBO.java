@@ -16,4 +16,12 @@ public class ShowDonHangBO {
 		return hoaDonDAO.getAllHoaDon();
 	}
 
+	public ArrayList<HoaDon> getAllDonMoi() {
+		return hoaDonDAO.getAllDonMoi();
+	}
+
+	public ArrayList<HoaDon> getAllDonHuy() {
+		return hoaDonDAO.getAllDonHuy();
+	}
+
 }

@@ -8,9 +8,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import model.bean.DiaChi;
+import model.bean.KhachHang;
 import model.bean.MatHang;
 import model.bo.ShowDetailDonHangBO;
+import model.bo.ShowDiaChiBO;
+import model.bo.ShowKhachHangBO;
 
 public class AdminDetailDonHangServlet extends HttpServlet {
 
@@ -20,14 +25,34 @@ public class AdminDetailDonHangServlet extends HttpServlet {
 		response.setCharacterEncoding("text/html");
 		
 		RequestDispatcher rd = null;
+		HttpSession session = request.getSession();
+		
+		if (session.getAttribute("admin") == null) {
+			rd = request.getRequestDispatcher("/admin");
+			rd.forward(request, response);
+		} 
 		
 		String idDonHang = request.getParameter("idDonHang");
+		String idKhachHang = request.getParameter("idKhachHang");
 		
-		ShowDetailDonHangBO showDetailMyDonHangBO = new ShowDetailDonHangBO();
-		ArrayList<MatHang> listMatHang = showDetailMyDonHangBO.getMatHangByIdHoaDon(idDonHang);
-		
-		request.setAttribute("listMatHang", listMatHang);
-		
+		if (idDonHang != null) {
+			ShowDetailDonHangBO showDetailMyDonHangBO = new ShowDetailDonHangBO();
+			ArrayList<MatHang> listMatHang = showDetailMyDonHangBO.getMatHangByIdHoaDon(idDonHang);
+			
+			request.setAttribute("detail", "matHang");
+			request.setAttribute("listMatHang", listMatHang);
+		} else if (idKhachHang != null) {
+			ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
+			ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
+			DiaChi diaChiKH = new DiaChi();
+			KhachHang khachHang = showKhachHangBO.getAccountById(idKhachHang);
+			diaChiKH = showDiaChiBO.getDiaChi(idKhachHang);
+			khachHang.setDiaChi(diaChiKH);
+			
+			request.setAttribute("detail", "khachHang");
+			request.setAttribute("khachHang", khachHang);
+		}
+		request.setAttribute("don", request.getAttribute("don"));
 		rd = request.getRequestDispatcher("/views/admin/detail_donhang.jsp");
 		rd.forward(request, response);
 	}

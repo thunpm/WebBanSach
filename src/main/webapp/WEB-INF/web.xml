@@ -554,4 +554,14 @@
     <servlet-name>UpdateDonHangServlet</servlet-name>
     <url-pattern>/updateDonHang</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminUpdateDonHangServlet</display-name>
+    <servlet-name>AdminUpdateDonHangServlet</servlet-name>
+    <servlet-class>controller.admin.AdminUpdateDonHangServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminUpdateDonHangServlet</servlet-name>
+    <url-pattern>/admin/quanLyHoaDon/updated</url-pattern>
+  </servlet-mapping>
 </web-app>

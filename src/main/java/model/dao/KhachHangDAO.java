@@ -247,4 +247,38 @@ public class KhachHangDAO extends BaseDAO {
         return 1;
 	}
 
+	public KhachHang getAccountById(String idKhachHang) {
+		Connection connection = getConnection();
+        String sql = "SELECT * FROM KHACHHANG WHERE Id = ?";
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        KhachHang khachHang = null;
+
+        try {
+        	pstmt = connection.prepareStatement(sql);
+        	pstmt.setString(1, idKhachHang);
+        	rs = pstmt.executeQuery();
+        	
+        	if (rs.next()) {
+        		khachHang = new KhachHang();
+        		
+        		khachHang.setId(rs.getString("Id"));
+        		khachHang.setTenDangNhap(rs.getString("TenDangNhap"));
+        		khachHang.setHoTen(rs.getString("HoTen"));
+        		khachHang.setSoDienThoai(rs.getString("SoDienThoai"));
+        		khachHang.setMatKhau(rs.getString("MatKhau"));
+        		khachHang.setEmail(rs.getString("Email"));
+        		khachHang.setGioiTinh(rs.getString("GioiTinh"));
+        		khachHang.setNgaySinh(rs.getDate("NgaySinh")); 		
+        	}
+
+        } catch (SQLException e) {	
+        	e.printStackTrace();
+        } finally {
+        	closeConnection(connection, pstmt, rs);
+        }
+
+        return khachHang;
+	}
+
 }

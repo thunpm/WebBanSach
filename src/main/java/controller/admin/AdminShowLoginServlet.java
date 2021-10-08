@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class AdminShowLoginServlet extends HttpServlet {
 	
@@ -16,6 +17,7 @@ public class AdminShowLoginServlet extends HttpServlet {
 		response.setCharacterEncoding("text/html");
 		
 		RequestDispatcher rd = null;
+
 		rd = request.getRequestDispatcher("views/admin/login.jsp");
 		rd.forward(request, response);
 	}

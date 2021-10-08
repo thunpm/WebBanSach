@@ -28,4 +28,8 @@ public class UpdateHoaDonBO {
 		hoaDonDAO.huyDonHang(idDonHang);
 	}
 
+	public void updateTrangThai(String id, String trangThai) {
+		hoaDonDAO.updateTrangThai(id, trangThai);
+	}
+
 }

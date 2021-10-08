@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.bean.Admin;
-import model.bo.ShowAdminBO;
+import model.bo.UpdateHoaDonBO;
 
-public class AdminInfoServlet extends HttpServlet {
+
+public class AdminUpdateDonHangServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -27,15 +27,23 @@ public class AdminInfoServlet extends HttpServlet {
 			rd.forward(request, response);
 		} 
 		
-		Admin admin = (Admin) session.getAttribute("admin");
+		String id = request.getParameter("id");
+		String trangThai = request.getParameter("trangThai");
 		
-		ShowAdminBO showAdminBO = new ShowAdminBO();
+		if ("2".equals(trangThai)) {
+			trangThai = "Đang chuẩn bị hàng";
+		} else if ("3".equals(trangThai)) {
+			trangThai = "Đang giao";
+		} else if ("4".equals(trangThai)) {
+			trangThai = "Đã giao";
+		}
 		
-		admin = showAdminBO.getInfoAdmin(admin.getTenDangNhap());
+		UpdateHoaDonBO updateHoaDonBO = new UpdateHoaDonBO();
+		updateHoaDonBO.updateTrangThai(id, trangThai);
 		
-		session.setAttribute("admin", admin);
+		request.setAttribute("don", request.getAttribute("don"));
 		
-		rd = request.getRequestDispatcher("/views/admin/info_admin.jsp");
+		rd = request.getRequestDispatcher("/admin/quanLyHoaDon");
 		rd.forward(request, response);
 	}
 

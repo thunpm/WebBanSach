@@ -16,8 +16,16 @@
     	<c:if test="${! empty sessionScope.admin}">
 	    	<div class="menu">
 	    		<a class="menu-item" href="${root}/admin/trangchu">Trang chủ</a>
-	    		<a class="menu-item" href="#"><i class="far fa-bell"></i> Duyệt đơn hàng</a>
-	    		<div class="dropdown menu-item">
+	    		<div style="cursor: pointer;" class="dropdown menu-item">
+	    			<a data-toggle="dropdown">
+	    				<i class="far fa-bell"></i> Duyệt đơn hàng
+	    			</a>
+	    			<ul class="dropdown-menu">
+	    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=mua">Đơn mua mới</a></li>
+	    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=huy">Đơn hủy mới</a></li>
+	  				</ul>
+				</div>
+	    		<div style="cursor: pointer;" class="dropdown menu-item">
 	    			<a data-toggle="dropdown">
 	    				<i class="fas fa-user-shield"></i> ${sessionScope.admin.tenDangNhap}
 	    			</a>
@@ -44,7 +52,10 @@
 			        	<label>Tên sản phẩm:</label>
 			        	<input type="text" name="tenSanPham" value="${tenSanPham}">
 			        	<label>Hình ảnh:</label>
-			        	<input style="border: none;" type="file" name="hinhAnh">
+			        	<input style="border: none;" type="file" name="hinhAnh" id="upload" onchange="displayImg()">
+			        	<div id="displayImg">
+			        		<img id="img" style="width:200px; height:150px;">
+			        	</div>
 			        	<label>Tác giả:</label>
 			        	<input type="text" name="tacGia" value="${tacGia}">
 			        	<label>Nhà xuất bản:</label>
@@ -75,6 +86,23 @@
    	<script src="${root}/views/lib/jquery-3.3.1.min.js"></script>
     <script src="${root}/views/lib/popper.min.js"></script>
     <script src="${root}/views/lib/bootstrap/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript">
+    	function displayImg() {
+    		var fileSelected = document.getElementById("upload").files;
+    		if (fileSelected.length > 0) {
+    			var fileToLoad = fileSelected[0];
+    			var fileReader = new FileReader();
+    			fileReader.onload = function(fileLoaderEvent) {
+    				var srcData = fileLoaderEvent.target.result;
+    				var newImage = document.getElementById('img');
+    				newImage.src = srcData;
+    				document.getElementById('displayImg').innerHTML = newImage.outerHTML;
+    			}
+    			fileReader.readAsDataURL(fileToLoad);
+    		}
+    	}
+    </script>
     
 </body>
 </html>

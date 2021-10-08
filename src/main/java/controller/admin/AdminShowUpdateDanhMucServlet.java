@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.bean.DanhMucSanPham;
 import model.bo.ShowDanhMucBO;
@@ -19,6 +20,12 @@ public class AdminShowUpdateDanhMucServlet extends HttpServlet {
 		response.setCharacterEncoding("text/html");
 		
 		RequestDispatcher rd = null;
+		HttpSession session = request.getSession();
+		
+		if (session.getAttribute("admin") == null) {
+			rd = request.getRequestDispatcher("/admin");
+			rd.forward(request, response);
+		} 
 		
 		String idDanhMuc = request.getParameter("idDanhMuc");
 		

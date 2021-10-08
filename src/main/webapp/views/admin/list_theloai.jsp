@@ -16,8 +16,16 @@
     	<c:if test="${! empty sessionScope.admin}">
 	    	<div class="menu">
 	    		<a class="menu-item" href="${root}/admin/trangchu">Trang chủ</a>
-	    		<a class="menu-item" href="#"><i class="far fa-bell"></i> Duyệt đơn hàng</a>
-	    		<div class="dropdown menu-item">
+	    		<div style="cursor: pointer;" class="dropdown menu-item">
+	    			<a data-toggle="dropdown">
+	    				<i class="far fa-bell"></i> Duyệt đơn hàng
+	    			</a>
+	    			<ul class="dropdown-menu">
+	    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=mua">Đơn mua mới</a></li>
+	    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=huy">Đơn hủy mới</a></li>
+	  				</ul>
+				</div>
+	    		<div style="cursor: pointer;" class="dropdown menu-item">
 	    			<a data-toggle="dropdown">
 	    				<i class="fas fa-user-shield"></i> ${sessionScope.admin.tenDangNhap}
 	    			</a>
@@ -43,7 +51,7 @@
 			    	<p style="color: red;">${message}</p>
 			    	<div class="">
 				    	<c:if test="${! empty listDanhMuc}">
-						    <table class="">
+						    <table style="display: inline-block;">
 						    	<tr>
 						    		<th>Id</th>
 						    		<th>Tên thể loại</th>

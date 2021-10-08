@@ -16,8 +16,16 @@
 	    <c:if test="${! empty sessionScope.admin}">
 	    	<div class="menu">
 	    		<a class="menu-item" href="${root}/admin/trangchu">Trang chủ</a>
-	    		<a class="menu-item" href="#"><i class="far fa-bell"></i> Duyệt đơn hàng</a>
-	    		<div class="dropdown menu-item">
+	    		<div style="cursor: pointer;" class="dropdown menu-item">
+	    			<a data-toggle="dropdown">
+	    				<i class="far fa-bell"></i> Duyệt đơn hàng
+	    			</a>
+	    			<ul class="dropdown-menu">
+	    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=mua">Đơn mua mới</a></li>
+	    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=huy">Đơn hủy mới</a></li>
+	  				</ul>
+				</div>
+	    		<div style="cursor: pointer;" class="dropdown menu-item">
 	    			<a data-toggle="dropdown">
 	    				<i class="fas fa-user-shield"></i> ${sessionScope.admin.tenDangNhap}
 	    			</a>
@@ -46,7 +54,7 @@
 						    	<tr>
 						    		<th>Id</th>
 						    		<th>Tên đăng nhập</th>
-						    		<th>Mật khẩu</th>
+						    		<!-- <th>Mật khẩu</th> -->
 						    		<th>Họ tên</th>
 						    		<th>Số điện thoại</th>
 						    		<th>Email</th>
@@ -60,13 +68,13 @@
 									<tr>
 										<td>${khachHang.id}</td> 
 										<td>${khachHang.tenDangNhap}</td>
-										<td>${khachHang.matKhau}</td>
+										<%-- <td>${khachHang.matKhau}</td> --%>
 										<td>${khachHang.hoTen}</td>
 										<td>${khachHang.soDienThoai}</td>
 										<td>${khachHang.email}</td>
 										<td>${khachHang.gioiTinh}</td>
 										<td>${khachHang.ngaySinh}</td>
-										<td>${khachHang.diaChi.diaChi}, ${khachHang.diaChi.xa}, ${khachHang.diaChi.huyen}, ${khachHang.diaChi.tinh}</td>
+										<td>${khachHang.diaChi.diaChi} </br> ${khachHang.diaChi.xa} </br> ${khachHang.diaChi.huyen} </br> ${khachHang.diaChi.tinh}</td>
 										<td>
 											<a class="btn btn-danger" href="${root}/admin/quanLyKhachHang/update?idKhachHang=${khachHang.id}">Đặt lại</a>
 										</td>

@@ -4,6 +4,11 @@
 	border: 0;
 }
 
+.main-block {
+	width: 100%;
+	height: auto;
+}
+
 .main-block .login-block {
 	width: 620px;
 	background-color: white;
@@ -43,15 +48,13 @@
 
 .main-block .menu {
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	background-color: #F0F0F0;
-    height: 50px;
     padding: 10px;
 }
 
 .main-block .menu .menu-item {
     color: #ff8100;
-    margin-left: 200px;
     font-size: 20px;
     text-transform: uppercase;
     font-weight: 500;
@@ -62,18 +65,18 @@
 }
 
 .main-block .khoi {
+	width: 100%;
 	margin-top: 30px;
 	display: flex;
 	justify-content: space-between;
 }
 
 .main-block .danh-muc {
-    width: 200px;
-    float: left;
+    width: 20%;
 }
 
 .main-block .content {
-	width: 1020px;
+	width: 75%;
 	margin: auto;
 }
 
@@ -91,8 +94,10 @@
 }
 
 .main-block .content table {
-	 border: 5px solid #F0F0F0;
-	 margin-top: 20px;
+	border: 5px solid #F0F0F0;
+	margin-top: 20px;
+	display: block;
+    overflow-x: auto;
 }
 
 .main-block .content table tr {

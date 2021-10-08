@@ -16,4 +16,8 @@ public class ShowKhachHangBO {
 		return khachHangDAO.getAllKhachHang();
 	}
 
+	public KhachHang getAccountById(String idKhachHang) {
+		return khachHangDAO.getAccountById(idKhachHang);
+	}
+
 }

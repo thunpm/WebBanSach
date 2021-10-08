@@ -16,8 +16,16 @@
     	<c:if test="${! empty sessionScope.admin}">
 	    	<div class="menu">
 	    		<a class="menu-item" href="${root}/admin/trangchu">Trang chủ</a>
-	    		<a class="menu-item" href="#"><i class="far fa-bell"></i> Duyệt đơn hàng</a>
-	    		<div class="dropdown menu-item">
+	    		<div style="cursor: pointer;" class="dropdown menu-item">
+	    			<a data-toggle="dropdown">
+	    				<i class="far fa-bell"></i> Duyệt đơn hàng
+	    			</a>
+	    			<ul class="dropdown-menu">
+	    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=mua">Đơn mua mới</a></li>
+	    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=huy">Đơn hủy mới</a></li>
+	  				</ul>
+				</div>
+	    		<div style="cursor: pointer;" class="dropdown menu-item">
 	    			<a data-toggle="dropdown">
 	    				<i class="fas fa-user-shield"></i> ${sessionScope.admin.tenDangNhap}
 	    			</a>
@@ -38,35 +46,62 @@
 			   		<a class="list-group-item" href="${root}/admin/thongKe">Thống kê</a>
 		   		</div>
 		   		<div class="content">
-		   			<h5>Chi tiết đơn hàng</h5>
-			    	<div class="">
-				    	<c:if test="${! empty listMatHang}">
-			   		    	<c:set var="tongTien" value="${0}"/>
-						    <table class="bang-sp">
+		   			<c:if test="${detail eq 'matHang'}">
+			   			<h5>Chi tiết đơn hàng</h5>
+				    	<div class="">
+					    	<c:if test="${! empty listMatHang}">
+				   		    	<c:set var="tongTien" value="${0}"/>
+							    <table style="display: inline-block;">
+							    	<tr>
+							    		<th>Tên sản phẩm</th>
+							    		<th>Giá</th>
+							    		<th>Khuyến mãi</th>
+							    		<th>Số lượng</th>
+							    		<th>Thành tiền</th>
+							    	</tr>
+									<c:forEach items="${listMatHang}" var="matHang">
+										<tr>
+											<td>${matHang.sanPham.tenSanPham}</td> 
+											<td>${matHang.sanPham.gia}</td>
+											<td>${matHang.sanPham.khuyenMai}</td>
+											<td>${matHang.soLuong}</td>
+											<c:set var="tien" value="${matHang.soLuong * matHang.sanPham.gia*(1 - matHang.sanPham.khuyenMai/100.0)}" />
+											<c:set var="tongTien" value="${tongTien + tien}" /> 
+											<td class="thanh-tien">${tien}</td>
+										</tr>	
+									</c:forEach>	
+								</table>
+							</c:if>
+						</div>
+						<div style="margin-left: 100px;">
+							<p>Tạm tính: <i>${tongTien}</i></p>
+						</div>
+					</c:if>
+					<c:if test="${detail eq 'khachHang'}">
+						<h5>Thông tin khách hàng</h5>
+						<table class="">
 						    	<tr>
-						    		<th>Tên sản phẩm</th>
-						    		<th>Giá</th>
-						    		<th>Khuyến mãi</th>
-						    		<th>Số lượng</th>
-						    		<th>Thành tiền</th>
+						    		<th>Id</th>
+						    		<th>Tên đăng nhập</th>
+						    		<th>Họ tên</th>
+						    		<th>Số điện thoại</th>
+						    		<th>Email</th>
+						    		<th>Giới tính</th>
+						    		<th>Ngày sinh</th>
+						    		<th>Địa chỉ</th>
 						    	</tr>
-								<c:forEach items="${listMatHang}" var="matHang">
-									<tr>
-										<td>${matHang.sanPham.tenSanPham}</td> 
-										<td>${matHang.sanPham.gia}</td>
-										<td>${matHang.sanPham.khuyenMai}</td>
-										<td>${matHang.soLuong}</td>
-										<c:set var="tien" value="${matHang.soLuong * matHang.sanPham.gia*(1 - matHang.sanPham.khuyenMai/100.0)}" />
-										<c:set var="tongTien" value="${tongTien + tien}" /> 
-										<td class="thanh-tien">${tien}</td>
-									</tr>	
-								</c:forEach>	
+								<tr>
+									<td>${khachHang.id}</td> 
+									<td>${khachHang.tenDangNhap}</td>
+									<td>${khachHang.hoTen}</td>
+									<td>${khachHang.soDienThoai}</td>
+									<td>${khachHang.email}</td>
+									<td>${khachHang.gioiTinh}</td>
+									<td>${khachHang.ngaySinh}</td>
+									<td>${khachHang.diaChi.diaChi}, ${khachHang.diaChi.xa}, ${khachHang.diaChi.huyen}, ${khachHang.diaChi.tinh}</td>
+								</tr>	
 							</table>
-						</c:if>
-					</div>
-					<div style="margin-left: 100px;">
-						<p>Tạm tính: <i>${tongTien}</i></p>
-					</div>
+					</c:if>
 		   		</div>
 	   		</div>
    		</c:if>

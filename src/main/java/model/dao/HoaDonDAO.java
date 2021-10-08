@@ -164,4 +164,89 @@ public class HoaDonDAO extends BaseDAO {
         
 	}
 
+	public void updateTrangThai(String id, String trangThai) {
+		Connection connection = getConnection();
+        String sql = "UPDATE HOADON SET TrangThai = ? WHERE Id = ?";
+        PreparedStatement pstmt = null;
+        
+        try {
+        	pstmt = connection.prepareStatement(sql);
+        	pstmt.setString(1, trangThai);
+        	pstmt.setString(2, id);
+        	pstmt.executeUpdate();
+        	
+        } catch (SQLException e) {	
+        	e.printStackTrace();
+        } finally {
+        	closeConnection(connection, pstmt, null);
+        }
+        
+	}
+
+	public ArrayList<HoaDon> getAllDonMoi() {
+		Connection connection = getConnection();
+        String sql = "SELECT * FROM HOADON WHERE TrangThai = N'Đang chờ xác nhận' AND del_flag = 1";
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+       
+        ArrayList<HoaDon> listHoaDon = new ArrayList<HoaDon>();
+        HoaDon hoaDon = null;
+
+        try {
+        	pstmt = connection.prepareStatement(sql);
+        	rs = pstmt.executeQuery();
+        	
+        	while (rs.next()) {
+        		hoaDon = new HoaDon();
+        		
+        		hoaDon.setId(rs.getString("Id"));
+        		hoaDon.setIdKhachHang(rs.getString("IdKhachHang"));
+        		hoaDon.setThoiGianLap(rs.getTimestamp("ThoiGianLap"));
+        		hoaDon.setTrangThai(rs.getString("TrangThai"));
+        			
+        		listHoaDon.add(hoaDon);
+        	}
+
+        } catch (SQLException e) {	
+        	e.printStackTrace();
+        } finally {
+        	closeConnection(connection, pstmt, rs);
+        }
+
+        return listHoaDon;
+	}
+
+	public ArrayList<HoaDon> getAllDonHuy() {
+		Connection connection = getConnection();
+        String sql = "SELECT * FROM HOADON WHERE TrangThai = N'Đã hủy' AND del_flag = 1";
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+       
+        ArrayList<HoaDon> listHoaDon = new ArrayList<HoaDon>();
+        HoaDon hoaDon = null;
+
+        try {
+        	pstmt = connection.prepareStatement(sql);
+        	rs = pstmt.executeQuery();
+        	
+        	while (rs.next()) {
+        		hoaDon = new HoaDon();
+        		
+        		hoaDon.setId(rs.getString("Id"));
+        		hoaDon.setIdKhachHang(rs.getString("IdKhachHang"));
+        		hoaDon.setThoiGianLap(rs.getTimestamp("ThoiGianLap"));
+        		hoaDon.setTrangThai(rs.getString("TrangThai"));
+        			
+        		listHoaDon.add(hoaDon);
+        	}
+
+        } catch (SQLException e) {	
+        	e.printStackTrace();
+        } finally {
+        	closeConnection(connection, pstmt, rs);
+        }
+
+        return listHoaDon;
+	}
+
 }
