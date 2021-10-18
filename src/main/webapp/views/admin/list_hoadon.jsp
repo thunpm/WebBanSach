@@ -58,19 +58,37 @@
 			  		</c:otherwise>
 				</c:choose> 
 		    	<p style="color: red;">${message}</p>
+		    	<div class="find">
+					<%-- 	<div style="cursor: pointer;" class="dropdown">	
+			    			<div style="border: 1px solid black; width: 150px; height: 30px; margin-right: 10px; border-radius: 2px;" data-toggle="dropdown"> 
+			    				<p style="float: left; margin: 3px 6px; color: #757575;">${sapXep}</p>
+			    				<i style="float: right; padding: 5px; color: #dc3545;" class="fas fa-chevron-circle-down"></i>
+			    			</div>
+			    			<ul class="dropdown-menu">
+			    				<li><a class="dropdown-item" href="${root}/admin/quanLyKhachHang?sapXep=moiNhat">Mới nhất</a></li>
+			    				<li><a class="dropdown-item" href="${root}/admin/quanLyKhachHang?sapXep=cuNhat">Cũ nhất</a></li>
+			  				</ul>
+						</div> --%>
+					<div class="search-box">
+						<form style="display: flex; flex-direction: row;" action="${root}/admin/quanLyHoaDon/tim" method="POST">
+			           		<input type="text" placeholder="Tìm" name="searchText" value="${searchText}">
+			           		<button style="padding: 0px 5px 0px 5px;" type="submit" class="fa fa-search btn-danger"></button>
+			           	</form>
+			        </div>
+			   	</div>
 		    	<div class="">
-			    	<c:if test="${! empty listHoaDon}">
-					    <table class="">
-					    	<tr>
-					    		<th>Id</th>
-					    		<th>Khách hàng</th>
-					    		<th>Ngày đặt</th>
-					    		<th>Trạng thái</th>
-					    		<th>Cập nhật</th>
-					    		<th>Chi tiết</th>
-					    		<th>Thông tin khách</th>
-					    		<th>Xóa</th>
-					    	</tr>
+				    <table class="">
+				    	<tr>
+				    		<th>Id</th>
+				    		<th>Khách hàng</th>
+				    		<th>Ngày đặt</th>
+				    		<th>Trạng thái</th>
+				    		<th>Cập nhật</th>
+				    		<th>Chi tiết</th>
+				    		<th>Thông tin khách</th>
+				    		<th>Xóa</th>
+				    	</tr>
+				    	<c:if test="${! empty listHoaDon}">
 							<c:forEach items="${listHoaDon}" var="hoaDon">
 								<tr>
 									<td>${hoaDon.id}</td> 
@@ -102,11 +120,8 @@
 									</td>
 								</tr>	
 							</c:forEach>	
-						</table>
-					</c:if>
-					<c:if test="${empty listHoaDon}">
-						Không có đơn nào cả :((
-					</c:if>
+						</c:if>
+					</table>
 				</div>
 	   		</div>
    		</div>

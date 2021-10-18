@@ -49,15 +49,33 @@
 		   			<h5 style="margin: auto;">DANH MỤC</h5>
 			    	<a class="btn btn-warning" href="${root}/admin/quanLyDanhMuc/add">Thêm danh mục</a>
 			    	<p style="color: red;">${message}</p>
+			    	<div class="find">
+					<%-- 	<div style="cursor: pointer;" class="dropdown">	
+			    			<div style="border: 1px solid black; width: 150px; height: 30px; margin-right: 10px; border-radius: 2px;" data-toggle="dropdown"> 
+			    				<p style="float: left; margin: 3px 6px; color: #757575;">${sapXep}</p>
+			    				<i style="float: right; padding: 5px; color: #dc3545;" class="fas fa-chevron-circle-down"></i>
+			    			</div>
+			    			<ul class="dropdown-menu">
+			    				<li><a class="dropdown-item" href="${root}/admin/quanLyKhachHang?sapXep=moiNhat">Mới nhất</a></li>
+			    				<li><a class="dropdown-item" href="${root}/admin/quanLyKhachHang?sapXep=cuNhat">Cũ nhất</a></li>
+			  				</ul>
+						</div> --%>
+						<div class="search-box">
+							<form style="display: flex; flex-direction: row;" action="${root}/admin/quanLyDanhMuc/tim" method="POST">
+				           		<input type="text" placeholder="Tìm" name="searchText" value="${searchText}">
+				           		<button style="padding: 0px 5px 0px 5px;" type="submit" class="fa fa-search btn-danger"></button>
+				           	</form>
+				        </div>
+				   	</div>
 			    	<div class="">
-				    	<c:if test="${! empty listDanhMuc}">
-						    <table style="display: inline-block;">
-						    	<tr>
-						    		<th>Id</th>
-						    		<th>Tên danh mục</th>
-						    		<th>Sửa danh mục</th>
-						    		<th>Xóa danh mục</th>
-						    	</tr>
+					    <table>
+					    	<tr>
+					    		<th>Id</th>
+					    		<th>Tên danh mục</th>
+					    		<th>Sửa danh mục</th>
+					    		<th>Xóa danh mục</th>
+					    	</tr>
+					    	<c:if test="${! empty listDanhMuc}">
 								<c:forEach items="${listDanhMuc}" var="danhMuc">
 									<tr>
 										<td>${danhMuc.id}</td> 
@@ -69,9 +87,9 @@
 											<a class="btn btn-danger" href="${root}/admin/quanLyDanhMuc/delete?idDanhMuc=${danhMuc.id}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?');">Xóa</a>
 										</td>
 									</tr>	
-								</c:forEach>	
-							</table>
-						</c:if>
+								</c:forEach>
+							</c:if>	
+						</table>
 					</div>
 		   		</div>
 	   		</div>

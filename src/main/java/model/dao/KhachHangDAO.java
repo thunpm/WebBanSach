@@ -280,5 +280,5 @@ public class KhachHangDAO extends BaseDAO {
 
         return khachHang;
 	}
-
+	
 }

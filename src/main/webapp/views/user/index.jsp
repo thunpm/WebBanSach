@@ -17,7 +17,7 @@
     
     <div class="main-block">
     	<div class="content">
-    		<div style="width: 100%; height: auto; display: flex; justify-content: center;     margin: 0px 0px 30px 0px;">
+    		<div style="width: 100%; height: auto; display: flex; justify-content: space-between; margin: 0px 0px 30px 0px;">
 		   		<div class="danh-muc">
 		   			<h5 class="tieu-de list-group">Danh Mục Sản Phẩm</h5>
 					<c:forEach items="${listDanhMuc}" var="danhMuc">
@@ -51,9 +51,24 @@
 	   		</div>
 	        <div class="sach">
 		        <div class="tieu-de">
-		        	<a href="showIndex?sanPham=sanPhamMoi">Hàng Mới</a>
-		        	<a href="showIndex?sanPham=sanPhamBanChay">Bán Chạy</a>
-		        	<a href="showIndex?sanPham=sanPhamKhuyenMai">Giảm Giá</a>
+		        	<c:if test="${sanPham eq 'sanPhamMoi'}">    
+		        		<a style="border-bottom: 2px solid #F08121;" href="showIndex?sanPham=sanPhamMoi">Hàng Mới</a>
+		        	</c:if>
+		        	<c:if test="${sanPham ne 'sanPhamMoi'}">    
+		        		<a href="showIndex?sanPham=sanPhamMoi">Hàng Mới</a>
+		        	</c:if>
+		        	<c:if test="${sanPham eq 'sanPhamBanChay'}">    
+		        		<a style="border-bottom: 2px solid #F08121;" href="showIndex?sanPham=sanPhamBanChay">Bán Chạy</a>
+	        		</c:if>
+	        		<c:if test="${sanPham ne 'sanPhamBanChay'}">    
+		        		<a href="showIndex?sanPham=sanPhamBanChay">Bán Chạy</a>
+	        		</c:if>
+	        		<c:if test="${sanPham eq 'sanPhamKhuyenMai'}"> 
+		        		<a style="border-bottom: 2px solid #F08121;" href="showIndex?sanPham=sanPhamKhuyenMai">Giảm Giá</a>
+	        		</c:if>
+	        		<c:if test="${sanPham ne 'sanPhamKhuyenMai'}"> 
+		        		<a href="showIndex?sanPham=sanPhamKhuyenMai">Giảm Giá</a>
+	        		</c:if>
 		        </div>	 
 		        <div class="san-pham">
 		        	<c:forEach items="${listSanPham}" var="sanPham" begin="${batDauSP}" end="${ketThucSP}">		

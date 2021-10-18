@@ -564,4 +564,34 @@
     <servlet-name>AdminUpdateDonHangServlet</servlet-name>
     <url-pattern>/admin/quanLyHoaDon/updated</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminSearchKHServlet</display-name>
+    <servlet-name>AdminSearchKHServlet</servlet-name>
+    <servlet-class>controller.admin.AdminSearchKHServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminSearchKHServlet</servlet-name>
+    <url-pattern>/admin/quanLyKhachHang/tim</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminSearchDMServlet</display-name>
+    <servlet-name>AdminSearchDMServlet</servlet-name>
+    <servlet-class>controller.admin.AdminSearchDMServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminSearchDMServlet</servlet-name>
+    <url-pattern>/admin/quanLyDanhMuc/tim</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminSearchDHServlet</display-name>
+    <servlet-name>AdminSearchDHServlet</servlet-name>
+    <servlet-class>controller.admin.AdminSearchDHServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminSearchDHServlet</servlet-name>
+    <url-pattern>/AdminSearchDHServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

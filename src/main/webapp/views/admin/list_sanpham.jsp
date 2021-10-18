@@ -7,9 +7,55 @@
 <head>
     <meta charset="utf-8">
     <title>Trang chủ Admin</title>
-    <link rel="stylesheet" type="text/css" href="${root}/views/styles/style_admin.css"/>
+   	<meta name="viewport" content="width=device-width, initial-scale=1">
+   	<link rel="stylesheet" type="text/css" href="${root}/views/styles/style_admin.css"/>
     <link rel="stylesheet" type="text/css" href="${root}/views/lib/font-awesome/css/all.css">
-    <link rel="stylesheet" type="text/css" href="${root}/views/lib/bootstrap/css/bootstrap.min.css"/>
+  	<link rel="stylesheet" type="text/css" href="${root}/views/lib/bootstrap/css/bootstrap.min.css"/>
+  	
+  	<script src="${root}/views/lib/jquery-3.3.1.min.js"></script>
+    <script src="${root}/views/lib/popper.min.js"></script>
+    <script src="${root}/views/lib/bootstrap/js/bootstrap.min.js"></script>
+   
+  	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+  	<script src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
+ 
+  	<script>
+    	$(document).ready(function(){
+     
+    	// Cấu hình các nhãn phân trang
+    		$('#example').dataTable({
+        		"language": {
+        			"sProcessing":   "Đang xử lý...",
+        			"sLengthMenu":   "Số sản phẩm trên một trang _MENU_",
+        			"sZeroRecords":  "Không tìm thấy dòng nào phù hợp",
+        			"sInfo":         "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+        			"sInfoEmpty":    "Đang xem 0 đến 0 trong tổng số 0 mục",
+        			"sInfoFiltered": "(được lọc từ _MAX_ mục)",
+        			"sInfoPostFix":  "",
+        			"sSearch":       "Tìm",
+        			"sUrl":          "",
+        			"oPaginate": {
+	            		"sFirst":    "Đầu",
+	            		"sPrevious": "Trước",
+	            		"sNext":     "Sau",
+	            		"sLast":     "Cuối"
+            		}
+        		},
+        		"processing": true, // tiền xử lý trước
+        		"aLengthMenu": [[10, 15, 20, 25], [10, 15, 20, 25]], // danh sách số trang trên 1 lần hiển thị bảng
+        		"order": [[ 1, 'asc' ]] //sắp xếp tăng dần theo cột thứ 1
+    		});     
+    	}); 
+  	</script>   
+  	<style type="text/css">
+  		.content select, .content input[type="search"]{
+  			    width: 200px;
+    			height: 31px;
+    			margin: 10px 0px 10px 5px;
+    			padding: 0px;
+  		}
+  	</style>
 </head>
 <body>
     <div class="main-block">
@@ -51,41 +97,61 @@
 			    	<p style="color: red;">${message}</p>
 			    	<div class="">
 				    	<c:if test="${! empty listSanPham}">
-						    <table class="">
-						    	<tr>
-						    		<th>Id</th>
-						    		<th>Tên sản phẩm</th>
-								   	<th>Hình ảnh</th>
-						    		<th>Tác giả/Xuất xứ</th>
-						    		<th>Nhà xuất bản/Nơi sản xuất</th>
-						    		<th>Giá</th>
-						    		<th>Khuyến mãi</th>
-						    		<th>Số lượng có</th>
-						    		<th>Mô tả</th>
-						    		<th>Thể loại</th>
-						    		<th>Sửa</th>
-						    		<th>Xóa</th>
-						    	</tr>
-								<c:forEach items="${listSanPham}" var="sanPham">
-									<tr>
-										<td>${sanPham.id}</td> 
-										<td>${sanPham.tenSanPham}</td>
-										<td><img style="width:200px; height:150px;" src="${root}/views/images/${sanPham.anhSanPham.tenHinhAnh}"></td>
-										<td>${sanPham.tacGia}</td>
-										<td>${sanPham.nhaXuatBan}</td>
-										<td>${sanPham.gia}</td>
-										<td>${sanPham.khuyenMai}</td>
-										<td>${sanPham.soLuongCo}</td>
-										<td>${sanPham.moTa}</td>
-										<td>${sanPham.idTheLoai}</td>
-										<td>
-											<a class="btn btn-danger" href="${root}/admin/quanLySanPham/update?idSanPham=${sanPham.id}">Sửa</a>
-										</td>
-										<td>
-											<a class="btn btn-danger" href="${root}/admin/quanLySanPham/delete?idSanPham=${sanPham.id}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?');">Xóa</a>
-										</td>
-									</tr>	
-								</c:forEach>	
+						    <table id="example" class="table table-striped table-bordered">
+						    	<thead>
+							    	<tr>
+							    		<th>Id</th>
+							    		<th>Tên sản phẩm</th>
+									   	<th>Hình ảnh</th>						 
+							    		<th>Chi tiết</th>
+							    		<th>Sửa</th>
+							    		<th>Xóa</th>
+							    	</tr>
+						    	</thead>
+ 								<tbody>
+									<c:forEach items="${listSanPham}" var="sanPham">
+										<tr>
+											<td>${sanPham.id}</td> 
+											<td>${sanPham.tenSanPham}</td>
+											<td><img style="width:200px; height:150px;" src="${root}/views/images/${sanPham.anhSanPham.tenHinhAnh}"></td>
+											<td>
+												<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+		           									Chi tiết
+		     				 					</button>
+		     				 					<div class="modal" id="myModal">
+										        	<div class="modal-dialog">
+										        		<div class="modal-content">          
+								               				<div class="modal-header">
+								                				<h4 class="modal-title">Thông tin sản phẩm ${sanPham.id}</h4>
+								                				<button type="button" class="close" data-dismiss="modal">&times;</button>
+								               				</div>
+										        			<div class="modal-body">															
+																<p>Tên sản phẩm: ${sanPham.tenSanPham}</p>
+																<p>Hình ảnh: <img style="width:200px; height:150px;" src="${root}/views/images/${sanPham.anhSanPham.tenHinhAnh}"></p>
+																<p>Tác giả/Nhà sản xuất: ${sanPham.tacGia}</p>
+																<p>Nhà xuất bản/Xuất xứ: ${sanPham.nhaXuatBan}</p>
+																<p>Đơn giá: ${sanPham.gia}</p>
+																<p>Khuyến mãi: ${sanPham.khuyenMai}</p>
+																<p>Số lượng có: ${sanPham.soLuongCo}</p>
+																<p>Mô tả: ${sanPham.moTa}</p>
+																<p>Mã thể loại: ${sanPham.idTheLoai}</p>
+															</div>
+								               				<div class="modal-footer">
+								                  				<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+								               				</div>
+								            			</div>
+										         	</div>
+										      	</div>
+		     				 				</td>
+											<td>
+												<a class="btn btn-danger" href="${root}/admin/quanLySanPham/update?idSanPham=${sanPham.id}">Sửa</a>
+											</td>
+											<td>
+												<a class="btn btn-danger" href="${root}/admin/quanLySanPham/delete?idSanPham=${sanPham.id}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?');">Xóa</a>
+											</td>
+										</tr>	
+									</c:forEach>
+								</tbody>	
 							</table>
 						</c:if>
 					</div>
@@ -93,10 +159,6 @@
 	   		</div>
    		</c:if>
     </div>
-   
-   	<script src="${root}/views/lib/jquery-3.3.1.min.js"></script>
-    <script src="${root}/views/lib/popper.min.js"></script>
-    <script src="${root}/views/lib/bootstrap/js/bootstrap.min.js"></script>
     
 </body>
 </html>

@@ -29,6 +29,8 @@ public class ShowProductByLoaiServlet extends HttpServlet {
 		String tenLoai = request.getParameter("tenLoai");
 		String sapXep = request.getParameter("sanPham");
 		String trang = request.getParameter("trangHienTai");
+		String gia = request.getParameter("gia");
+		String nxb = request.getParameter("nxb");
 		
 		ShowSanPhamBO showSanPhamBO = new ShowSanPhamBO();
 		ShowDanhMucBO  showDanhMucBO = new ShowDanhMucBO();

@@ -40,6 +40,7 @@ public class AdminShowUpdateSanPhamServlet extends HttpServlet {
 		ArrayList<LoaiSanPham> listTheLoai = showLoaiSanPhamBO.getAllLoaiSanPham();
 		request.setAttribute("listTheLoai", listTheLoai);	
 		
+		request.setAttribute("id", sanPham.getId());
 		request.setAttribute("tenSanPham", sanPham.getTenSanPham());
 		request.setAttribute("hinhAnh", sanPham.getAnhSanPham());
 		request.setAttribute("tacGia", sanPham.getTacGia());

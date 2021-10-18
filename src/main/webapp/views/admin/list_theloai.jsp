@@ -51,7 +51,7 @@
 			    	<p style="color: red;">${message}</p>
 			    	<div class="">
 				    	<c:if test="${! empty listDanhMuc}">
-						    <table style="display: inline-block;">
+						    <table>
 						    	<tr>
 						    		<th>Id</th>
 						    		<th>Tên thể loại</th>
