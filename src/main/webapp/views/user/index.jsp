@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -51,20 +52,21 @@
 	   		</div>
 	        <div class="sach">
 		        <div class="tieu-de">
+		        	<div class="name">TẤT CẢ SẢN PHẨM</div>
 		        	<c:if test="${sanPham eq 'sanPhamMoi'}">    
-		        		<a style="border-bottom: 2px solid #F08121;" href="showIndex?sanPham=sanPhamMoi">Hàng Mới</a>
+		        		<a style="border-bottom: 2px solid #d95719;" href="showIndex?sanPham=sanPhamMoi">Hàng Mới</a>
 		        	</c:if>
 		        	<c:if test="${sanPham ne 'sanPhamMoi'}">    
 		        		<a href="showIndex?sanPham=sanPhamMoi">Hàng Mới</a>
 		        	</c:if>
 		        	<c:if test="${sanPham eq 'sanPhamBanChay'}">    
-		        		<a style="border-bottom: 2px solid #F08121;" href="showIndex?sanPham=sanPhamBanChay">Bán Chạy</a>
+		        		<a style="border-bottom: 2px solid #d95719;" href="showIndex?sanPham=sanPhamBanChay">Bán Chạy</a>
 	        		</c:if>
 	        		<c:if test="${sanPham ne 'sanPhamBanChay'}">    
 		        		<a href="showIndex?sanPham=sanPhamBanChay">Bán Chạy</a>
 	        		</c:if>
 	        		<c:if test="${sanPham eq 'sanPhamKhuyenMai'}"> 
-		        		<a style="border-bottom: 2px solid #F08121;" href="showIndex?sanPham=sanPhamKhuyenMai">Giảm Giá</a>
+		        		<a style="border-bottom: 2px solid #d95719;" href="showIndex?sanPham=sanPhamKhuyenMai">Giảm Giá</a>
 	        		</c:if>
 	        		<c:if test="${sanPham ne 'sanPhamKhuyenMai'}"> 
 		        		<a href="showIndex?sanPham=sanPhamKhuyenMai">Giảm Giá</a>
@@ -78,31 +80,37 @@
 				        		<div class="ten-sach">${sanPham.tenSanPham}</div>
 				        		<div style="color: #525852;" class="da-ban">Đã bán ${sanPham.daBan}</div>
 				        		<div>
-				        			<div style="float: left; font-weight: bold; margin-right: 5px; font-size: 17px;" class="gia-tien">${sanPham.giaString}</div>
-				        			<div style="color: red;" class="khuyen-mai">-${sanPham.khuyenMaiString}%</div>
+				        			<div style="float: left; font-weight: bold; margin-right: 5px; font-size: 17px;" class="gia-tien">
+				        				<fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.gia}"/> đ
+				        			</div>
+				        			<div style="color: red;" class="khuyen-mai">
+				        				-<fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.khuyenMai}"/>%
+				        			</div>
 		        				</div>
 		        			</div>
 	        			</a>
 					</c:forEach>
 				</div>
 	        </div>
-		</div>
-		<div class="danh-trang">
+	        <div class="danh-trang">
+			<ul class="pagination justify-content-end">
 			<c:if test="${trangHienTai gt 1}">			    	
-	        	<a href="showIndex?sanPham=${sanPham}&trangHienTai=${trangHienTai - 1}">Trước</a>
+	        	<li class="page-item"><a class="page-link" href="showIndex?sanPham=${sanPham}&trangHienTai=${trangHienTai - 1}">Trước</a></li>
 	        </c:if>	
 	        <c:forEach items="${listSoTrang}" var="soTrang">
 	        	<c:if test="${trangHienTai eq soTrang}">			    	
-		        	<a style="color: red;" href="showIndex?sanPham=${sanPham}&trangHienTai=${soTrang}">${soTrang}</a>
+		        	<li class="page-item"><a class="page-link" style="color: red;" href="showIndex?sanPham=${sanPham}&trangHienTai=${soTrang}">${soTrang}</a></li>
 		        </c:if>		
 		        <c:if test="${trangHienTai ne soTrang}">    	
-	        		<a href="showIndex?sanPham=${sanPham}&trangHienTai=${soTrang}">${soTrang}</a>
+	        		<li class="page-item"><a class="page-link" href="showIndex?sanPham=${sanPham}&trangHienTai=${soTrang}">${soTrang}</a></li>
         		</c:if>
 			</c:forEach>
 			<c:if test="${trangHienTai lt (tongSoTrang - 1)}">			    	
-	        	<a href="showIndex?sanPham=${sanPham}&trangHienTai=${trangHienTai + 1}">Sau</a>
+	        	<li class="page-item"><a class="page-link" href="showIndex?sanPham=${sanPham}&trangHienTai=${trangHienTai + 1}">Sau</a></li>
 	        </c:if>	
+	        </ul>
 		</div>
+		</div>	
     </div>
     <%@ include file="include/footer.jsp" %>
     

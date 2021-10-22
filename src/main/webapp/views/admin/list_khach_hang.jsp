@@ -60,14 +60,12 @@
 			  				</ul>
 						</div> --%>
 						<div class="search-box">
-							<form style="display: flex; flex-direction: row;" action="${root}/admin/quanLyKhachHang/tim" method="POST">
-				           		<input type="text" placeholder="Tìm" name="searchText" value="${searchText}">
-				           		<button style="padding: 0px 5px 0px 5px;" type="submit" class="fa fa-search btn-danger"></button>
-				           	</form>
+			           		<input id="search" type="text" placeholder="Tìm" name="searchText" value="${searchText}">
+				           	<button style="padding: 0px 9px 0px 9px;" type="button" class="fa fa-search btn-danger"></button>
 				        </div>
 				   	</div>
 			    	<div class="">
-					    <table class="">
+					    <table id="myTable">
 					    	<tr>
 					    		<th>Id</th>
 					    		<th>Tên đăng nhập</th>
@@ -80,7 +78,7 @@
 					    	</tr>
 				    		<c:if test="${! empty listKhachHang}">
 								<c:forEach items="${listKhachHang}" var="khachHang">
-									<tr>
+									<tr class="hang">
 										<td>${khachHang.id}</td> 
 										<td>${khachHang.tenDangNhap}</td>
 										<%-- <td>${khachHang.matKhau}</td> --%>
@@ -104,8 +102,14 @@
 															<p>Email        : ${khachHang.email}</p>
 															<p>Giới tính    : ${khachHang.gioiTinh}</p>
 															<p>Ngày sinh    : ${khachHang.ngaySinh}</p>
-															<p>Địa chỉ      : ${khachHang.diaChi.diaChi} - ${khachHang.diaChi.xa} - ${khachHang.diaChi.huyen} - ${khachHang.diaChi.tinh}</p>		
-							               				</div>
+															<p>Địa chỉ      :</p>
+															<c:forEach items="${khachHang.diaChi}" var="diaChi">
+   																<c:if test="${diaChi.macDinh eq 1}">
+       																<i style="display: inline;">Địa chỉ mặc định: </i>
+       															</c:if> 
+   																<p style="text-overflow: ellipsis;">${diaChi.diaChi} - ${diaChi.xa} - ${diaChi.huyen} - ${diaChi.tinh}</p>   															       							
+    														</c:forEach>
+														</div>
 							               				<div class="modal-footer">
 							                  				<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
 							               				</div>
@@ -132,6 +136,20 @@
    	<script src="${root}/views/lib/jquery-3.3.1.min.js"></script>
     <script src="${root}/views/lib/popper.min.js"></script>
     <script src="${root}/views/lib/bootstrap/js/bootstrap.min.js"></script>
+    
+    <script>
+    	$(document).ready(function() {
+   			$('#search').on('keyup', function() {
+      			var tukhoa = $(this).val().toLowerCase();
+      			/* filter: loc cac thanh phan */
+      			$('#myTable .hang').filter(function() {
+      				/* toggle hiển thị và ẩn thành phần
+      				indexOf tra ve vi tri dau tien tim thay, khong tim thay tra ve -1 */
+         			$(this).toggle($(this).text().toLowerCase().indexOf(tukhoa) > -1);
+      			});
+  		 	});
+		});
+   	</script>
     
 </body>
 </html>

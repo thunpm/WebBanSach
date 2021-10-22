@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,7 +47,7 @@ public class CheckLoginServlet extends HttpServlet {
 		} else if (check == 1) {
 			ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
 			ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
-			DiaChi diaChiKH = new DiaChi();
+			ArrayList<DiaChi> diaChiKH = new ArrayList<>();
 			KhachHang khachHang = showKhachHangBO.getAccount(tenDangNhap);
 			diaChiKH = showDiaChiBO.getDiaChi(khachHang.getId());
 			khachHang.setDiaChi(diaChiKH);

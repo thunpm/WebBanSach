@@ -12,14 +12,15 @@
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
     
-    <div class="main-block">
+    <div style="background-color: white;" class="main-block">
 	    <div class="login-block">
 	    	<p style="color: red; display: inline-block; margin-bottom: 20px;">${message}</p>
+	    	<div style="text-align: center; font-size: 20px; margin-bottom: 30px;" class="name">ĐĂNG NHẬP</div>
 	        <form action="checkLogin" method="POST">
 	        	<label>Tên đăng nhập:</label>
         		<input type="text" name="tendangnhap" value="${requestScope.user.tenDangNhap}">
 	        	<label>Mật khẩu:</label>
-	        	<input type="text" name="matkhau" value="${requestScope.user.matKhau}">
+	        	<input type="password" name="matkhau" value="${requestScope.user.matKhau}">
 	        	<input type="submit" value="ĐĂNG NHẬP">
 	        </form>
 	        <a class="link-dang-ki" href="showRegister">Bạn chưa có tài khoản? Đăng kí ngay!</a>

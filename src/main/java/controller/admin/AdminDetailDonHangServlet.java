@@ -44,10 +44,10 @@ public class AdminDetailDonHangServlet extends HttpServlet {
 		} else if (idKhachHang != null) {
 			ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
 			ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
-			DiaChi diaChiKH = new DiaChi();
+			ArrayList<DiaChi> listDiaChi = new ArrayList<>();
 			KhachHang khachHang = showKhachHangBO.getAccountById(idKhachHang);
-			diaChiKH = showDiaChiBO.getDiaChi(idKhachHang);
-			khachHang.setDiaChi(diaChiKH);
+			listDiaChi = showDiaChiBO.getDiaChi(idKhachHang);
+			khachHang.setDiaChi(listDiaChi);
 			
 			request.setAttribute("detail", "khachHang");
 			request.setAttribute("khachHang", khachHang);

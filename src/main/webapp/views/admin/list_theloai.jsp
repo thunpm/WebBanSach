@@ -46,12 +46,28 @@
 			   		<a class="list-group-item" href="${root}/admin/thongKe">Thống kê</a>
 		   		</div>
 		   		<div class="content">
-		   			<h5 style="margin: auto">THỂ LOẠI</h5>
-			    	<a class="btn btn-warning" href="${root}/admin/quanLyTheLoai/add">Thêm thể loại</a>
+		   			<h5 style="margin: auto; margin-bottom: 50px;">THỂ LOẠI</h5>
 			    	<p style="color: red;">${message}</p>
+			    	<div class="find">
+					<%-- 	<div style="cursor: pointer;" class="dropdown">	
+			    			<div style="border: 1px solid black; width: 150px; height: 30px; margin-right: 10px; border-radius: 2px;" data-toggle="dropdown"> 
+			    				<p style="float: left; margin: 3px 6px; color: #757575;">${sapXep}</p>
+			    				<i style="float: right; padding: 5px; color: #dc3545;" class="fas fa-chevron-circle-down"></i>
+			    			</div>
+			    			<ul class="dropdown-menu">
+			    				<li><a class="dropdown-item" href="${root}/admin/quanLyKhachHang?sapXep=moiNhat">Mới nhất</a></li>
+			    				<li><a class="dropdown-item" href="${root}/admin/quanLyKhachHang?sapXep=cuNhat">Cũ nhất</a></li>
+			  				</ul>
+						</div> --%>
+						<a class="btn btn-warning" href="${root}/admin/quanLyTheLoai/add">Thêm thể loại</a>
+						<div class="search-box">
+			           		<input id="search" type="text" placeholder="Tìm" name="searchText" value="${searchText}">
+				           	<button style="padding: 0px 9px 0px 9px;" type="button" class="fa fa-search btn-danger"></button>
+				        </div>
+				   	</div>
 			    	<div class="">
 				    	<c:if test="${! empty listDanhMuc}">
-						    <table>
+						    <table id="myTable">
 						    	<tr>
 						    		<th>Id</th>
 						    		<th>Tên thể loại</th>
@@ -61,7 +77,7 @@
 						    	</tr>
 								<c:forEach items="${listDanhMuc}" var="danhMuc">
 									<c:forEach items="${danhMuc.listLoaiSanPham}" var="loaiSanPham">
-										<tr>
+										<tr class="hang">
 											<td>${loaiSanPham.id}</td> 
 											<td>${loaiSanPham.tenLoaiSanPham}</td>
 											<td>${danhMuc.tenDanhMuc}</td>
@@ -86,5 +102,18 @@
     <script src="${root}/views/lib/popper.min.js"></script>
     <script src="${root}/views/lib/bootstrap/js/bootstrap.min.js"></script>
     
+    <script>
+    	$(document).ready(function() {
+   			$('#search').on('keyup', function() {
+      			var tukhoa = $(this).val().toLowerCase();
+      			/* filter: loc cac thanh phan */
+      			$('#myTable .hang').filter(function() {
+      				/* toggle hiển thị và ẩn thành phần
+      				indexOf tra ve vi tri dau tien tim thay, khong tim thay tra ve -1 */
+         			$(this).toggle($(this).text().toLowerCase().indexOf(tukhoa) > -1);
+      			});
+  		 	});
+		});
+   	</script>
 </body>
 </html>

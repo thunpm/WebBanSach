@@ -48,8 +48,9 @@
 		   		</div>
 		   		<div class="content">
 		   			<div id="acc">
-		   				<h5 style="margin: auto">Thống kê doanh thu</h5>
-				   		 <form action="${root}/admin/thongKe/doanhThu">
+		   				<h5 style="margin: auto">THỐNG KÊ DOANH THU</h5>
+		   				<p style="color: red;">${message}</p>
+				   		 <form action="${root}/admin/thongKe/doanhThu" method="POST">
 				   		 	<p>Ngày bắt đầu</p>
 				   		 	<div class="ngay">
 					   		 	<div class="nhap">

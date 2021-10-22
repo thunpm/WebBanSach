@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -25,16 +26,20 @@
 			        <div class="san-pham">
 			        	<c:forEach items="${listSanPham}" var="sanPham" begin="${batDauSP}" end="${ketThucSP}">		
 			        		<a href="showDetailProduct?idProduct=${sanPham.id}" class="card">	   	    	
-				        		<img class="hinh-anh" src="views/images/${sanPham.anhSanPham.tenHinhAnh}"></img>
-				        		<div class="mo-ta">
-					        		<div class="ten-sach">${sanPham.tenSanPham}</div>
-					        		<div style="color: #525852;" class="da-ban">Đã bán ${sanPham.daBan}</div>
-					        		<div>
-					        			<div style="float: left; font-weight: bold; margin-right: 5px; font-size: 17px;" class="gia-tien">${sanPham.giaString}</div>
-					        			<div style="color: red;" class="khuyen-mai">-${sanPham.khuyenMaiString}%</div>
-			        				</div>
-			        			</div>
-		        			</a>
+			        		<img class="hinh-anh" src="views/images/${sanPham.anhSanPham.tenHinhAnh}"></img>
+			        		<div class="mo-ta">
+				        		<div class="ten-sach">${sanPham.tenSanPham}</div>
+				        		<div style="color: #525852;" class="da-ban">Đã bán ${sanPham.daBan}</div>
+				        		<div>
+				        			<div style="float: left; font-weight: bold; margin-right: 5px; font-size: 17px;" class="gia-tien">
+				        				<fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.gia}"/> đ
+				        			</div>
+				        			<div style="color: red;" class="khuyen-mai">
+				        				-<fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.khuyenMai}"/>%
+				        			</div>
+		        				</div>
+		        			</div>
+	        			</a>
 						</c:forEach>
 					</div>
 		        </div>

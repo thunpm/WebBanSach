@@ -1,7 +1,5 @@
 package common;
 
-import java.text.DecimalFormat;
-
 public class StringCommon {
 	
 	public static String convertNumberToString(long number, int digit) {
@@ -10,12 +8,5 @@ public class StringCommon {
 		
 		return returnedStr.substring(returnedStr.length() - digit);
 	}
-	
-	public static String convertDoubleToString(double number) {
-		return new DecimalFormat("#").format(number);
-	}
-	
-	public static String convertDoubleToStringWithComma(double d) {
-        return new DecimalFormat("###,###").format(d);
-	}
+
 }

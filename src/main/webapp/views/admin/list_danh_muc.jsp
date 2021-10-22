@@ -47,7 +47,6 @@
 		   		</div>
 		   		<div class="content">
 		   			<h5 style="margin: auto;">DANH MỤC</h5>
-			    	<a class="btn btn-warning" href="${root}/admin/quanLyDanhMuc/add">Thêm danh mục</a>
 			    	<p style="color: red;">${message}</p>
 			    	<div class="find">
 					<%-- 	<div style="cursor: pointer;" class="dropdown">	
@@ -60,15 +59,14 @@
 			    				<li><a class="dropdown-item" href="${root}/admin/quanLyKhachHang?sapXep=cuNhat">Cũ nhất</a></li>
 			  				</ul>
 						</div> --%>
+						<a class="btn btn-warning" href="${root}/admin/quanLyDanhMuc/add">Thêm danh mục</a>
 						<div class="search-box">
-							<form style="display: flex; flex-direction: row;" action="${root}/admin/quanLyDanhMuc/tim" method="POST">
-				           		<input type="text" placeholder="Tìm" name="searchText" value="${searchText}">
-				           		<button style="padding: 0px 5px 0px 5px;" type="submit" class="fa fa-search btn-danger"></button>
-				           	</form>
+			           		<input id="search" type="text" placeholder="Tìm" name="searchText" value="${searchText}">
+				           	<button style="padding: 0px 9px 0px 9px;" type="button" class="fa fa-search btn-danger"></button>
 				        </div>
 				   	</div>
-			    	<div class="">
-					    <table>
+			    	<div>
+					    <table id="myTable">
 					    	<tr>
 					    		<th>Id</th>
 					    		<th>Tên danh mục</th>
@@ -77,7 +75,7 @@
 					    	</tr>
 					    	<c:if test="${! empty listDanhMuc}">
 								<c:forEach items="${listDanhMuc}" var="danhMuc">
-									<tr>
+									<tr class="hang">
 										<td>${danhMuc.id}</td> 
 										<td>${danhMuc.tenDanhMuc}</td>
 										<td>
@@ -99,6 +97,20 @@
    	<script src="${root}/views/lib/jquery-3.3.1.min.js"></script>
     <script src="${root}/views/lib/popper.min.js"></script>
     <script src="${root}/views/lib/bootstrap/js/bootstrap.min.js"></script>
+    
+    <script>
+    	$(document).ready(function() {
+   			$('#search').on('keyup', function() {
+      			var tukhoa = $(this).val().toLowerCase();
+      			/* filter: loc cac thanh phan */
+      			$('#myTable .hang').filter(function() {
+      				/* toggle hiển thị và ẩn thành phần
+      				indexOf tra ve vi tri dau tien tim thay, khong tim thay tra ve -1 */
+         			$(this).toggle($(this).text().toLowerCase().indexOf(tukhoa) > -1);
+      			});
+  		 	});
+		});
+   	</script>
     
 </body>
 </html>

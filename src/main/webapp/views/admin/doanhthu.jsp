@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -65,9 +66,15 @@
 										<tr>
 											<td>${thongKe.idHangHoa}</td> 
 											<td>${thongKe.tenSanPham}</td>
-											<td>${thongKe.gia}</td>
-											<td>${thongKe.khuyenMai}</td>
-											<td>${thongKe.daBan}</td>
+											<td>
+												<fmt:formatNumber type="number" maxFractionDigits="3" value="${thongKe.gia}"/> đ
+											</td>
+											<td>
+												<fmt:formatNumber type="number" maxFractionDigits="3" value="${thongKe.khuyenMai}"/>%
+											</td>
+											<td>
+												<fmt:formatNumber type="number" maxFractionDigits="3" value="${thongKe.daBan}"/>
+											</td>
 										</tr>	
 										<c:set var="tien" value="${thongKe.daBan * thongKe.gia*(1 - thongKe.khuyenMai/100.0)}" />
 										<c:set var="tongTien" value="${tongTien + tien}" /> 
@@ -75,8 +82,15 @@
 									</c:forEach>	
 								</table>
 							</form>
-							<div>Tổng doanh thu: ${tongTien}</div>
-							<div>Tổng sản phẩm đã bán: ${tongSanPham}</div>
+							<div>Tổng doanh thu: 
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${tongTien}"/> đ
+							</div>
+							<div>Tổng sản phẩm đã bán: 
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${tongSanPham}"/> sản phẩm
+							</div>
+						</c:if>
+						<c:if test="${(empty listSanPham)}">
+							Không có dữ liệu
 						</c:if>
 					</div>
 		   		</div>

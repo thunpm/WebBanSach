@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -26,12 +27,19 @@
 					<div style="color: #525852; margin-left: 400px;" class="da-ban">Đã bán ${sanPham.daBan}</div>
 					<div>Tác giả/Xuất xứ: ${sanPham.tacGia}</div>
 					<div>Nhà xuất bản/Nơi sản xuất: ${sanPham.nhaXuatBan}</div>
-					<div>Còn ${sanPham.soLuongCoString} sản phẩm</div>
+					<div>Còn <fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.soLuongCo}"/> sản phẩm</div>
 					<div>
-	        			<div style="float: left; font-weight: bold; margin-right: 5px; font-size: 23px;">${sanPham.giaString}</div>
-	        			<div style="color: red;">-${sanPham.khuyenMaiString}%</div>
+	        			<div style="float: left; font-weight: bold; margin-right: 5px; font-size: 23px;">
+	        				<fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.gia}"/> đ
+	        			</div>
+	        			<div style="color: red;">
+	        				-<fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.khuyenMai}"/>%
+	        			</div>
        				</div>
-					<a class="them" href="addToCart?idProduct=${sanPham.id}">THÊM GIỎ HÀNG</a>
+       				<form action="addToCart" method="POST">
+       					<input type="hidden" name="idProduct" value="${sanPham.id}">
+       					<input type="submit" value="THÊM GIỎ HÀNG">
+       				</form>
 				</div>
 			</div>	
 			<div class="mo-ta-sp">

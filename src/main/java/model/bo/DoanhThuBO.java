@@ -33,6 +33,8 @@ public class DoanhThuBO {
 			if (! DateCommon.isValidDate(ngay1, thang1, nam1) || ! DateCommon.isValidDate(ngay2, thang2, nam2)) {
 				return 1;
 			}
+		} else {
+			return 1;
 		}
 		
 		return 0;

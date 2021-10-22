@@ -15,19 +15,19 @@
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
     
-    <div class="main-block">
+    <div style="background-color: white;" class="main-block">
     	<div class="content">
-    		<h5 style="margin-left: 100px;">Đơn hàng đã đặt</h5>
+    		<div style="width: 80%; margin: auto; text-align: center; font-size: 20px; margin-bottom: 30px;" class="name">ĐƠN HÀNG CỦA TÔI</div>
 	    	<c:if test="${! empty listHoaDon}">
 			    <table class="bang-sp">
-			    	<tr style="margin-bottom: 30px; border-bottom: 10px solid #F0F0F0; padding: 10px;">
+			    	<tr style="margin-bottom: 30px; border-bottom: 5px solid #F0F0F0; padding: 10px;">
 			    		<th>Ngày đặt</th>
 			    		<th>Trạng thái</th>
 			    		<th>Xem chi tiết</th>
 			    		<th>Hủy đơn</th>
 			    	</tr>
 					<c:forEach items="${listHoaDon}" var="hoaDon">
-						<tr style="width: 100%; margin-bottom: 30px; border-bottom: 10px solid #F0F0F0;">
+						<tr style="width: 100%; margin-bottom: 30px; border-bottom: 5px solid #F0F0F0;">
 							<td>${hoaDon.thoiGianLap}</td> 
 							<td>${hoaDon.trangThai}</td>
 							<td>

@@ -19,7 +19,8 @@
    		<c:if test="${!empty sessionScope.user}">
    			<div class="dropdown">
     			<a data-toggle="dropdown" href="#">
-    				<label style="font-size: 25px;" class="far fa-user-circle"> ${sessionScope.user.tenDangNhap}</label>
+    				<i class="far fa-user-circle"></i> 
+    				${sessionScope.user.tenDangNhap}
     			</a>
     			<ul class="dropdown-menu">
     				<li><a class="dropdown-item" href="showDonHang">Đơn hàng của tôi</a></li>

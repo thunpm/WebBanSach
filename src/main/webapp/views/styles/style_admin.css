@@ -39,11 +39,19 @@
 	cursor: pointer;
 	font-size: 18px;
 	font-weight: bold;
-	background-color: #FAC47C;
+	background-color: #d95719;
 	padding: 5px;
 	border: 1px solid #FAC47C;
 	margin-top: 30px;
 	margin-bottom: 30px;
+	border-radius: 5px;
+}
+
+.main-block input[type="submit"]:hover, 
+.main-block input[type="button"]:hover,
+.main-block input[type="reset"]:hover { 
+	padding: 8px;
+	transition: 0.5s;
 }
 
 .main-block .menu {
@@ -80,10 +88,11 @@
 	margin: auto;
 }
 
-.main-block input[type="text"],
-.main-block input[type="file"],
-.main-block select {
-	border: 2px solid black;
+.main-block .login-block input[type="text"],
+.main-block .login-block select,
+.main-block .login-block input[type="date"],
+.main-block .login-block input[type="password"] {
+	border: 2px solid #F0F0F0;
 	display: block;
 	width: 500px;
 	height: 40px;
@@ -91,11 +100,29 @@
 	font-size: 18px;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	border-radius: 5px;
+}
+
+
+.main-block input[type="text"],
+.main-block input[type="file"],
+.main-block input[type="password"],
+.main-block select {
+	border: 2px solid #F0F0F0;
+	display: block;
+	width: 500px;
+	height: 40px;
+	padding-left: 20px;
+	font-size: 18px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-radius: 5px;
 }
 
 .main-block .content table {
 	border: 3px solid #aba5a5;
 	margin-top: 20px;
+	width: 100%;
 }
 
 .main-block .content table tr {
@@ -122,12 +149,18 @@
 .main-block .content .find {
 	width: 100%;
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
+}
+
+.main-block .content .find .search-box {
+	display: flex; 
+    flex-direction: row;
+    height: 100%;
 }
 
 .main-block .content .find .search-box input {
 	width: 250px;
-    height: 30px;
+    height: 38px;
     border: 1px solid black;
     padding-left: 15px;
     font-size: 16px;

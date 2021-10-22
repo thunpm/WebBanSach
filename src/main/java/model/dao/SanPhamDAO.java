@@ -38,9 +38,6 @@ public class SanPhamDAO extends BaseDAO {
         		sanPham.setSoLuongCo(rs.getDouble("SoLuongCo"));
         		sanPham.setMoTa(rs.getString("MoTa"));
         		sanPham.setIdTheLoai(rs.getString("IdTheLoai"));
-        		sanPham.setGiaString(StringCommon.convertDoubleToStringWithComma(sanPham.getGia()));
-        		sanPham.setKhuyenMaiString(StringCommon.convertDoubleToStringWithComma(sanPham.getKhuyenMai()));
-        		sanPham.setSoLuongCoString(StringCommon.convertDoubleToStringWithComma(sanPham.getSoLuongCo()));
         		ChiTietHoaDonDAO chiTietHoaDonDAO = new ChiTietHoaDonDAO();
         		sanPham.setDaBan(chiTietHoaDonDAO.getSoLuongDaBan(sanPham.getId()));
         		AnhSanPhamDAO anhSanPhamDAO = new AnhSanPhamDAO();
@@ -82,9 +79,6 @@ public class SanPhamDAO extends BaseDAO {
         		sanPham.setSoLuongCo(rs.getDouble("SoLuongCo"));
         		sanPham.setMoTa(rs.getString("MoTa"));
         		sanPham.setIdTheLoai(rs.getString("IdTheLoai"));
-        		sanPham.setGiaString(StringCommon.convertDoubleToStringWithComma(sanPham.getGia()));
-        		sanPham.setKhuyenMaiString(StringCommon.convertDoubleToStringWithComma(sanPham.getKhuyenMai()));
-        		sanPham.setSoLuongCoString(StringCommon.convertDoubleToStringWithComma(sanPham.getSoLuongCo()));
         		ChiTietHoaDonDAO chiTietHoaDonDAO = new ChiTietHoaDonDAO();
         		sanPham.setDaBan(chiTietHoaDonDAO.getSoLuongDaBan(sanPham.getId()));
         		AnhSanPhamDAO anhSanPhamDAO = new AnhSanPhamDAO();
@@ -127,9 +121,6 @@ public class SanPhamDAO extends BaseDAO {
         		sanPham.setSoLuongCo(rs.getDouble("SoLuongCo"));
         		sanPham.setMoTa(rs.getString("MoTa"));
         		sanPham.setIdTheLoai(rs.getString("IdTheLoai"));
-        		sanPham.setGiaString(StringCommon.convertDoubleToStringWithComma(sanPham.getGia()));
-        		sanPham.setKhuyenMaiString(StringCommon.convertDoubleToStringWithComma(sanPham.getKhuyenMai()));
-        		sanPham.setSoLuongCoString(StringCommon.convertDoubleToStringWithComma(sanPham.getSoLuongCo()));
         		ChiTietHoaDonDAO chiTietHoaDonDAO = new ChiTietHoaDonDAO();
         		sanPham.setDaBan(chiTietHoaDonDAO.getSoLuongDaBan(sanPham.getId()));
         		AnhSanPhamDAO anhSanPhamDAO = new AnhSanPhamDAO();
@@ -172,9 +163,6 @@ public class SanPhamDAO extends BaseDAO {
         		sanPham.setSoLuongCo(rs.getDouble("SoLuongCo"));
         		sanPham.setMoTa(rs.getString("MoTa"));
         		sanPham.setIdTheLoai(rs.getString("IdTheLoai"));
-        		sanPham.setGiaString(StringCommon.convertDoubleToStringWithComma(sanPham.getGia()));
-        		sanPham.setKhuyenMaiString(StringCommon.convertDoubleToStringWithComma(sanPham.getKhuyenMai()));
-        		sanPham.setSoLuongCoString(StringCommon.convertDoubleToStringWithComma(sanPham.getSoLuongCo()));
         		ChiTietHoaDonDAO chiTietHoaDonDAO = new ChiTietHoaDonDAO();
         		sanPham.setDaBan(chiTietHoaDonDAO.getSoLuongDaBan(sanPham.getId()));
         		AnhSanPhamDAO anhSanPhamDAO = new AnhSanPhamDAO();
@@ -217,9 +205,6 @@ public class SanPhamDAO extends BaseDAO {
         		sanPham.setSoLuongCo(rs.getDouble("SoLuongCo"));
         		sanPham.setMoTa(rs.getString("MoTa"));
         		sanPham.setIdTheLoai(rs.getString("IdTheLoai"));
-        		sanPham.setGiaString(StringCommon.convertDoubleToStringWithComma(sanPham.getGia()));
-        		sanPham.setKhuyenMaiString(StringCommon.convertDoubleToStringWithComma(sanPham.getKhuyenMai()));
-        		sanPham.setSoLuongCoString(StringCommon.convertDoubleToStringWithComma(sanPham.getSoLuongCo()));
         		ChiTietHoaDonDAO chiTietHoaDonDAO = new ChiTietHoaDonDAO();
         		sanPham.setDaBan(chiTietHoaDonDAO.getSoLuongDaBan(sanPham.getId()));
         		AnhSanPhamDAO anhSanPhamDAO = new AnhSanPhamDAO();
@@ -262,9 +247,6 @@ public class SanPhamDAO extends BaseDAO {
         		sanPham.setSoLuongCo(rs.getDouble("SoLuongCo"));
         		sanPham.setMoTa(rs.getString("MoTa"));
         		sanPham.setIdTheLoai(rs.getString("IdTheLoai"));
-        		sanPham.setGiaString(StringCommon.convertDoubleToStringWithComma(sanPham.getGia()));
-        		sanPham.setKhuyenMaiString(StringCommon.convertDoubleToStringWithComma(sanPham.getKhuyenMai()));
-        		sanPham.setSoLuongCoString(StringCommon.convertDoubleToStringWithComma(sanPham.getSoLuongCo()));
         		ChiTietHoaDonDAO chiTietHoaDonDAO = new ChiTietHoaDonDAO();
         		sanPham.setDaBan(chiTietHoaDonDAO.getSoLuongDaBan(sanPham.getId()));
         		AnhSanPhamDAO anhSanPhamDAO = new AnhSanPhamDAO();
@@ -308,9 +290,6 @@ public class SanPhamDAO extends BaseDAO {
         		sanPham.setSoLuongCo(rs.getDouble("SoLuongCo"));
         		sanPham.setMoTa(rs.getString("MoTa"));
         		sanPham.setIdTheLoai(rs.getString("IdTheLoai"));
-        		sanPham.setGiaString(StringCommon.convertDoubleToStringWithComma(sanPham.getGia()));
-        		sanPham.setKhuyenMaiString(StringCommon.convertDoubleToStringWithComma(sanPham.getKhuyenMai()));
-        		sanPham.setSoLuongCoString(StringCommon.convertDoubleToStringWithComma(sanPham.getSoLuongCo()));
         		ChiTietHoaDonDAO chiTietHoaDonDAO = new ChiTietHoaDonDAO();
         		sanPham.setDaBan(chiTietHoaDonDAO.getSoLuongDaBan(sanPham.getId()));
         		AnhSanPhamDAO anhSanPhamDAO = new AnhSanPhamDAO();
@@ -352,9 +331,6 @@ public class SanPhamDAO extends BaseDAO {
         		sanPham.setSoLuongCo(rs.getDouble("SoLuongCo"));
         		sanPham.setMoTa(rs.getString("MoTa"));
         		sanPham.setIdTheLoai(rs.getString("IdTheLoai"));
-        		sanPham.setGiaString(StringCommon.convertDoubleToStringWithComma(sanPham.getGia()));
-        		sanPham.setKhuyenMaiString(StringCommon.convertDoubleToStringWithComma(sanPham.getKhuyenMai()));
-        		sanPham.setSoLuongCoString(StringCommon.convertDoubleToStringWithComma(sanPham.getSoLuongCo()));
         		ChiTietHoaDonDAO chiTietHoaDonDAO = new ChiTietHoaDonDAO();
         		sanPham.setDaBan(chiTietHoaDonDAO.getSoLuongDaBan(sanPham.getId()));
         		AnhSanPhamDAO anhSanPhamDAO = new AnhSanPhamDAO();
@@ -392,7 +368,7 @@ public class SanPhamDAO extends BaseDAO {
 	
 	public ArrayList<SanPham> getSanPhamBySearch(String searchText) {
 		Connection connection = getConnection();
-        String sql = "SELECT * FROM SANPHAM WHERE (TenSanPham LIKE ? OR TacGia LIKE ? OR NhaXuatBan LIKE ?) AND del_flag = 1 ";
+        String sql = "SELECT * FROM SANPHAM WHERE (TenSanPham LIKE ? OR TacGia LIKE ? OR NhaXuatBan LIKE ? OR MoTa LIKE ?) AND del_flag = 1 ";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<SanPham> listSanPham = new ArrayList<SanPham>();
@@ -417,9 +393,6 @@ public class SanPhamDAO extends BaseDAO {
         		sanPham.setSoLuongCo(rs.getDouble("SoLuongCo"));
         		sanPham.setMoTa(rs.getString("MoTa"));
         		sanPham.setIdTheLoai(rs.getString("IdTheLoai"));
-        		sanPham.setGiaString(StringCommon.convertDoubleToStringWithComma(sanPham.getGia()));
-        		sanPham.setKhuyenMaiString(StringCommon.convertDoubleToStringWithComma(sanPham.getKhuyenMai()));
-        		sanPham.setSoLuongCoString(StringCommon.convertDoubleToStringWithComma(sanPham.getSoLuongCo()));
         		ChiTietHoaDonDAO chiTietHoaDonDAO = new ChiTietHoaDonDAO();
         		sanPham.setDaBan(chiTietHoaDonDAO.getSoLuongDaBan(sanPham.getId()));
         		AnhSanPhamDAO anhSanPhamDAO = new AnhSanPhamDAO();

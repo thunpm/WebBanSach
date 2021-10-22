@@ -69,15 +69,13 @@
 			    				<li><a class="dropdown-item" href="${root}/admin/quanLyKhachHang?sapXep=cuNhat">Cũ nhất</a></li>
 			  				</ul>
 						</div> --%>
-					<div class="search-box">
-						<form style="display: flex; flex-direction: row;" action="${root}/admin/quanLyHoaDon/tim" method="POST">
-			           		<input type="text" placeholder="Tìm" name="searchText" value="${searchText}">
-			           		<button style="padding: 0px 5px 0px 5px;" type="submit" class="fa fa-search btn-danger"></button>
-			           	</form>
-			        </div>
+						<div class="search-box">
+			           		<input id="search" type="text" placeholder="Tìm" name="searchText" value="${searchText}">
+				           	<button style="padding: 0px 9px 0px 9px;" type="button" class="fa fa-search btn-danger"></button>
+				        </div>
 			   	</div>
 		    	<div class="">
-				    <table class="">
+				    <table id="myTable">
 				    	<tr>
 				    		<th>Id</th>
 				    		<th>Khách hàng</th>
@@ -90,7 +88,7 @@
 				    	</tr>
 				    	<c:if test="${! empty listHoaDon}">
 							<c:forEach items="${listHoaDon}" var="hoaDon">
-								<tr>
+								<tr class="hang">
 									<td>${hoaDon.id}</td> 
 									<td>${hoaDon.idKhachHang}</td> 
 									<td>${hoaDon.thoiGianLap}</td> 
@@ -132,6 +130,20 @@
     <script src="${root}/views/lib/popper.min.js"></script>
     <script src="${root}/views/lib/bootstrap/js/bootstrap.min.js"></script>
     
+    <script>
+    	$(document).ready(function() {
+   			$('#search').on('keyup', function() {
+      			var tukhoa = $(this).val().toLowerCase();
+      			/* filter: loc cac thanh phan */
+      			$('#myTable .hang').filter(function() {
+      				/* toggle hiển thị và ẩn thành phần
+      				indexOf tra ve vi tri dau tien tim thay, khong tim thay tra ve -1 */
+         			$(this).toggle($(this).text().toLowerCase().indexOf(tukhoa) > -1);
+      			});
+  		 	});
+		});
+   	</script>
+   	
     <!-- <script type="text/javascript">
   		$(document).ready(function() {
   			$('.doi').on('click', function() {

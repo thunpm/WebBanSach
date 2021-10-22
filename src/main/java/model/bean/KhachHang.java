@@ -12,7 +12,7 @@ public class KhachHang {
 	private String email;
 	private String gioiTinh;
 	private Date ngaySinh;
-	private DiaChi diaChi = new DiaChi();
+	private ArrayList<DiaChi> diaChi = new ArrayList<>();
 	
 	public KhachHang() {
 		super();
@@ -123,11 +123,11 @@ public class KhachHang {
 		this.ngaySinh = ngaySinh;
 	}
 
-	public DiaChi getDiaChi() {
+	public ArrayList<DiaChi> getDiaChi() {
 		return diaChi;
 	}
 
-	public void setDiaChi(DiaChi diaChi) {
+	public void setDiaChi(ArrayList<DiaChi> diaChi) {
 		this.diaChi = diaChi;
 	}
 

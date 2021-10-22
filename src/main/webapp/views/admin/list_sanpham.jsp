@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -97,7 +98,7 @@
 			    	<p style="color: red;">${message}</p>
 			    	<div class="">
 				    	<c:if test="${! empty listSanPham}">
-						    <table id="example" class="table table-striped table-bordered">
+						    <table id="example">
 						    	<thead>
 							    	<tr>
 							    		<th>Id</th>
@@ -130,9 +131,9 @@
 																<p>Hình ảnh: <img style="width:200px; height:150px;" src="${root}/views/images/${sanPham.anhSanPham.tenHinhAnh}"></p>
 																<p>Tác giả/Nhà sản xuất: ${sanPham.tacGia}</p>
 																<p>Nhà xuất bản/Xuất xứ: ${sanPham.nhaXuatBan}</p>
-																<p>Đơn giá: ${sanPham.gia}</p>
-																<p>Khuyến mãi: ${sanPham.khuyenMai}</p>
-																<p>Số lượng có: ${sanPham.soLuongCo}</p>
+																<p>Đơn giá: <fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.gia}"/></p> đ
+																<p>Khuyến mãi: <fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.khuyenMai}"/></p>%
+																<p>Số lượng có: <fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.soLuongCo}"/></p>
 																<p>Mô tả: ${sanPham.moTa}</p>
 																<p>Mã thể loại: ${sanPham.idTheLoai}</p>
 															</div>

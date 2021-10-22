@@ -36,7 +36,7 @@ public class AdminShowKhachHangServlet extends HttpServlet {
 		String sapXep = request.getParameter("sapXep");
 		ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
 		ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
-		DiaChi diaChiKH = new DiaChi();
+		ArrayList<DiaChi> listDiaChi = new ArrayList<>();
 		ArrayList<KhachHang> listKhachHang = new ArrayList<KhachHang>();
 
 		listKhachHang = showKhachHangBO.getAllKhachHang();
@@ -47,10 +47,8 @@ public class AdminShowKhachHangServlet extends HttpServlet {
 //		Collections.reverse(listKhachHang); sapXep = "Cũ nhất"; }
 
 		for (int i = 0; i < listKhachHang.size(); i++) {
-			diaChiKH = new DiaChi();
-
-			diaChiKH = showDiaChiBO.getDiaChi(listKhachHang.get(i).getId());
-			listKhachHang.get(i).setDiaChi(diaChiKH);
+			listDiaChi = showDiaChiBO.getDiaChi(listKhachHang.get(i).getId());
+			listKhachHang.get(i).setDiaChi(listDiaChi);
 		}
 
 		request.setAttribute("listKhachHang", listKhachHang);

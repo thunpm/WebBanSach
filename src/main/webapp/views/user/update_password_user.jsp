@@ -16,24 +16,24 @@
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
     
-    <div class="main-block">
-    	<div class="menu-update-kh">
+    <div class="main-block info-user">
+    	<div class="menu-update-kh ">
     		<a href="showKhachHang">Thay đổi thông tin</a>
     		<a href="showKhachHang?key=password">Thay đổi mật khẩu</a>
-    		<a href="showKhachHang?key=address">Cập nhật địa chỉ giao hàng</a>
+    		<a href="showKhachHang?key=address">Sổ địa chỉ</a>
     	</div>
-		<div class="login-block">
+		<div class="update-kh login-block">
 			<c:set var="key1" value="information"></c:set>
 			<c:set var="key2" value="password"></c:set>
 			<c:set var="key3" value="address"></c:set>
 			<c:if test="${key eq key1}">
-   				<h5>Thay đổi thông tin</h5>
+   				<div style="text-align: center; font-size: 20px; margin-bottom: 30px;" class="name">Thay đổi thông tin</div>
    			</c:if>
    			<c:if test="${key eq key2}">
-   				<h5>Thay đổi mật khẩu</h5>
+   				<div style="text-align: center; font-size: 20px; margin-bottom: 30px;" class="name">Thay đổi mật khẩu</div>
    			</c:if>
    			<c:if test="${key eq key3}">
-   				<h5>Thay đổi địa chỉ giao hàng</h5>
+   				<div style="text-align: center; font-size: 20px; margin-bottom: 30px;" class="name">Sổ địa chỉ</div>
    			</c:if>
 	    	<p style="color: red; display: inline-block; margin-bottom: 20px;">${message}</p>
 	        <form action="updateKhachHang" method="POST">

@@ -35,7 +35,7 @@ public class UpdateKhachHangServlet extends HttpServlet {
 
 		int check = 0;
 		String message = "";
-		KhachHang khachHang;
+		KhachHang khachHang = (KhachHang) session.getAttribute("user");
 		
 		if ("information".equals(key)) {
 			UpdateKhachHangBO updateKhachHangBO = new UpdateKhachHangBO();
@@ -52,7 +52,7 @@ public class UpdateKhachHangServlet extends HttpServlet {
 			if (check == 0) {
 				ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
 				ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
-				DiaChi diaChiKH = new DiaChi();
+				ArrayList<DiaChi> diaChiKH = new ArrayList<>();
 				khachHang = showKhachHangBO.getAccount(tenDangNhap);
 				diaChiKH = showDiaChiBO.getDiaChi(khachHang.getId());
 				khachHang.setDiaChi(diaChiKH);
@@ -101,32 +101,102 @@ public class UpdateKhachHangServlet extends HttpServlet {
 		} else if ("address".equals(key)) {
 			UpdateDiaChiBO updateDiaChiBO = new UpdateDiaChiBO();
 			
+			String action = request.getParameter("action");
 			String idKhachHang = request.getParameter("idKhachHang");
 			String tinh = request.getParameter("tinh");
 			String huyen = request.getParameter("huyen");
 			String xa = request.getParameter("xa");
 			String diaChi = request.getParameter("diaChi");
 			
-			check = updateDiaChiBO.insertDiaChi(idKhachHang, tinh, huyen, xa, diaChi);
-			
-			if (check == 0) {
-				message = "Đã cập nhật thành công!";
-				
-				ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
-				DiaChi diaChiKH = new DiaChi();
-				
-				diaChiKH = showDiaChiBO.getDiaChi(idKhachHang);
-				khachHang = (KhachHang) session.getAttribute("user");
-				khachHang.setDiaChi(diaChiKH);
-				session.setAttribute("user", khachHang);
-				
-			} else {
-				if (check == 1) {
-					message = "Vui lòng điền đầy đủ thông tin cần thiết!";
-				} else if (check == 6) {
-					message = "Đã xảy ra lỗi, vui lòng thử lại sau!";
+			if ("add".equals(action)) {
+				if (khachHang.getDiaChi().size() == 0) {
+					check = updateDiaChiBO.insertDiaChi(idKhachHang, tinh, huyen, xa, diaChi, 1);
+				} else {
+					check = updateDiaChiBO.insertDiaChi(idKhachHang, tinh, huyen, xa, diaChi, 0);
 				}
 				
+				if (check == 0) {
+					message = "Đã thêm thành công!";
+					
+					ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
+					ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
+					ArrayList<DiaChi> diaChiKH = new ArrayList<>();
+					khachHang = showKhachHangBO.getAccountById(idKhachHang);
+					diaChiKH = showDiaChiBO.getDiaChi(khachHang.getId());
+					khachHang.setDiaChi(diaChiKH);
+					session.setAttribute("user", khachHang);
+					
+				} else {
+					if (check == 1) {
+						message = "Vui lòng điền đầy đủ thông tin cần thiết!";
+					} else if (check == 6) {
+						message = "Đã xảy ra lỗi, vui lòng thử lại sau!";
+					}
+					
+				}
+			} else if ("update".equals(action)) {
+				String idDiaChi = request.getParameter("idDiaChi");
+				
+				check = updateDiaChiBO.updateDiaChi(idDiaChi, tinh, huyen, xa, diaChi);
+	
+				if (check == 0) {
+					message = "Đã cập nhật thành công!";
+					
+					ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
+					ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
+					ArrayList<DiaChi> diaChiKH = new ArrayList<>();
+					khachHang = showKhachHangBO.getAccountById(idKhachHang);
+					diaChiKH = showDiaChiBO.getDiaChi(khachHang.getId());
+					khachHang.setDiaChi(diaChiKH);
+					session.setAttribute("user", khachHang);
+					
+				} else {
+					if (check == 1) {
+						message = "Vui lòng điền đầy đủ thông tin cần thiết!";
+					} else if (check == 6) {
+						message = "Đã xảy ra lỗi, vui lòng thử lại sau!";
+					}
+					
+				}
+			} else if ("delete".equals(action)) {
+				String idDiaChi = request.getParameter("idDiaChi");
+				
+				check = updateDiaChiBO.deleteDiaChi(idDiaChi);
+	
+				if (check == 0) {
+					message = "Đã xóa thành công!";
+					
+					ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
+					ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
+					ArrayList<DiaChi> diaChiKH = new ArrayList<>();
+					khachHang = showKhachHangBO.getAccountById(idKhachHang);
+					diaChiKH = showDiaChiBO.getDiaChi(khachHang.getId());
+					khachHang.setDiaChi(diaChiKH);
+					session.setAttribute("user", khachHang);
+					
+				} else {
+					message = "Đã xảy ra lỗi, vui lòng thử lại sau!";
+					
+				}
+			} else if ("setDefault".equals(action)) {
+				String idDiaChi = request.getParameter("idDiaChi");
+				
+				check = updateDiaChiBO.updateDiaChi(idDiaChi, 1);
+	
+				if (check == 0) {
+					message = "Đã cập nhật thành công!";
+					
+					ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
+					ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
+					ArrayList<DiaChi> diaChiKH = new ArrayList<>();
+					khachHang = showKhachHangBO.getAccountById(idKhachHang);
+					diaChiKH = showDiaChiBO.getDiaChi(khachHang.getId());
+					khachHang.setDiaChi(diaChiKH);
+					session.setAttribute("user", khachHang);
+					
+				} else {
+					message = "Đã xảy ra lỗi, vui lòng thử lại sau!";
+				}
 			}
 			rd = request.getRequestDispatcher("views/user/update_address_user.jsp");
 			

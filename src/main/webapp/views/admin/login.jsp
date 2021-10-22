@@ -21,7 +21,7 @@
 		        	<label>Tên đăng nhập:</label>
 	        		<input type="text" name="tendangnhap" value="${admin.tenDangNhap}">
 		        	<label>Mật khẩu:</label>
-		        	<input type="text" name="matkhau" value="${admin.matKhau}">
+		        	<input type="password" name="matkhau" value="${admin.matKhau}">
 		        	<input type="submit" value="ĐĂNG NHẬP">
 		        </form>
 	        </c:if>

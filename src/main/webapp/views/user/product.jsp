@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -57,60 +58,68 @@
 		   			</div> --%>
 	   			</div>
 		   		<div class="banner">
+		   			<div class="ten-danh-muc"></div>
 		   			 <div class="sach">
 				        <div class="tieu-de">
-				        	<c:if test="${sanPham eq 'sanPhamMoi'}">
-				       			<a style="border-bottom: 2px solid #F08121;" href="showProductByLoai?sanPham=sanPhamMoi&maLoai=${maLoai}&tenLoai=${tenLoai}">Hàng Mới</a>
-				       		</c:if>
-				       		<c:if test="${sanPham ne 'sanPhamMoi'}">
-				       			<a href="showProductByLoai?sanPham=sanPhamMoi&maLoai=${maLoai}&tenLoai=${tenLoai}">Hàng Mới</a>
-				       		</c:if>
-				       		<c:if test="${sanPham eq 'sanPhamBanChay'}">   
-				       			<a style="border-bottom: 2px solid #F08121;" href="showProductByLoai?sanPham=sanPhamBanChay&maLoai=${maLoai}&tenLoai=${tenLoai}">Bán Chạy</a>
-				      			</c:if>
-				      			<c:if test="${sanPham ne 'sanPhamBanChay'}">   
-				       			<a href="showProductByLoai?sanPham=sanPhamBanChay&maLoai=${maLoai}&tenLoai=${tenLoai}">Bán Chạy</a>
-				      			</c:if>
-				      			<c:if test="${sanPham eq 'sanPhamKhuyenMai'}"> 
-				       			<a style="border-bottom: 2px solid #F08121;" href="showProductByLoai?sanPham=sanPhamKhuyenMai&maLoai=${maLoai}&tenLoai=${tenLoai}">Giảm Giá</a>
-				       		</c:if>
-				       		<c:if test="${sanPham ne 'sanPhamKhuyenMai'}"> 
-				       			<a href="showProductByLoai?sanPham=sanPhamKhuyenMai&maLoai=${maLoai}&tenLoai=${tenLoai}">Giảm Giá</a>
-				       		</c:if>
+				        	<div class="name">${tenLoai}</div>
+				        	<c:if test="${sanPham eq 'sanPhamMoi'}">    
+				        		<a style="border-bottom: 2px solid #d95719;" href="showProductByLoai?sanPham=sanPhamMoi&maLoai=${maLoai}&tenLoai=${tenLoai}">Hàng Mới</a>
+				        	</c:if>
+				        	<c:if test="${sanPham ne 'sanPhamMoi'}">    
+				        		<a href="showProductByLoai?sanPham=sanPhamMoi&maLoai=${maLoai}&tenLoai=${tenLoai}">Hàng Mới</a>
+				        	</c:if>
+				        	<c:if test="${sanPham eq 'sanPhamBanChay'}">    
+				        		<a style="border-bottom: 2px solid #d95719;" href="showProductByLoai?sanPham=sanPhamBanChay&maLoai=${maLoai}&tenLoai=${tenLoai}">Bán Chạy</a>
+			        		</c:if>
+			        		<c:if test="${sanPham ne 'sanPhamBanChay'}">    
+				        		<a href="showProductByLoai?sanPham=sanPhamBanChay&maLoai=${maLoai}&tenLoai=${tenLoai}">Bán Chạy</a>
+			        		</c:if>
+			        		<c:if test="${sanPham eq 'sanPhamKhuyenMai'}"> 
+				        		<a style="border-bottom: 2px solid #d95719;" href="showProductByLoai?sanPham=sanPhamKhuyenMai&maLoai=${maLoai}&tenLoai=${tenLoai}">Giảm Giá</a>
+			        		</c:if>
+			        		<c:if test="${sanPham ne 'sanPhamKhuyenMai'}"> 
+				        		<a href="showProductByLoai?sanPham=sanPhamKhuyenMai&maLoai=${maLoai}&tenLoai=${tenLoai}">Giảm Giá</a>
+			        		</c:if>
 				       	</div>	
 				        <div class="san-pham">
-				        	<c:forEach items="${listSanPham}" var="sanPham" begin="${batDauSP}" end="${ketThucSP}">		
-				        		<a href="showDetailProduct?idProduct=${sanPham.id}" class="card">	   	    	
-					        		<img class="hinh-anh" src="views/images/${sanPham.anhSanPham.tenHinhAnh}"></img>
-					        		<div class="mo-ta">
-						        		<div class="ten-sach">${sanPham.tenSanPham}</div>
-						        		<div style="color: #525852;" class="da-ban">Đã bán ${sanPham.daBan}</div>
-						        		<div>
-						        			<div style="float: left; font-weight: bold; margin-right: 5px; font-size: 17px;" class="gia-tien">${sanPham.giaString}</div>
-						        			<div style="color: red;" class="khuyen-mai">-${sanPham.khuyenMaiString}%</div>
-				        				</div>
-				        			</div>
-				       			</a>
-							</c:forEach>
+			        	<c:forEach items="${listSanPham}" var="sanPham" begin="${batDauSP}" end="${ketThucSP}">		
+			        		<a href="showDetailProduct?idProduct=${sanPham.id}" class="card">	   	    	
+				        		<img class="hinh-anh" src="views/images/${sanPham.anhSanPham.tenHinhAnh}"></img>
+				        		<div class="mo-ta">
+					        		<div class="ten-sach">${sanPham.tenSanPham}</div>
+					        		<div style="color: #525852;" class="da-ban">Đã bán ${sanPham.daBan}</div>
+					        		<div>
+					        			<div style="float: left; font-weight: bold; margin-right: 5px; font-size: 17px;" class="gia-tien">
+					        				<fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.gia}"/> đ
+					        			</div>
+					        			<div style="color: red;" class="khuyen-mai">
+					        				-<fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.khuyenMai}"/>%
+					        			</div>
+			        				</div>
+			        			</div>
+		        			</a>
+						</c:forEach>
 						</div>
-			       </div>
+			       	</div>
 		   		</div>
 	   		</div>
 			<div class="danh-trang">
+				<ul class="pagination justify-content-end">
 				<c:if test="${trangHienTai gt 1}">			    	
-		        	<a style="color: black;" href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${trangHienTai - 1}&maLoai=${maLoai}&tenLoai=${tenLoai}">Trước</a>
+		        	<li class="page-item"><a class="page-link" style="color: black;" href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${trangHienTai - 1}&maLoai=${maLoai}&tenLoai=${tenLoai}">Trước</a></li>
 		        </c:if>	
 		        <c:forEach items="${listSoTrang}" var="soTrang">
 		        	<c:if test="${trangHienTai eq soTrang}">			    	
-			        	<a style="color: red;" href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${soTrang}&maLoai=${maLoai}&tenLoai=${tenLoai}">${soTrang}</a>
+			        	<li class="page-item"><a class="page-link" style="color: red;" href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${soTrang}&maLoai=${maLoai}&tenLoai=${tenLoai}">${soTrang}</a></li>
 			        </c:if>		
 			        <c:if test="${trangHienTai ne soTrang}">    	
-		        		<a href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${soTrang}"&maLoai=${maLoai}&tenLoai=${tenLoai}">${soTrang}</a>
+		        		<li class="page-item"><a class="page-link" href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${soTrang}"&maLoai=${maLoai}&tenLoai=${tenLoai}">${soTrang}</a></li>
 	        		</c:if>
 				</c:forEach>
 				<c:if test="${trangHienTai lt (tongSoTrang - 1)}">			    	
-		        	<a style="color: black;" href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${trangHienTai + 1}"&maLoai=${maLoai}&tenLoai=${tenLoai}">Sau</a>
-		        </c:if>	
+		        	<li class="page-item"><a class="page-link" style="color: black;" href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${trangHienTai + 1}"&maLoai=${maLoai}&tenLoai=${tenLoai}">Sau</a></li>
+		        </c:if>
+		        </ul>	
 			</div>
 		</div>
     </div>

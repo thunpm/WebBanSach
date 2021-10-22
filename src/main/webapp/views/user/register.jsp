@@ -16,9 +16,10 @@
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
     
-    <div class="main-block">
+    <div style="background-color: white;" class="main-block">
 	    <div class="login-block">
 	    	<p style="color: red; display: inline-block; margin-bottom: 20px;">${message}</p>
+	    	<div style="text-align: center; font-size: 20px; margin-bottom: 30px;" class="name">ĐĂNG KÝ</div>
 	        <form action="checkRegister" method="POST">
 	        	<label>Tên đăng nhập *:</label>
 	        	<input type="text" name="tenDangNhap" value="${khachHang.tenDangNhap}">
@@ -27,9 +28,9 @@
 	        	<label>Số điện thoại *:</label>
 	        	<input type="text" name="soDienThoai" value="${khachHang.soDienThoai}">
 	        	<label>Mật khẩu *:</label>
-	        	<input type="text" name="matKhau" value="">
+	        	<input type="password" name="matKhau" value="">
 	        	<label>Nhập lại mật khẩu *:</label>
-	        	<input type="text" name="nhapLaiMatKhau" value="">
+	        	<input type="password" name="nhapLaiMatKhau" value="">
 	        	<label>Email:</label>
 	        	<input type="text" name="email" value="${khachHang.email}">
 	        	<label>Giới tính:</label>

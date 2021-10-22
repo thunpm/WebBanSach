@@ -297,7 +297,7 @@ CREATE TABLE DIACHI (
 	Huyen nvarchar(50),
 	Xa nvarchar(50),
 	DiaChi nvarchar(50),
-	del_flag bit default(1),
+	MacDinh bit default(0),
 	
 	primary key (Id),
 	constraint fk_diachi_kh

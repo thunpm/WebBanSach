@@ -7,6 +7,7 @@ public class DiaChi {
 	private String huyen;
 	private String xa;
 	private String diaChi;
+	private int macDinh;
 	
 	public DiaChi(int id, String idKhachHang, String tinh, String huyen, String xa, String diaChi) {
 		super();
@@ -16,6 +17,17 @@ public class DiaChi {
 		this.huyen = huyen;
 		this.xa = xa;
 		this.diaChi = diaChi;
+	}
+	
+	public DiaChi(int id, String idKhachHang, String tinh, String huyen, String xa, String diaChi, int macDinh) {
+		super();
+		this.id = id;
+		this.idKhachHang = idKhachHang;
+		this.tinh = tinh;
+		this.huyen = huyen;
+		this.xa = xa;
+		this.diaChi = diaChi;
+		this.macDinh = macDinh;
 	}
 
 	public DiaChi(String idKhachHang, String tinh, String huyen, String xa, String diaChi) {
@@ -77,6 +89,14 @@ public class DiaChi {
 
 	public void setDiaChi(String diaChi) {
 		this.diaChi = diaChi;
+	}
+
+	public int getMacDinh() {
+		return macDinh;
+	}
+
+	public void setMacDinh(int macDinh) {
+		this.macDinh = macDinh;
 	}
 	
 }

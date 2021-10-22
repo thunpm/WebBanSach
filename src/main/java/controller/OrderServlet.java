@@ -38,7 +38,7 @@ public class OrderServlet extends HttpServlet {
 		KhachHang khachHang = (KhachHang) session.getAttribute("user");
 		String message = "";
 		ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
-		DiaChi diaChiKH = showDiaChiBO.getDiaChi(khachHang.getId());
+		DiaChi diaChiKH = showDiaChiBO.getDiaChiById(request.getParameter("diaChiMacDinh"));
 		
 		// chưa cập nhật địa chỉ
 		if (diaChiKH == null || diaChiKH.getId() == 0 || diaChiKH.getTinh() == "" || diaChiKH.getHuyen() == "" 
