@@ -4,9 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>Đăng nhập</title>
-    <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
+    
     <link rel="stylesheet" type="text/css" href="views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="views/lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
+    
 </head>
 <body>
     <%@ include file="include/header.jsp" %>
@@ -18,9 +20,9 @@
 	    	<div style="text-align: center; font-size: 20px; margin-bottom: 30px;" class="name">ĐĂNG NHẬP</div>
 	        <form action="checkLogin" method="POST">
 	        	<label>Tên đăng nhập:</label>
-        		<input type="text" name="tendangnhap" value="${requestScope.user.tenDangNhap}">
+        		<input type="text" name="tendangnhap" placeholder="Tên đăng nhập" value="${requestScope.user.tenDangNhap}">
 	        	<label>Mật khẩu:</label>
-	        	<input type="password" name="matkhau" value="${requestScope.user.matKhau}">
+	        	<input type="password" name="matkhau" placeholder="Mật khẩu" value="${requestScope.user.matKhau}">
 	        	<input type="submit" value="ĐĂNG NHẬP">
 	        </form>
 	        <a class="link-dang-ki" href="showRegister">Bạn chưa có tài khoản? Đăng kí ngay!</a>

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,8 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.bean.DanhMucSanPham;
+import model.bean.LoaiSanPham;
 import model.bean.SanPham;
+import model.bo.ShowDanhMucBO;
 import model.bo.ShowDetailSanPhamBO;
+import model.bo.ShowLoaiSanPhamBO;
+import model.bo.ShowSanPhamBO;
 
 public class ShowDetailProductServlet extends HttpServlet {
 
@@ -20,12 +26,27 @@ public class ShowDetailProductServlet extends HttpServlet {
 		
 		RequestDispatcher rd = null;
 		ShowDetailSanPhamBO showDetailSanPhamBO = new ShowDetailSanPhamBO();
+		ShowSanPhamBO showSanPhamBO = new ShowSanPhamBO();
 		
 		String id = request.getParameter("idProduct");
 		
 		SanPham sanPham = showDetailSanPhamBO.getSanPhamById(id);
+		ArrayList<SanPham> listSanPham = showSanPhamBO.getAllSanPhamByLoai(sanPham.getIdTheLoai());
+		int ketThucSP = Math.min(6, listSanPham.size());
+		
+		ShowDanhMucBO  showDanhMucBO = new ShowDanhMucBO();
+		ShowLoaiSanPhamBO showLoaiSanPhamBO = new ShowLoaiSanPhamBO();
+		ArrayList<DanhMucSanPham> listDanhMuc = showDanhMucBO.getAllDanhMuc();
+		ArrayList<LoaiSanPham> listLoaiSanPham = null;
+		for (int i = 0; i < listDanhMuc.size(); i++) {
+			listLoaiSanPham = showLoaiSanPhamBO.getListLoaiSanPham(listDanhMuc.get(i).getId());
+			listDanhMuc.get(i).setListLoaiSanPham(listLoaiSanPham);
+		}
 		
 		request.setAttribute("sanPham", sanPham);
+		request.setAttribute("listSanPham", listSanPham);
+		request.setAttribute("ketThucSP", ketThucSP);
+		request.setAttribute("listDanhMuc", listDanhMuc);
 		
 		rd = request.getRequestDispatcher("views/user/detail_product.jsp");
 		rd.forward(request, response);

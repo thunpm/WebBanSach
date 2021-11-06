@@ -62,7 +62,7 @@ public class ChiTietHoaDonDAO extends BaseDAO {
 
 	public ArrayList<MatHang> getMatHangByIdHoaDon(String idDonHang) {
 		Connection connection = getConnection();
-        String sql = "SELECT TenSanPham, Gia, KhuyenMai, SoLuong FROM CHITIETHOADON"
+        String sql = "SELECT SANPHAM.Id, TenSanPham, Gia, KhuyenMai, SoLuong, SANPHAM.IdTheLoai FROM CHITIETHOADON"
         		+ " INNER JOIN SANPHAM ON CHITIETHOADON.IdHangHoa = SANPHAM.Id"
         		+ " WHERE IdHoaDon = ?";
         PreparedStatement pstmt = null;
@@ -81,9 +81,11 @@ public class ChiTietHoaDonDAO extends BaseDAO {
         		matHang = new MatHang();
         		sanPham = new SanPham();
         		
+        		sanPham.setId(rs.getString("Id"));
         		sanPham.setTenSanPham(rs.getString("TenSanPham"));
         		sanPham.setGia(rs.getDouble("Gia"));
         		sanPham.setKhuyenMai(rs.getDouble("KhuyenMai"));
+        		sanPham.setIdTheLoai(rs.getString("IdTheLoai"));
         		matHang.setSanPham(sanPham);
         		matHang.setSoLuong(rs.getInt("SoLuong"));
         			

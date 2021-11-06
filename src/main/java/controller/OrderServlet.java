@@ -40,12 +40,17 @@ public class OrderServlet extends HttpServlet {
 		ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
 		DiaChi diaChiKH = showDiaChiBO.getDiaChiById(request.getParameter("diaChiMacDinh"));
 		
+		String tongTien = request.getParameter("tongTien");
+		String tongThanhToan = request.getParameter("tongThanhToan");
+		
 		// chưa cập nhật địa chỉ
 		if (diaChiKH == null || diaChiKH.getId() == 0 || diaChiKH.getTinh() == "" || diaChiKH.getHuyen() == "" 
 				|| diaChiKH.getXa() == "" || diaChiKH.getDiaChi() == "") {
 			message = "Bạn chưa cập nhật địa chỉ để chúng tôi giao hàng tới! Vui lòng cập nhật thông tin và quay lại mua nhé!";
 			
 			request.setAttribute("message", message);
+			request.setAttribute("tongTien", tongTien);
+			request.setAttribute("tongThanhToan", tongThanhToan);
 			
 			rd = request.getRequestDispatcher("views/user/order.jsp");
 		} else {

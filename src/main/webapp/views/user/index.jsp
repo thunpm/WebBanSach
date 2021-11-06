@@ -7,10 +7,12 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Trang Chủ</title>
-    <link rel="stylesheet" type="text/css" href="${root}/views/styles/style_user.css"/>
+    
     <link rel="stylesheet" type="text/css" href="${root}/views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="${root}/views/lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${root}/views/styles/style_user.css"/>
 </head>
 <body>
     <%@ include file="include/header.jsp" %>
@@ -18,19 +20,19 @@
     
     <div class="main-block">
     	<div class="content">
-    		<div style="width: 100%; height: auto; display: flex; justify-content: space-between; margin: 0px 0px 30px 0px;">
+    		<div class="khoi-banner-danh-muc" style="width: 100%; height: auto; display: flex; justify-content: space-between; margin: 0px 0px 30px 0px;">
 		   		<div class="danh-muc">
 		   			<h5 class="tieu-de list-group">Danh Mục Sản Phẩm</h5>
 					<c:forEach items="${listDanhMuc}" var="danhMuc">
 						<div class="list-group-item dropdown dropright">
 							<div data-toggle="dropdown">${danhMuc.tenDanhMuc}</div>
-		  					<ul class="dropdown-menu">
+		  					<div class="dropdown-menu">
 								<c:forEach items="${danhMuc.listLoaiSanPham}" var="loaiSanPham">
-		   							<li>
+		   							<div>
 		   								<a class="dropdown-item" href="showProductByLoai?maLoai=${loaiSanPham.id}&tenLoai=${loaiSanPham.tenLoaiSanPham}">${loaiSanPham.tenLoaiSanPham}</a>
-	   								</li>
+	   								</div>
 								</c:forEach>
-		  					</ul>
+		  					</div>
 		  				</div>
 				  	</c:forEach>
 		   		</div>
@@ -91,25 +93,25 @@
 	        			</a>
 					</c:forEach>
 				</div>
+				<div class="danh-trang">
+					<ul class="pagination justify-content-center">
+						<c:if test="${trangHienTai gt 1}">			    	
+	        				<li class="page-item"><a class="page-link" href="showIndex?sanPham=${sanPham}&trangHienTai=${trangHienTai - 1}"><i class="fas fa-chevron-left"></i></a></li>
+	        			</c:if>	
+	        			<c:forEach items="${listSoTrang}" var="soTrang">
+	        				<c:if test="${trangHienTai eq soTrang}">			    	
+		        				<li class="page-item"><a class="page-link" style="color: red;" href="showIndex?sanPham=${sanPham}&trangHienTai=${soTrang}">${soTrang}</a></li>
+		        			</c:if>		
+		        			<c:if test="${trangHienTai ne soTrang}">    	
+	        					<li class="page-item"><a class="page-link" href="showIndex?sanPham=${sanPham}&trangHienTai=${soTrang}">${soTrang}</a></li>
+        					</c:if>
+						</c:forEach>
+						<c:if test="${trangHienTai lt (tongSoTrang - 1)}">			    	
+	        				<li class="page-item"><a class="page-link" href="showIndex?sanPham=${sanPham}&trangHienTai=${trangHienTai + 1}"><i class="fas fa-chevron-right"></i></a></li>
+	        			</c:if>	
+	        		</ul>
+				</div>
 	        </div>
-	        <div class="danh-trang">
-			<ul class="pagination justify-content-end">
-			<c:if test="${trangHienTai gt 1}">			    	
-	        	<li class="page-item"><a class="page-link" href="showIndex?sanPham=${sanPham}&trangHienTai=${trangHienTai - 1}">Trước</a></li>
-	        </c:if>	
-	        <c:forEach items="${listSoTrang}" var="soTrang">
-	        	<c:if test="${trangHienTai eq soTrang}">			    	
-		        	<li class="page-item"><a class="page-link" style="color: red;" href="showIndex?sanPham=${sanPham}&trangHienTai=${soTrang}">${soTrang}</a></li>
-		        </c:if>		
-		        <c:if test="${trangHienTai ne soTrang}">    	
-	        		<li class="page-item"><a class="page-link" href="showIndex?sanPham=${sanPham}&trangHienTai=${soTrang}">${soTrang}</a></li>
-        		</c:if>
-			</c:forEach>
-			<c:if test="${trangHienTai lt (tongSoTrang - 1)}">			    	
-	        	<li class="page-item"><a class="page-link" href="showIndex?sanPham=${sanPham}&trangHienTai=${trangHienTai + 1}">Sau</a></li>
-	        </c:if>	
-	        </ul>
-		</div>
 		</div>	
     </div>
     <%@ include file="include/footer.jsp" %>

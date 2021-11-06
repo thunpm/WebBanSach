@@ -4,12 +4,12 @@
 
 <div class="header">
    	<div class="logo">
-   		<a href="showIndex">NPMT BOOK</a>
+   		<a href="showIndex">THU BOOK</a>
    	</div>
    	<div class="find">
 		<div class="search-box">
 			<form action="searchSanPham" method="POST" onsubmit="return check()">
-           		<input id="searchText" type="text" placeholder="Bạn cần tìm gì?" name="searchText" value="${searchText}">
+           		<input id="searchText" type="text" placeholder="Nhập tên sách hoặc tác giả cần tìm" name="searchText" value="${searchText}">
            		<button type="submit" class="fa fa-search"></button>
            	</form>
         </div>
@@ -20,11 +20,11 @@
    				<p style="font-size: 15px; color: white;">0<p>
    			</c:if>
    			<c:if test="${! empty sessionScope.cart and sessionScope.cart.matHang.size() gt 0}">
-   				<p style="font-size: 15px;">${sessionScope.cart.matHang.size()}<p>
+   				<p style="font-size: 15px;color: white;">${sessionScope.cart.matHang.size()}<p>
    			</c:if>
    		</div>
    		<div style="position: absolute;">
-			<a href="showCart">GIỎ HÀNG <span class="fas fa-shopping-cart"></span></a>
+			<a href="showCart"><t id="text-gio-hang">GIỎ HÀNG </t><span class="fas fa-shopping-cart"></span></a>
 		</div>
    	</div>
    	

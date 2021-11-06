@@ -8,20 +8,21 @@
 <head>
     <meta charset="utf-8">
     <title>Chi tiết đơn hàng của tôi</title>
-    <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
+    
     <link rel="stylesheet" type="text/css" href="views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="views/lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
 </head>
 <body>
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
     
     <div style="background-color: white;" class="main-block">
-    	<div class="content">
-    		<div style="width: 80%; margin: auto; text-align: center; font-size: 20px; margin-bottom: 30px;" class="name">Chi tiết đơn hàng</div>
+    	<div style="width: 80%" class="content">
+    		<div class="name">Chi tiết đơn hàng</div>
 	    	<c:if test="${! empty listMatHang}">
    		    	<c:set var="tongTien" value="${0}"/>
-			    <table class="bang-sp">
+			    <table style="width: 100%; margin: 0px;" class="bang-sp">
 			    	<tr style="margin-bottom: 30px; border-bottom: 5px solid #F0F0F0; padding: 10px;">
 			    		<th>Sản phẩm</th>
 			    		<th style="width: 20%;">Đơn giá</th>
@@ -30,10 +31,23 @@
 			    	</tr>
 					<c:forEach items="${listMatHang}" var="matHang">
 						<tr style="width: 100%; margin-bottom: 30px; border-bottom: 5px solid #F0F0F0;">
-							<td>${matHang.sanPham.tenSanPham}</td> 
+							<td>	
+								<a href="showDetailProduct?idProduct=${matHang.sanPham.id}">${matHang.sanPham.tenSanPham}</a>	
+							</td> 
 							<td>
-								<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.sanPham.gia}"/> đ
-								-<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.sanPham.khuyenMai}"/>%
+								<c:if test="${matHang.sanPham.khuyenMai > 0}">
+									<p style="text-decoration: line-through;">
+										<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.sanPham.gia}"/> đ
+									</p>
+									<c:set var="thanhTien" value="${matHang.sanPham.gia*(1 - matHang.sanPham.khuyenMai/100.0)}" />
+									<p style="color: #C92127;">
+										<fmt:formatNumber type="number" maxFractionDigits="3" value="${thanhTien}"/> đ 
+										(-<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.sanPham.khuyenMai}"/>%)
+									</p>
+								</c:if>
+								<c:if test="${matHang.sanPham.khuyenMai <= 0}">
+									<p><fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.sanPham.gia}"/> đ</p>
+								</c:if>
 							</td>
 							<td>${matHang.soLuong}</td>
 							<c:set var="tien" value="${matHang.soLuong * matHang.sanPham.gia*(1 - matHang.sanPham.khuyenMai/100.0)}" />
@@ -44,7 +58,7 @@
 						</tr>	
 					</c:forEach>	
 				</table>
-				<div style="width: 80%; margin: auto;">
+				<div>
 					<p>Tổng tiền phải trả:
 						<b style="color: #d95719; font-size: 20px;">
 							<fmt:formatNumber type="number" maxFractionDigits="3" value="${tongTien}" /> đ

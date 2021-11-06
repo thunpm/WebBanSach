@@ -7,78 +7,83 @@
 <head>
     <meta charset="utf-8">
     <title>Trang chủ Admin</title>
-    <link rel="stylesheet" type="text/css" href="${root}/views/styles/style_admin.css"/>
+    
     <link rel="stylesheet" type="text/css" href="${root}/views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="${root}/views/lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${root}/views/styles/style_admin.css"/>
 </head>
 <body>
     <div class="main-block">
     	<c:if test="${! empty sessionScope.admin}">
-	    	<div class="menu">
-	    		<a class="menu-item" href="${root}/admin/trangchu">Trang chủ</a>
-	    		<div style="cursor: pointer;" class="dropdown menu-item">
-	    			<a data-toggle="dropdown">
-	    				<i class="far fa-bell"></i> Duyệt đơn hàng
-	    			</a>
-	    			<ul class="dropdown-menu">
-	    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=mua">Đơn mua mới</a></li>
-	    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=huy">Đơn hủy mới</a></li>
-	  				</ul>
-				</div>
-	    		<div style="cursor: pointer;" class="dropdown menu-item">
-	    			<a data-toggle="dropdown">
-	    				<i class="fas fa-user-shield"></i> ${sessionScope.admin.tenDangNhap}
-	    			</a>
-	    			<ul class="dropdown-menu">
-	    				<li><a class="dropdown-item" href="${root}/admin/showAdmin">Thông tin Admin</a></li>
-	    				<li><a class="dropdown-item" href="${root}/admin/logoutAdmin">Đăng xuất</a></li>
-	  				</ul>
-				</div>
-	    	</div>
-	   		<div class="khoi">
+	    	<div class="khoi">
 	   			<div class="danh-muc list-group">
+	   				<div class="muc-quan-ly">TRANG QUẢN LÝ</div>
 			   		<a class="list-group-item" href="${root}/admin/quanLyKhachHang">Quản lý khách hàng</a>
-			   		<a class="list-group-item" data-toggle="collapse" href=".quan">Quản lý sản phẩm</a>
-			   		<a style="margin: 20px 0px 10px 40px; border-right: 1px solid #F0F0F0" class="collapse quan" href="${root}/admin/quanLyDanhMuc">Quản lý danh mục</a>
-			   		<a style="margin: 10px 0px 10px 40px; border-right: 1px solid #F0F0F0" class="collapse quan" href="${root}/admin/quanLyTheLoai">Quản lý thể loại</a>
-			   		<a style="margin: 10px 0px 20px 40px; border-right: 1px solid #F0F0F0" class="collapse quan" href="${root}/admin/quanLySanPham">Quản lý sản phẩm</a>
+			   		<a class="list-group-item" href="${root}/admin/quanLyDanhMuc">Quản lý danh mục</a>
+			   		<a class="list-group-item" href="${root}/admin/quanLyTheLoai">Quản lý thể loại</a>
+			   		<a class="list-group-item" href="${root}/admin/quanLySanPham">Quản lý sản phẩm</a>
 			   		<a class="list-group-item" href="${root}/admin/quanLyHoaDon">Quản lý hóa đơn</a>
 			   		<a class="list-group-item" href="${root}/admin/thongKe">Thống kê</a>
+			   		<a class="list-group-item" href="${root}/admin/phanHoi">Phản hồi của khách</a>
 		   		</div>
 		   		<div class="content">
-		   			<h5 style="margin: auto">Thêm sản phẩm</h5>
-			    	<p style="color: red;">${message}</p>
-			        <form action="${root}/admin/quanLySanPham/added" method="POST" enctype="multipart/form-data">
-			        	<label>Tên sản phẩm:</label>
-			        	<input type="text" name="tenSanPham" value="${tenSanPham}">
-			        	<label>Hình ảnh:</label>
-			        	<input style="border: none;" type="file" name="hinhAnh" id="upload" onchange="displayImg()">
-			        	<div id="displayImg">
-			        		<img id="img" style="width:200px; height:150px;">
-			        	</div>
-			        	<label>Tác giả:</label>
-			        	<input type="text" name="tacGia" value="${tacGia}">
-			        	<label>Nhà xuất bản:</label>
-			        	<input type="text" name="nhaXuatBan" value="${nhaXuatBan}">
-			        	<label>Giá:</label>
-			        	<input type="text" name="gia" value="${gia}">
-			        	<label>Khuyến mãi:</label>
-			        	<input type="text" name="khuyenMai" value="${khuyenMai}">
-			        	<label>Số lượng có:</label>
-			        	<input type="text" name="soLuongCo" value="${soLuongCo}">
-			        	<label>Mô tả:</label>
-			        	<input type="text" name="moTa" value="${moTa}">
-			        	<label>Thể loại:</label>
-			        	<select name="idTheLoai">
-			        		<option value="${idTheLoai}" label="${idTheLoai}"></option>
-			        		<c:forEach items="${listTheLoai}" var="theLoai">
-			        			<option value="${theLoai.id}" label="${theLoai.id} - ${theLoai.tenLoaiSanPham}"></option>
-			        		</c:forEach>
-			        	</select>
-			        	<input type="submit" value="CHỈNH SỬA">
-			        	<input type="reset" value="RESET">
-			        </form>
-		   		</div>
+		   			<div class="menu">
+			    		<a class="menu-item" href="${root}/admin/trangchu">Trang chủ</a>
+			    		<div style="cursor: pointer;" class="dropdown menu-item">
+			    			<a data-toggle="dropdown">
+			    				<i class="far fa-bell"></i> Duyệt đơn hàng
+			    			</a>
+			    			<ul class="dropdown-menu">
+			    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=mua">Đơn mua mới</a></li>
+			    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=huy">Đơn hủy mới</a></li>
+			  				</ul>
+						</div>
+			    		<div style="cursor: pointer;" class="dropdown menu-item">
+			    			<a data-toggle="dropdown">
+			    				<i class="fas fa-user-shield"></i> ${sessionScope.admin.tenDangNhap}
+			    			</a>
+			    			<ul class="dropdown-menu">
+			    				<li><a class="dropdown-item" href="${root}/admin/showAdmin">Thông tin Admin</a></li>
+			    				<li><a class="dropdown-item" href="${root}/admin/logoutAdmin">Đăng xuất</a></li>
+			  				</ul>
+						</div>
+			    	</div>
+			    	<div class="noi-dung">
+			   			<h5 style="margin: auto">Thêm sản phẩm</h5>
+				    	<p style="color: red;">${message}</p>
+				        <form action="${root}/admin/quanLySanPham/added" method="POST" enctype="multipart/form-data">
+				        	<label>Tên sản phẩm:</label>
+				        	<input type="text" name="tenSanPham" value="${tenSanPham}">
+				        	<label>Hình ảnh:</label>
+				        	<input style="border: none;" type="file" name="hinhAnh" id="upload" onchange="displayImg()">
+				        	<div id="displayImg">
+				        		<img id="img" style="width:200px; height:150px;">
+				        	</div>
+				        	</br>
+				        	<label>Tác giả:</label>
+				        	<input type="text" name="tacGia" value="${tacGia}">
+				        	<label>Nhà xuất bản:</label>
+				        	<input type="text" name="nhaXuatBan" value="${nhaXuatBan}">
+				        	<label>Giá:</label>
+				        	<input type="text" name="gia" value="${gia}">
+				        	<label>Khuyến mãi:</label>
+				        	<input type="text" name="khuyenMai" value="${khuyenMai}">
+				        	<label>Số lượng có:</label>
+				        	<input type="text" name="soLuongCo" value="${soLuongCo}">
+				        	<label>Mô tả:</label>
+				        	<%-- <input type="text" name="moTa" value="${moTa}"> --%>
+				        	<textarea style="height: auto;" rows="4" name="moTa">${moTa}</textarea>
+				        	<label>Thể loại:</label>
+				        	<select name="idTheLoai">
+				        		<option value="${idTheLoai}" label="${idTheLoai}"></option>
+				        		<c:forEach items="${listTheLoai}" var="theLoai">
+				        			<option value="${theLoai.id}" label="${theLoai.id} - ${theLoai.tenLoaiSanPham}"></option>
+				        		</c:forEach>
+				        	</select>
+				        	<input type="submit" value="THÊM">
+				        </form>
+			   		</div>
+	   			</div>
 	   		</div>
    		</c:if>
     </div>

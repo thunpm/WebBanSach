@@ -120,13 +120,14 @@ public class DiaChiDAO extends BaseDAO {
 
 	public int updateDiaChi(String idDiaChi, int macDinh) {
 		Connection connection = getConnection();
-	    String sql = "UPDATE DIACHI SET MacDinh = 0 WHERE MacDinh = 1; UPDATE DIACHI SET MacDinh = ? WHERE Id = ?";
+	    String sql = "UPDATE DIACHI SET MacDinh = 0 WHERE MacDinh = 1 AND Id = ?; UPDATE DIACHI SET MacDinh = ? WHERE Id = ?";
 	    PreparedStatement pstmt = null;
 	
 	    try {
 	      	pstmt = connection.prepareStatement(sql);
-	      	pstmt.setInt(1, macDinh);
-	      	pstmt.setString(2, idDiaChi);
+	      	pstmt.setString(1, idDiaChi);
+	      	pstmt.setInt(2, macDinh);
+	      	pstmt.setString(3, idDiaChi);
 	      	pstmt.executeUpdate();
 	      	
 	    } catch (SQLException e) {	

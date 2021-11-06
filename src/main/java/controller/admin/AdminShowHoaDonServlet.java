@@ -39,7 +39,22 @@ public class AdminShowHoaDonServlet extends HttpServlet {
 			listHoaDon = showDonHangBO.getAllHoaDon();
 		}
 		
+		String thuTuSapXep = request.getParameter("thuTuSapXep");
+		
+		if (thuTuSapXep == null) {
+			thuTuSapXep = "az";
+		}
+		
+		listHoaDon = showDonHangBO.sapXep(thuTuSapXep, listHoaDon);
+		
+		if ("za".equals(thuTuSapXep)) {
+			thuTuSapXep = "Cũ nhất";
+		} else if ("az".equals(thuTuSapXep)) {
+			thuTuSapXep = "Mới nhất";
+		}
+		
 		request.setAttribute("don", don);
+		request.setAttribute("thuTuSapXep", thuTuSapXep);
 		request.setAttribute("listHoaDon", listHoaDon);
 		
 		rd = request.getRequestDispatcher("/views/admin/list_hoadon.jsp");

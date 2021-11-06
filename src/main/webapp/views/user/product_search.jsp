@@ -8,9 +8,16 @@
 <head>
     <meta charset="utf-8">
     <title>Tìm kiếm sản phẩm</title>
-    <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
+    
     <link rel="stylesheet" type="text/css" href="views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="views/lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
+    
+    <style>
+    	.main-block .danh-muc .tieu-de {width: 100%; padding: 20px 0px 0px 15px;}
+  		.main-block .danh-muc {display: flex; flex-direction: row; width: 100%; height: auto; margin-bottom: 30px;}
+		.main-block .danh-muc .list-group-item {width: 100%;}
+    </style>
 </head>
 <body>
     <%@ include file="include/header.jsp" %>
@@ -18,6 +25,21 @@
     
     <div class="main-block">
     	<div class="content">
+    		<div class="danh-muc">
+   				<h5 class="tieu-de list-group">Danh Mục Sản Phẩm</h5>
+				<c:forEach items="${listDanhMuc}" var="danhMuc">
+					<div class="list-group-item dropdown">
+						<div data-toggle="dropdown">${danhMuc.tenDanhMuc}</div>
+	  					<div class="dropdown-menu">
+							<c:forEach items="${danhMuc.listLoaiSanPham}" var="loaiSanPham">
+	   							<li>
+	   								<a class="dropdown-item" href="showProductByLoai?maLoai=${loaiSanPham.id}&tenLoai=${loaiSanPham.tenLoaiSanPham}">${loaiSanPham.tenLoaiSanPham}</a>
+   								</li>
+							</c:forEach>
+	  					</div>
+	  				</div>
+			  	</c:forEach>
+	   		</div>
     		<c:if test="${! empty listSanPham}">
 		        <div class="sach">
 			        <div class="tieu-de">
@@ -42,23 +64,25 @@
 	        			</a>
 						</c:forEach>
 					</div>
-		        </div>
-				<div class="danh-trang">
-					<c:if test="${trangHienTai gt 1}">			    	
-			        	<a style="color: black;" href="searchSanPham?searchText=${sapXep}&trangHienTai=${trangHienTai - 1}">Trước</a>
-			        </c:if>	
-			        <c:forEach items="${listSoTrang}" var="soTrang">
-			        	<c:if test="${trangHienTai eq soTrang}">			    	
-				        	<a style="color: red;" href="searchSanPham?searchText=${sapXep}&trangHienTai=${trangHienTai - 1}">${soTrang}</a>
-				        </c:if>		
-				        <c:if test="${trangHienTai ne soTrang}">    	
-			        		<a href="searchSanPham?searchText=${sapXep}&trangHienTai=${trangHienTai - 1}">${soTrang}</a>
-		        		</c:if>
-					</c:forEach>
-					<c:if test="${trangHienTai lt (tongSoTrang - 1)}">			    	
-			        	<a style="color: black;" href="searchSanPham?searchText=${sapXep}&trangHienTai=${trangHienTai - 1}">Sau</a>
-			        </c:if>	
-				</div>
+					<div class="danh-trang">
+						<ul class="pagination justify-content-center">
+							<c:if test="${trangHienTai gt 1}">			    	
+					        	<li class="page-item"><a class="page-link" href="searchSanPham?searchText=${searchText}&trangHienTai=${trangHienTai - 1}"><i class="fas fa-chevron-left"></i></a></li>
+					        </c:if>	
+					        <c:forEach items="${listSoTrang}" var="soTrang">
+					        	<c:if test="${trangHienTai eq soTrang}">			    	
+						        	<li class="page-item"><a class="page-link" style="color: red;" href="searchSanPham?searchText=${searchText}&trangHienTai=${soTrang}">${soTrang}</a></li>
+						        </c:if>		
+						        <c:if test="${trangHienTai ne soTrang}">    	
+					        		<li class="page-item"><a class="page-link" href="searchSanPham?searchText=${searchText}&trangHienTai=${soTrang}">${soTrang}</a></li>
+				        		</c:if>
+							</c:forEach>
+							<c:if test="${trangHienTai lt (tongSoTrang - 1)}">			    	
+					        	<li class="page-item"><a class="page-link" href="searchSanPham?searchText=${searchText}&trangHienTai=${trangHienTai + 1}"><i class="fas fa-chevron-right"></i></a></li>
+					        </c:if>	
+				        </ul>
+					</div>
+		       	</div>
 			</c:if>
 			<c:if test="${empty listSanPham}">
 				<div style="width: 1200px; height: 340px; margin: auto; background-color: white; display: flex; justify-content: center; align-items: center; flex-direction: column;">

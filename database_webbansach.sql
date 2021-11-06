@@ -340,13 +340,85 @@ CREATE TABLE ADM (
 	MatKhau nvarchar(50) not null,
 	del_flag bit default(1),
 
-	primary key (id)
+	primary key (Id)
 )
 
 INSERT INTO ADM(Id, TenDangNhap, MatKhau, HoTen)
 VALUES
 	('AD01', 'admin', '123', N'Nguyễn Phan Minh Thư')
 
+CREATE TABLE TINTUC (
+	Id varchar(10) not null,
+	TieuDe nvarchar(max),
+	TomTat nvarchar(max),
+	UrlHinh varchar(max),
+	NgayDang datetime,
+	IdAdmin varchar(10) not null, -- id admin đăng bài
+	NoiDung nvarchar(max),
+	TrangThai bit default(1), -- hiển thị hay ẩn
+	del_flag bit default(1),
+
+	primary key (Id),
+
+	constraint fk_tintuc_admin
+	foreign key (IdAdmin)
+	references ADM(Id)
+)
+
+INSERT INTO TINTUC(Id, TieuDe, TomTat, UrlHinh, NgayDang, IdAdmin, NoiDung)
+VALUES
+	('TT0001', N'Cách giúp bạn rèn luyện thói quen đọc sách mỗi ngày cực hiệu quả', 
+	N'Sách là người bạn của trí tuệ và là thứ sẽ đưa chúng ta đến những tầng cao mới. Khi bạn có một khối tri thức khổng lồ, bạn sẽ nâng cao được giá trị của bản thân. Thậm chí khi có tri thức bạn có thể giúp được cả những người xung quanh mình. Hãy đọc bài viết sau để hiểu được giá trị cũng như định hình thói quen đọc sách, phương pháp đọc tối ưu nhất nhé.',
+	'ren-thoi-quen-doc.jpg',
+	'10/27/2021',
+	'AD01',
+	N'<p>Xác định rõ mục tiêu kiến thức</p>
+	<p>Khi bạn còn nhỏ, thì bạn có thể đọc đa dạng các loại sách nhưng lớn hơn thì bạn cần rõ ràng trong việc chọn lựa sách. Vì thời gian bạn không còn nhiều và bạn cần phải tập trung thì sẽ tốt hơn. Bạn sẽ có 2 vấn đề đó là kiến thức chuyên môn và kiến thức xã hội. Hai dòng kiến thức này sẽ hỗ trợ bạn rất nhiều trong công việc cũng như cuộc sống. 
+	Những loại sách có kiến thức chuyên môn thường khô khan và sẽ khiến bạn nhàm chán. Vì thế, bạn nên có thêm 1 quyển khác gối đầu giường để giúp mình thư giãn. Quyển đó như là một sự đam mê, yêu thích của mình, gọi chung là kiến thức xã hội, đời sống. Hãy xác định mục tiêu trước, mình muốn tìm hiểu về điều gì? Mình cần nâng cấp chuyên môn nào? 
+	Luyện tập thói quen đọc sách mỗi không chỉ đơn thuần là đọc rồi ghi chú hay khô cứng mà nó còn phụ thuộc vào tuỳ giai đoạn. Một ví dụ điển hình là khi bạn đang chán đời, chán việc, bắt bạn đọc nghiên cứu thêm về công việc thì sao mà nuốt trôi. Đó là cảm xúc, và con người chúng ta sẽ luôn bị cảm xúc chi phối. 
+	Khi bạn uể oải, stress và mất hết năng lượng hãy dùng những quyển sách self help, nó có thể sẽ vực bạn dậy. Tuy nhiên, liều thuốc bổ không được dùng quá nhiều, nếu không bạn sẽ bị lạm dụng. Khi đó, bạn sống trong viển vông. Đừng để chúng ta sa lầy quá nhiều vào những quyển sách self help. Ngoài ra, bạn nên đọc tiểu thuyết vì nó là thứ nói lên rất nhiều thứ mà xã hội hiện thực không có.</p>
+	<p>Tạo văn hoá đọc mỗi ngày</p>
+	<p>Đây là điều rất quan trọng cho những người đọc sách. Nếu từ đầu bạn không yêu đọc sách thì bắt buộc phải làm chuyện này. Vì nếu không, bạn sẽ rất ngán ngẩm và bỏ giữa chừng. Chính điều đó nên đa số ta cần đọc cái ta thích trước, sau đó ta sẽ đọc cái ta cần. Khi bạn quen với chữ, với kiểu ngồi hàng giờ cầm sách thì cần phải tập.
+	Những cuốn sách ban đầu bạn đọc để tạo ra văn hoá đọc. Bạn cần chọn lọc sách nhẹ nhàng, tiểu thuyết, những thứ làm bạn say mê. Rồi mỗi ngày dành ra bao nhiêu thời gian để đọc, ghi chú thời gian rõ ràng. Hãy hình thành thói quen.</p>
+	<p>Ghi chú hoặc gấp dấu</p>
+	<p>Phương pháp đọc sách này được nhiều người sử dụng khi đọc các quyển sách chuyên ngành. Bạn cần ghi chú lại ra nháp để nhớ hoặc tra cứu. Ví dụ bạn đọc sách về luật, có một số thuật ngữ chuyên ngành là “đương đơn, bị cáo, giấy triệu tập,...” bạn không hiểu thì ghi lại. Sau đó lên google tra các khái niệm, là bạn sẽ hiểu hết được khúc đó nói gì. Ngoài ra, bạn cũng nên dùng bút dạ quang để đánh dấu các keyword. Có những trang cần gấp dấu thì chú ý ghi số ở quyển sổ tay. </p>
+	<p>Nhẩm lại ý nghĩa chính sau khi đọc</p>
+	<p>Bạn chỉ cần bỏ ra 10 phút để nhớ lại những keyword chính, điểm cốt yếu. Nó giống như việc bạn hệ thống lại bộ não của mình về kiến thức đó. Hãy củng cố lại tất cả những gì bạn đọc được. Đặc biệt đối với những loại sách chuyên ngành. Bạn có thể ghi chú hoặc không, tốt nhất hãy lưu lại vào bộ não. Như vậy, dẫu có quên thì bạn cũng sẽ có thể nhớ lại dễ dàng khi cần hoặc ai đó nhắc lại.
+	Thói quen đọc sách mỗi ngày sẽ giúp bạn nâng cao tri thức, chất lượng cuộc sống. Đây là những “liều thuốc bổ não” để giúp bạn trở nên tốt hơn. Những quyển sách dù như thế nào đi nữa, ít nhiều gì cũng sẽ có điều gì đó cho bạn học hỏi. Thậm chí trong 1 quyển sách có 1 trang làm thay đổi suy nghĩ của bạn thì hãy mua nó. </p>
+	<i><p>“Một trang sách trong một quyển thay đổi 1% con người thì một quyển sẽ thay đổi cả cuộc đời bạn.”</i></p>'),
+	('TT0002', N'4 tác phẩm văn học Việt Nam nên đọc', 
+	N'Các tác phẩm văn học Việt Nam từ xưa đến nay phong phú và đang dạng. Bên cạnh đó, có nhiều loại tiểu thuyết mô tả tính hiện thực sâu sắc, gắn liền với những con người rất bình thường. Từ đó, bạn đọc có thể hiểu rõ xã hội thực và tâm lý, hoàn cảnh, văn hoá của con người và xã hội.',
+	'sach-hay-nen-doc.jpg',
+	'10/31/2021',
+	'AD01',
+	N'<p>1. Gió lạnh đầu mùa - Thạch Lam</p>
+	<p>Tác phẩm mang tên Thạch Lam đặc biệt rất đơn giản. Thông thường chỉ là những câu chuyện không phải chuyện, nhẹ nhàng như một đoạn phim ngắn. Tác giả muốn thông qua tâm trạng nhân vật để có thể phản chiếu một cách chân thật nhất về mỗi câu chuyện hằng ngày. Cuộc sống của nhân vật với những sự rất đỗi bình thường.</p>
+	<p>Suy nghĩ của Thạch Lam về văn chương: “Đối với tôi văn chương không phải là một cách đem đến cho người đọc sự thoát li hay sự quên, trái lại văn chương là một thứ khí giới thanh cao và đắc lực mà chúng ta có, để vừa tố cáo và thay đổi một cái thế giới giả dối và tàn ác, làm cho lòng người được thêm trong sạch và phong phú hơn.”</p>
+	<p>Giống với Hai đứa trẻ, khi chị em Liên ngồi đợi những chuyến tàu từ Hà Nội, họ mải mê ngắm nhìn phố chợ về đêm, trong cái thưa thớt, vắng vẻ ấy mà thấu hiểu sự vất vả, tối tăm của cuộc sống thường ngày nhưng sâu tận đáy lòng vẫn luôn hướng đến một cuộc sống tốt đẹp hơn.</p>
+	<p>2. Tắt đèn - Ngô Tất Tố</p>
+	<p>Đây là 1 trong những tác phẩm văn học Việt Nam kinh điển không thể bỏ qua. Ngô Tất Tố được coi là nhà văn hàng đầu của trào lưu hiện thực phê phán ở Việt Nam trước 1945, ông có nhiều tác phẩm để đời như Tắt đèn, Việc làng, Tập án cái đình, Lều chõng.</p>
+	<p>Tắt đèn của nhà văn Ngô Tất Tố phản ánh rất chân thực cuộc sống khốn khổ của tầng lớp nông dân Việt Nam đầu thế kỷ XX dưới ách đô hộ của thực dân Pháp. Tác phẩm xoay quanh nhân vật chị Dậu và gia đình – một điển hình của cuộc sống bần cùng hóa sưu cao thuế nặng mà chế độ thực dân áp đặt lên xã hội Việt Nam. </p>
+	<p>Trong cơn cùng cực chị Dậu phải bán khoai, bán bầy chó đẻ và bán cả đứa con để lấy tiền nộp sưu thuế cho chồng nhưng cuộc sống vẫn đi vào bế tắc, không lối thoát.</p>
+	<p>3. Chí Phèo - Nam Cao</p>
+	<p>Tác phẩm văn học Việt Nam “Chí Phèo” được nhà văn Nam Cao đặt tên trong bản thảo là “Cái lò gạch cũ”, nhưng có lẽ nhằm gây chú ý cho công chúng đương thời, nhà văn Lê văn Trương khi viết lời tựa cho tập truyện đã đổi thành “Đôi lứa xứng đôi”. Về sau, khi in lại truyện này trong tuyển tập “Luống cày” (tập truyện của 4 tác giả: Nam Cao, Nguyên Hồng, Nguyễn Huy Tưởng, Kim Lân) tác giả Nam Cao đổi tên truyện của mình thành “Chí Phèo”.</p>
+	<p>Truyện ngắn Chí Phèo đã nói lên sự thực khốc liệt của xã hội phong kiến thực dân xưa, đã coi con người như cỏ rác. Sự đau lòng đến tận xương tuỷ, sự lương thiện bị vùi dập nhưng vẫn nhem nhóm và cháy lên trong từng chi tiết.</p>
+	<p>“Cái chết của con Mực” cũng là trang viết về nỗi lòng lực bất tòng tâm của người trí thức nghèo trước thời cuộc; riêng hai truyện “Ma đưa” và “Chú Khì người đánh tổ tôm vô hình”  thuộc loại truyện ma, trong đó Nam Cao ghi lại những nét thuộc đời sống tâm linh, tâm thức dị đoan của người dân các làng quê thời đấy.</p>
+	<p>4. Số Đỏ - Vũ Trọng Phụng</p>
+	<p>SỐ ĐỎ Tác phẩm Số đỏ, tác giả Vũ Trọng Phụng(20/10/1912-13/10/1939)- “Ông vua phóng sự đất Bắc”. “Số đỏ” được đăng ở Hà Nội báo ngày 7/10/1936 được xem là tác phẩm lớn nhất trong sự nghiệp sáng tác văn học của Vũ Trọng Phụng, cùng với “ Giông tố” là thùng thuốc nổ ném vào giữa xã hội thực dân. </p>
+	<p>“Số đỏ” xoay quanh nhân vật làm đảo điển Hà Nội những năm 1930-1940, Xuân Tóc Đỏ- từ một thằng bé mồ côi, kiếm sống bằng đủ thứ nghề: trèo me, trèo sấu, quảng cáo thuốc lậu...nhờ thủ đoạn xảo trá, “nhờ thời” đã trở thành me xừ, được mời vào hội Khai trí Tiến đức và cuối cùng được nhận huân chương Bắc Đẩu bội tinh.</p>
+	<p>Sử dụng lối tương phản cái đồi bại, thối nát vô luân với cái hài, cái trào phúng, tiểu thuyết thành công trong việc lột trần những “quái thai” thời đại trong buổi giao thời.</p>');
+
+CREATE TABLE PHANHOI (
+	Id varchar(10) not null,
+	HoTen nvarchar(50),
+	Email nvarchar(50),
+	SoDienThoai varchar(50),
+	YKien nvarchar(max),
+
+	primary key (Id)
+)
+
+/*
 SELECT SANPHAM.*, CASE WHEN SoLuong IS NULL THEN 0 ELSE SoLuong END AS DaBan FROM SANPHAM
 LEFT JOIN
 	(SELECT IdHangHoa, SUM(SoLuong) AS SoLuong FROM CHITIETHOADON
@@ -370,6 +442,7 @@ WHERE LOAISANPHAM.Id = 'LSP01'
 SELECT IdHangHoa, TenSanPham, Gia, KhuyenMai, SUM(SoLuong) AS DaBan FROM CHITIETHOADON
 INNER JOIN SANPHAM ON CHITIETHOADON.IdHangHoa = SANPHAM.Id
 INNER JOIN HOADON ON HOADON.Id = CHITIETHOADON.IdHoaDon
-WHERE ThoiGianLap BETWEEN '09/28/2021' AND '09/29/2021'
+WHERE ThoiGianLap BETWEEN '09/28/2021' AND '12/01/2021'
 GROUP BY IdHangHoa, TenSanPham, Gia, KhuyenMai
 ORDER BY SUM(SoLuong) DESC
+*/

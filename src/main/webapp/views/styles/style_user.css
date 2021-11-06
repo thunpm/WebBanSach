@@ -4,10 +4,17 @@
 	border: 0;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
 .header {
 	width: 100%;
 	height: 120px;
-	background-color: #E8B243;
+	background-color: #f3b535;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -26,12 +33,12 @@
 
 .header .find .search-box input {
 	width: 500px;
-	height: 40px;
-	border: 2px solid black;
-	border-radius: 5px;
-	float: left;
-	padding-left: 15px;
-	font-size: 18px;
+    height: 40px;
+    border: 2px solid #d95719;
+    border-radius: 5px 0px 0px 5px;
+    float: left;
+    padding-left: 15px;
+    font-size: 18px;
 }
 
 .header .find .search-box button {
@@ -39,6 +46,7 @@
 	height: 40px;
 	font-size: 25px;
 	background-color: #d95719;
+	border-radius: 0px 5px 5px 0px;
 	color: white;
 }
 
@@ -86,17 +94,26 @@
 	color: white;
 }
 
-.menu .dropdown-menu {
+.menu .dropdown-menu.show {
 	background-color: white;
 	color: black;
+	width: 230px;
 }
+
+.menu .dropdown-item:focus, .menu .dropdown-item:hover {
+	color: black;
+    text-decoration: none;
+    background-color: #fffb82;
+    padding: 5px 15px 5px 20px;
+}
+
 
 .menu li a {
 	color: black;
 }
 
 .menu .menu-item:hover {
-	background-color: #E8B243;
+	background-color: #f3b535;
 	transition: 1s;
 }
 
@@ -141,12 +158,11 @@
 .main-block .content {
 	width: 100%;
 	margin: auto;
-    padding: 0px 90px 0px 90px;
+    padding: 0px 60px 0px 60px;
 }
 
 .main-block .danh-muc {
-	width: 22%;
-	margin-right: 15px;
+	width: 24%;
 }
 
 .main-block .banner {
@@ -154,13 +170,44 @@
 }
 
 .main-block .danh-muc .tieu-de {
-	padding: 18px 21px;
+	padding: 14px 14px;
 	background-color: #d95719; 
+	font-size: 19px;
+	color: white;
+}
+
+.main-block .danh-muc .list-group-item {
+	height: 72px;
+    font-size: 18px;
+    padding: 20px 0px 20px 15px;
+}
+
+.main-block .danh-muc a {
+    font-size: 18px;
+}
+
+.main-block .danh-muc .dropdown-item {
+	width: 280px;
+}
+
+.main-block .danh-muc div.dropdown-menu.show {
+	padding: 10px;
+}
+
+.main-block .danh-muc .dropdown-item:focus, .main-block .danh-muc .dropdown-item:hover {
+	color: black;
+    text-decoration: none;
+    background-color: #fffb82;
+    padding: 5px 15px 5px 20px;
 }
 
 .main-block .danh-muc .list-group-item:hover {
-	background-color: #FCDAB0;
+	background-color: #fffb82;
 	cursor: pointer;
+}
+
+img.d-block.w-100 {
+    height: 335px;
 }
 
 .main-block .sach {
@@ -173,7 +220,6 @@
 	align-items: center;
 	height: 50px;
     padding-left: 20px;
-    padding-top: 10px;
     border-bottom: 1px solid #F0F0F0;
 }
 
@@ -189,13 +235,11 @@
 }
 
 .main-block .name {
-	border: 2px solid #C92127;
-    padding: 0px 10px 0px 10px;
-    border-radius: 5px;
-    margin-right: 20px;
-    color: #C92127;
+	margin-right: 35px;
+    color: #d95719;
     text-transform: uppercase;
     font-weight: bold;
+    font-size: 20px; 
 }
 
 .main-block .sach .san-pham {
@@ -206,22 +250,31 @@
 }
 
 .main-block .sach .card {
-	width: 250px;
+	width: 230px;
 	height: 350px;
 	border: 1px solid #F0F0F0;
-	margin: 15px;
+	margin: 5px;
 	color: black;
 	text-decoration: none;
 	font-size: 15px;
+}
+
+.main-block .content .card:hover {
+	transform: scale(1.01);
+	box-shadow: rgb(0 0 0 / 10%) 0px 0px 20px;
 }
 
 .main-block .sach .card .gia-tien {
 	color: #C92127;
 }
 
+.main-block .sach .card .da-ban {
+	font-style: italic;
+}
+
 .main-block .sach .card .hinh-anh {
 	width: 85%;
-	height: 55%;
+	height: 50%;
 	margin: auto;
 	margin-bottom: 10px;
 }
@@ -237,8 +290,19 @@
 	margin-top: 10px;
 }
 
+.main-block .danh-trang ul.pagination {
+    height: 60px;
+}
+
+.main-block .danh-trang li.page-item {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    font-size: 18px;
+}
+
 .main-block .login-block {
-	width: 580px;
+	width: min(80%, 580px);
 	background-color: white;
 	margin: auto;
 	margin-top: 20px;
@@ -246,13 +310,14 @@
 	padding: 4px 20px 40px 40px;
 }
 
-.main-block .login-block input[type="text"],
-.main-block .login-block select,
-.main-block .login-block input[type="date"],
-.main-block .login-block input[type="password"] {
+.main-block input[type="text"],
+.main-block select,
+.main-block input[type="date"],
+.main-block input[type="password"],
+.main-block textarea {
 	border: 2px solid #F0F0F0;
 	display: block;
-	width: 500px;
+	width: min(500px, 100%);
 	height: 40px;
 	padding-left: 20px;
 	font-size: 18px;
@@ -289,7 +354,8 @@
 
 .main-block input[type="submit"], 
 .main-block input[type="button"],
-.main-block input[type="reset"] { 
+.main-block input[type="reset"],
+.main-block .content button { 
 	cursor: pointer;
 	font-size: 18px;
 	font-weight: bold;
@@ -299,13 +365,13 @@
 	margin-top: 30px;
 	margin-bottom: 30px;
 	border-radius: 5px;
+	color: white;
 }
 
 .main-block input[type="submit"]:hover, 
 .main-block input[type="button"]:hover,
 .main-block input[type="reset"]:hover { 
-	padding: 8px;
-	transition: 0.5s;
+	transform: scale(1.1);
 }
 
 .main-block .menu-update-kh {
@@ -326,7 +392,7 @@
 }
 
 .main-block .chi-tiet-sp {
-	height: 500px;
+	height: auto;
 	background-color: white;
 	display: flex;
 	flex-direction: row;
@@ -340,8 +406,10 @@
 }
 
 .main-block .chi-tiet-sp .hinh-anh img {
-	width: 100%;
-	height: 80%;
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    display: block;
 	margin-top: 30px;
 }
 
@@ -369,7 +437,7 @@
 }
 
 .main-block .mo-ta-sp {
-	width: 80%;
+	width: 90%;
 	background-color: white;
 	margin-top: 30px;
 	padding: 30px;
@@ -380,7 +448,6 @@
     min-height: 240px;
     background-color: white;
     margin-right: 10px;
-    margin: auto;
 }
 
 .main-block .bang-sp th, .main-block .bang-sp td {
@@ -395,15 +462,23 @@
 }
 
 .main-block .thong-tin-thanh-toan {
-	
-	background-color: white; 
+	display: flex;
+	flex-direction: row;
 	padding-top: 30px;
 }
 
-.main-block .thong-tin-thanh-toan div {
-	border-bottom: 2px solid;
+.main-block .thong-tin-thanh-toan .thong-tin-van-chuyen {
+	width: 70%;
+	margin-right: 30px;
+}
+
+.main-block .thong-tin-thanh-toan .thong-tin-van-chuyen div, .main-block .thong-tin-thanh-toan .thong-tin-giao-hang div{
+	padding: 10px;
+	border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    margin-bottom: 31px;
+    line-height: 40px;
     padding: 30px;
-    line-height: 50px;
 }
 
 .info-user {
@@ -417,8 +492,48 @@
 	flex-direction: row;
 }
 
+.menu .icon {
+  display: none;
+}
 
+@media screen and (max-width: 986px) {
+	.header {flex-wrap: wrap; justify-content: space-around;}
+	.header .logo {width: 100%;}
+	.header .find {margin-left: 60px;}
+	.main-block .content {padding: 0px 30px 0px 30px;}
+	.main-block .danh-muc .list-group-item {max-height: 65px;}
+}
 
+@media screen and (max-width: 880px) {
+	.menu {height: 50px;}
+	.menu .icon {float: left; display: block;}
+	.menu .menu-item:not(:first-child) {display: none;}
+	.menu.responsive {position: relative; display: block; height: 100%;}
+  	.menu.responsive a.icon {position: absolute; right: 25px; top: 7px;}
+  	.menu.responsive .menu-item {float: none; display: block;}
+  	.header #text-gio-hang {display: none;}
+  	.header .cart {width: 60px;}
+  	.main-block .danh-muc .tieu-de {display: none;}
+  	.main-block .danh-muc {display: flex; flex-direction: row; width: 100%; height: auto; margin-bottom: 30px;}
+	.main-block .khoi-banner-danh-muc {flex-direction: column;}
+	.main-block .danh-muc .list-group-item {width: 100%;}
+	.main-block .banner {width: 100%;}
+	.footer {height: 280px}
+	.footer .khoi {margin: 30px 10px;}
+}
 
-
+@media screen and (max-width: 750px) {
+	.header .find {margin-left: 5px; max-width: 77%}
+	.header .find form,  .header .find .search-box{max-width: 100%;}
+	.header .find .search-box input {width: 80%;}
+	.header .cart {width: 15%;}
+	.main-block .danh-muc {flex-direction: column;}
+	.main-block .content {padding: 0px;}
+	.main-block .sach .card {width: 45%; height: 279px; font-size: 13px; margin: 0px; margin-bottom: 10px;}
+	.footer {display: none;}
+	.banner img.d-block.w-100 {height: auto;}
+	.main-block .sach .tieu-de {height: 85px;}
+	.main-block .name {font-size: 16px;}
+	.main-block .login-block {padding: 0px; width: 100%;}
+}
 

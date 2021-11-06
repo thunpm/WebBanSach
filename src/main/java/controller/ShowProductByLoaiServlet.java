@@ -63,7 +63,7 @@ public class ShowProductByLoaiServlet extends HttpServlet {
 			trang = "1";
 		}
 		int trangHienTai = Integer.valueOf(trang);
-		tongSoTrang = (listSanPham.size() + 11)/12;
+		tongSoTrang = (listSanPham.size() + 14)/15;
 		int[] listSoTrang = new int[Math.min(tongSoTrang, 3)];
 		
 		if (tongSoTrang <= 3) {
@@ -87,8 +87,8 @@ public class ShowProductByLoaiServlet extends HttpServlet {
 		}
 		
 		// tìm số thứ tự sản phẩm trong trang
-		batDauSP = (trangHienTai - 1)*12;
-		ketThucSP = trangHienTai*12 - 1;
+		batDauSP = (trangHienTai - 1)*15;
+		ketThucSP = trangHienTai*15 - 1;
 		if (ketThucSP >= listSanPham.size()) {
 			ketThucSP = listSanPham.size() - 1;
 		}

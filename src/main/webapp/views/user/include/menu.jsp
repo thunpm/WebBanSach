@@ -2,7 +2,10 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
-<div class="menu">
+<div class="menu" id="myMenu">
+	<a class="icon" onclick="myFunction()">
+		<i style="color: white;" class="fas fa-bars"></i>
+	</a>
 	<div class="menu-item">
 		<a href="showIndex">TRANG CHỦ</a>
 	</div>
@@ -10,10 +13,10 @@
 		<a href="showIntroduce">GIỚI THIỆU</a>
 	</div>
 	<div class="menu-item">
-		<a href="#">KHUYẾN MÃI</a>
+		<a href="showContact">LIÊN HỆ</a>
 	</div>
 	<div class="menu-item">
-		<a href="#">TIN TỨC</a>
+		<a href="showNews">TIN TỨC</a>
 	</div>
 	<div class="menu-item">
    		<c:if test="${!empty sessionScope.user}">
@@ -34,4 +37,14 @@
    		</c:if>
    	</div>
 </div>
+<script>
+	function myFunction() {
+	  var x = document.getElementById("myMenu");
+	  if (x.className === "menu") {
+	    x.className += " responsive";
+	  } else {
+	    x.className = "menu";
+	  }
+	}
+</script>
         

@@ -77,7 +77,7 @@ public class UpdateCartServlet extends HttpServlet {
 		
 		session.setAttribute("cart", gioHang);
 		
-		rd = request.getRequestDispatcher("views/user/cart.jsp");
+		rd = request.getRequestDispatcher("showCart");
 		rd.forward(request, response);
 	}
 

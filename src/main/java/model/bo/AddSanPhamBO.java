@@ -20,7 +20,7 @@ public class AddSanPhamBO {
 		if ("".equals(lastestMaSP)) {
 			id = "SP0001";
 		} else {
-			int ma = Integer.valueOf(lastestMaSP.substring(2));
+			int ma = Integer.valueOf(lastestMaSP.substring(4));
 			ma++;
 			id = "SP" + StringCommon.convertNumberToString(ma, 4);
 		}
@@ -35,6 +35,7 @@ public class AddSanPhamBO {
 			return 3;
 		}
 		
+		System.out.println(id + " " + hinhAnh);
 		return sanPhamDAO.add(id, tenSanPham, tacGia, nhaXuatBan, giaD, khuyenMaiD, soLuongCoD, moTa, idTheLoai, hinhAnh);
 	
 	}

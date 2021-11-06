@@ -8,9 +8,18 @@
 <head>
     <meta charset="utf-8">
     <title>Sản phẩm</title>
-    <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
+    
     <link rel="stylesheet" type="text/css" href="views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="views/lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
+    
+    <style>
+    	.main-block .danh-muc .tieu-de {width: 100%; padding: 20px 0px 0px 15px;}
+  		.main-block .danh-muc {display: flex; flex-direction: row; width: 100%; height: auto; margin-bottom: 30px;}
+		.main-block .khoi-banner-danh-muc {flex-direction: column;}
+		.main-block .danh-muc .list-group-item {width: 100%;}
+		.main-block .banner {width: 100%;}
+    </style>
 </head>
 <body>
     <%@ include file="include/header.jsp" %>
@@ -18,48 +27,25 @@
     
     <div class="main-block">
     	<div class="content">
-	   		<div style="width: 100%; height: auto; display: flex; justify-content: space-between; margin: 0px 0px 30px 0px;">
-	   			<div style="width: 22%; display: flex; flex-direction: column;">
-			   		<div style="width: 100%" class="danh-muc">
-			   			<h5 class="tieu-de list-group">Danh Mục Sản Phẩm</h5>
-						<c:forEach items="${listDanhMuc}" var="danhMuc">
-							<div class="list-group-item dropdown dropright">
-								<div data-toggle="dropdown">${danhMuc.tenDanhMuc}</div>
-			  					<ul class="dropdown-menu">
-									<c:forEach items="${danhMuc.listLoaiSanPham}" var="loaiSanPham">
-			   							<li>
-			   								<a class="dropdown-item" href="showProductByLoai?maLoai=${loaiSanPham.id}&tenLoai=${loaiSanPham.tenLoaiSanPham}">${loaiSanPham.tenLoaiSanPham}</a>
-		   								</li>
-									</c:forEach>
-			  					</ul>
-			  				</div>
-					  	</c:forEach>
-			   		</div>
-<%-- 		   			<div id="loc" style="margin-top: 30px; height: auto; background-color: white;">
-		   				<form action="showProductByLoai">
-		   					<input type="hidden" name="sanPham" value="${sanPham}">
-		   					<input type="hidden" name="maLoai" value="${maLoai}">
-		   					<input type="hidden" name="tenLoai" value="${tenLoai}">
-			   				<div class="loc-item">
-				   				<h6>Giá</h6>
-								<input type="radio" name="gia" value="0đ - 100,000đ">  0đ - 100,000đ </br>
-								<input type="radio" name="gia" value="100,000đ - 200,000đ">  100,000đ - 200,000đ </br>								<input type="radio" name="gia" value="200,000đ - 300,000đ">  200,000đ - 300,000đ </br>
-								<input type="radio" name="price" value="400,000đ - Trở lên">  400,000đ - Trở lên </br>
-							</div>
-							<div class="loc-item">
-				   				<h6>Nhà xuất bản</h6>
-								<input type="radio" name="nxb" value="NXB Trẻ">  NXB Trẻ </br>
-								<input type="radio" name="nxb" value="NXB Phụ nữ">  NXB Phụ nữ </br>
-								<input type="radio" name="nxb" value="NXB Kim Đồng">  NXB Kim Đồng </br>
-								<input type="radio" name="nxb" value="NXB Tổng hợp TPHCM">  NXB Tổng hợp TPHCM </br>
-							</div>
-							<input style="margin: 0px; width: 100%;" type="submit" value="Lọc">
-						</form>
-		   			</div> --%>
-	   			</div>
+	   		<div class="khoi-banner-danh-muc" style="width: 100%; height: auto; display: flex; justify-content: space-between; margin: 0px 0px 30px 0px;">
+		   		<div class="danh-muc">
+		   			<h5 class="tieu-de list-group">Danh Mục Sản Phẩm</h5>
+					<c:forEach items="${listDanhMuc}" var="danhMuc">
+						<div class="list-group-item dropdown">
+							<div data-toggle="dropdown">${danhMuc.tenDanhMuc}</div>
+		  					<div class="dropdown-menu">
+								<c:forEach items="${danhMuc.listLoaiSanPham}" var="loaiSanPham">
+		   							<li>
+		   								<a class="dropdown-item" href="showProductByLoai?maLoai=${loaiSanPham.id}&tenLoai=${loaiSanPham.tenLoaiSanPham}">${loaiSanPham.tenLoaiSanPham}</a>
+	   								</li>
+								</c:forEach>
+		  					</div>
+		  				</div>
+				  	</c:forEach>
+		   		</div>
 		   		<div class="banner">
 		   			<div class="ten-danh-muc"></div>
-		   			 <div class="sach">
+		   			<div class="sach">
 				        <div class="tieu-de">
 				        	<div class="name">${tenLoai}</div>
 				        	<c:if test="${sanPham eq 'sanPhamMoi'}">    
@@ -82,45 +68,45 @@
 			        		</c:if>
 				       	</div>	
 				        <div class="san-pham">
-			        	<c:forEach items="${listSanPham}" var="sanPham" begin="${batDauSP}" end="${ketThucSP}">		
-			        		<a href="showDetailProduct?idProduct=${sanPham.id}" class="card">	   	    	
-				        		<img class="hinh-anh" src="views/images/${sanPham.anhSanPham.tenHinhAnh}"></img>
-				        		<div class="mo-ta">
-					        		<div class="ten-sach">${sanPham.tenSanPham}</div>
-					        		<div style="color: #525852;" class="da-ban">Đã bán ${sanPham.daBan}</div>
-					        		<div>
-					        			<div style="float: left; font-weight: bold; margin-right: 5px; font-size: 17px;" class="gia-tien">
-					        				<fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.gia}"/> đ
-					        			</div>
-					        			<div style="color: red;" class="khuyen-mai">
-					        				-<fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.khuyenMai}"/>%
-					        			</div>
+			        		<c:forEach items="${listSanPham}" var="sanPham" begin="${batDauSP}" end="${ketThucSP}">		
+			        			<a href="showDetailProduct?idProduct=${sanPham.id}" class="card">	   	    	
+				        			<img class="hinh-anh" src="views/images/${sanPham.anhSanPham.tenHinhAnh}"></img>
+				        			<div class="mo-ta">
+					        			<div class="ten-sach">${sanPham.tenSanPham}</div>
+					        			<div style="color: #525852;" class="da-ban">Đã bán ${sanPham.daBan}</div>
+					        			<div>
+					        				<div style="float: left; font-weight: bold; margin-right: 5px; font-size: 17px;" class="gia-tien">
+					        					<fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.gia}"/> đ
+					        				</div>
+					        				<div style="color: red;" class="khuyen-mai">
+					        					-<fmt:formatNumber type="number" maxFractionDigits="3" value="${sanPham.khuyenMai}"/>%
+					        				</div>
+			        					</div>
 			        				</div>
-			        			</div>
-		        			</a>
-						</c:forEach>
+		        				</a>
+							</c:forEach>
+						</div>
+						<div class="danh-trang">
+							<ul class="pagination justify-content-center">
+								<c:if test="${trangHienTai gt 1}">			    	
+		        					<li class="page-item"><a class="page-link" style="color: black;" href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${trangHienTai - 1}&maLoai=${maLoai}&tenLoai=${tenLoai}"><i class="fas fa-chevron-left"></i></a></li>
+		        				</c:if>	
+		        				<c:forEach items="${listSoTrang}" var="soTrang">
+		        					<c:if test="${trangHienTai eq soTrang}">			    	
+			        					<li class="page-item"><a class="page-link" style="color: red;" href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${soTrang}&maLoai=${maLoai}&tenLoai=${tenLoai}">${soTrang}</a></li>
+			        				</c:if>		
+			        				<c:if test="${trangHienTai ne soTrang}">    	
+		        						<li class="page-item"><a class="page-link" href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${soTrang}"&maLoai=${maLoai}&tenLoai=${tenLoai}">${soTrang}</a></li>
+	        						</c:if>
+								</c:forEach>
+								<c:if test="${trangHienTai lt (tongSoTrang - 1)}">			    	
+		        					<li class="page-item"><a class="page-link" style="color: black;" href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${trangHienTai + 1}"&maLoai=${maLoai}&tenLoai=${tenLoai}"><i class="fas fa-chevron-right"></i></a></li>
+		        				</c:if>
+		        			</ul>	
 						</div>
 			       	</div>
 		   		</div>
-	   		</div>
-			<div class="danh-trang">
-				<ul class="pagination justify-content-end">
-				<c:if test="${trangHienTai gt 1}">			    	
-		        	<li class="page-item"><a class="page-link" style="color: black;" href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${trangHienTai - 1}&maLoai=${maLoai}&tenLoai=${tenLoai}">Trước</a></li>
-		        </c:if>	
-		        <c:forEach items="${listSoTrang}" var="soTrang">
-		        	<c:if test="${trangHienTai eq soTrang}">			    	
-			        	<li class="page-item"><a class="page-link" style="color: red;" href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${soTrang}&maLoai=${maLoai}&tenLoai=${tenLoai}">${soTrang}</a></li>
-			        </c:if>		
-			        <c:if test="${trangHienTai ne soTrang}">    	
-		        		<li class="page-item"><a class="page-link" href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${soTrang}"&maLoai=${maLoai}&tenLoai=${tenLoai}">${soTrang}</a></li>
-	        		</c:if>
-				</c:forEach>
-				<c:if test="${trangHienTai lt (tongSoTrang - 1)}">			    	
-		        	<li class="page-item"><a class="page-link" style="color: black;" href="showProductByLoai?sanPham=${sanPham}&trangHienTai=${trangHienTai + 1}"&maLoai=${maLoai}&tenLoai=${tenLoai}">Sau</a></li>
-		        </c:if>
-		        </ul>	
-			</div>
+	   		</div>	
 		</div>
     </div>
     

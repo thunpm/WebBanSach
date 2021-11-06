@@ -30,10 +30,41 @@ public class AdminShowSanPhamServlet extends HttpServlet {
 			rd.forward(request, response);
 		} 
 		
-		ShowSanPhamBO showSanPhamBO = new ShowSanPhamBO();
-		ArrayList<SanPham> listSanPham = showSanPhamBO.getAllSanPhamMoi();
+		String cotSapXep = request.getParameter("cotSapXep");
+		String thuTuSapXep = request.getParameter("thuTuSapXep");
 		
+		if (cotSapXep == null) {
+			cotSapXep = "id";
+		}
+		
+		if (thuTuSapXep == null) {
+			thuTuSapXep = "az";
+		}
+		
+		ShowSanPhamBO showSanPhamBO = new ShowSanPhamBO();
+		ArrayList<SanPham> listSanPham = showSanPhamBO.getAllSanPhamMoi(cotSapXep, thuTuSapXep);
+		String message = request.getParameter("message");
+		
+		if ("id".equals(cotSapXep)) {
+			cotSapXep = "Id";
+		} else if ("tenSanPham".equals(cotSapXep)) {
+			cotSapXep = "Tên sản phẩm";
+		} else if ("gia".equals(cotSapXep)) {
+			cotSapXep = "Giá";
+		} else if ("khuyenMai".equals(cotSapXep)) {
+			cotSapXep = "Khuyến mãi";
+		}
+		
+		if ("az".equals(thuTuSapXep)) {
+			thuTuSapXep = "Thấp đến cao";
+		} else if ("za".equals(thuTuSapXep)) {
+			thuTuSapXep = "Cao đến thấp";
+		}
+
+		request.setAttribute("cotSapXep", cotSapXep);
+		request.setAttribute("thuTuSapXep", thuTuSapXep);
 		request.setAttribute("listSanPham", listSanPham);
+		request.setAttribute("message", message);
 		
 		rd = request.getRequestDispatcher("/views/admin/list_sanpham.jsp");
 		rd.forward(request, response);

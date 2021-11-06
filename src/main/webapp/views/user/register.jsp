@@ -8,9 +8,10 @@
 <head>
     <meta charset="utf-8">
     <title>Đăng kí</title>
-    <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
+    
     <link rel="stylesheet" type="text/css" href="views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="views/lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
 </head>
 <body>
     <%@ include file="include/header.jsp" %>
@@ -22,17 +23,17 @@
 	    	<div style="text-align: center; font-size: 20px; margin-bottom: 30px;" class="name">ĐĂNG KÝ</div>
 	        <form action="checkRegister" method="POST">
 	        	<label>Tên đăng nhập *:</label>
-	        	<input type="text" name="tenDangNhap" value="${khachHang.tenDangNhap}">
+	        	<input type="text" name="tenDangNhap" placeholder="Tên đăng nhập" value="${khachHang.tenDangNhap}">
 	        	<label>Họ tên:</label>
-	        	<input type="text" name="hoTen" value="${khachHang.hoTen}">
+	        	<input type="text" name="hoTen" placeholder="Họ tên" value="${khachHang.hoTen}">
 	        	<label>Số điện thoại *:</label>
-	        	<input type="text" name="soDienThoai" value="${khachHang.soDienThoai}">
+	        	<input type="text" name="soDienThoai" placeholder="Số điện thoại" value="${khachHang.soDienThoai}">
 	        	<label>Mật khẩu *:</label>
 	        	<input type="password" name="matKhau" value="">
 	        	<label>Nhập lại mật khẩu *:</label>
 	        	<input type="password" name="nhapLaiMatKhau" value="">
 	        	<label>Email:</label>
-	        	<input type="text" name="email" value="${khachHang.email}">
+	        	<input type="text" name="email" placeholder="Email" value="${khachHang.email}">
 	        	<label>Giới tính:</label>
 	        	<select name="gioiTinh">
 	        		<option value="${khachHang.gioiTinh}" label="${khachHang.gioiTinh}"></option>

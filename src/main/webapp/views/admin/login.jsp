@@ -7,9 +7,10 @@
 <head>
     <meta charset="utf-8">
     <title>Đăng nhập Admin</title>
-    <link rel="stylesheet" type="text/css" href="${root}/views/styles/style_admin.css"/>
+    
     <link rel="stylesheet" type="text/css" href="${root}/views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="${root}/views/lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${root}/views/styles/style_admin.css"/>
 </head>
 <body>
     <div class="main-block">

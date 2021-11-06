@@ -8,67 +8,78 @@
 <head>
     <meta charset="utf-8">
     <title>Đặt hàng</title>
-    <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
+    
     <link rel="stylesheet" type="text/css" href="views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="views/lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
 </head>
 <body>
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
     
-    <div class="main-block">
+    <div style="background-color: white;" class="main-block">
    		<div class="content">
-	    	<div class="thong-tin-thanh-toan">
-	    		<c:if test="${! empty sessionScope.user}">
-		    		<p style="color: red; display: inline-block; margin: 20px 0px 0px 30px;">${message}</p>
-		    		<div>
-		    			<c:set var="diaChiMacDinh" value="${null}" />
-						<c:if test="${sessionScope.user.diaChi.size() ne 0}">
-							<h5>Địa chỉ</h5>
-							<c:forEach items="${sessionScope.user.diaChi}" var="diaChi">
-								<c:if test="${diaChi.macDinh eq 1}">
-									<p>${diaChi.diaChi}, ${diaChi.xa}, ${diaChi.huyen}, ${diaChi.tinh}</p>
-									<c:set var="diaChiMacDinh" value="${diaChi.id}" />
+    		<p style="color: red; display: inline-block; margin: 20px 0px 0px 30px;">${message}</p>
+    		<c:if test="${! empty sessionScope.user}">
+    			<form action="order" method="post">
+	    			<div class="thong-tin-thanh-toan">
+		    			<div class="thong-tin-van-chuyen">
+					    	<div>
+					    		<!-- khúc này chỉ xử lí client cho vui chớ chưa đưa vô cơ sở dữ liệu -->
+					    		<h5>1. Chọn hình thức giao hàng</h5>
+				    			<input name="giaoHang" type="radio" checked="checked" value="Giao hàng nhanh" onclick="tinhPhiShip()">  Giao hàng nhanh</br>
+				    			<input name="giaoHang" type="radio" value="Giao hàng tiết kiệm" onclick="tinhPhiShip()">  Giao hàng tiết kiệm</br>
+					    	</div>
+					    	<div>
+					    		<!-- khúc này chọn cho vui chớ không xử lí gì cả -->
+					    		<h5>2. Chọn hình thức thanh toán</h5>
+				    			<input name="thanhToan" type="radio" checked="checked" value="Thanh toán khi nhận hàng">  Thanh toán khi nhận hàng</br>
+				    			<input name="thanhToan" type="radio" value="Thanh toán qua Momo">  Thanh toán qua Momo</br>
+				    			<input name="thanhToan" type="radio" value="Thanh toán qua ZaloPay">  Thanh toán qua ZaloPay</br>
+					    	</div>	
+					    </div>
+						<div class="thong-tin-giao-hang">
+							<div class="dia-chi">
+				    			<c:set var="diaChiMacDinh" value="${null}" />
+								<c:if test="${sessionScope.user.diaChi.size() eq 0}">
+									<h5>Địa chỉ</h5>
+									<p>Chưa có địa chỉ giao hàng!</p>
+									<a href="showKhachHang?key=address">Cập nhật địa chỉ</a>
 								</c:if>
-							</c:forEach>
-						</c:if>
-						<c:if test="${sessionScope.user.diaChi.size() eq 0}">
-							<p>Chưa có địa chỉ giao hàng!</p>
-							<a href="showKhachHang?key=address">Cập nhật địa chỉ</a>
-						</c:if>
+								<c:if test="${sessionScope.user.diaChi.size() ne 0}">
+									<h5>Địa chỉ</h5>
+									<a type="button" href="showKhachHang?key=address">Sửa</a>
+									<c:forEach items="${sessionScope.user.diaChi}" var="diaChi">
+										<c:if test="${diaChi.macDinh eq 1}">
+											<p>${diaChi.diaChi}, ${diaChi.xa}, ${diaChi.huyen}, ${diaChi.tinh}</p>
+											<c:set var="diaChiMacDinh" value="${diaChi.id}"></c:set>
+										</c:if>
+									</c:forEach>
+								</c:if>
+							</div>
+							<div class="thanh-toan">
+								<h5>Đơn hàng</h5>
+								<a type="button" href="showCart">Xem đơn hàng</a>
+								<p>Tiền tạm tính: 
+									<i id="tongTien">
+										<fmt:formatNumber type="number" maxFractionDigits="3" value="${tongTien}"/> đ
+									</i>
+								</p>
+								<!-- <p>Phí ship: <i id="phiShip">30000</i></p> -->
+								<p>Tổng thanh toán: 
+									<i style="color: #d95719; font-size: 20px; font-weight: bold;" id="tongThanhToan">
+										<fmt:formatNumber type="number" maxFractionDigits="3" value="${tongTien}"/> đ
+									</i>
+								</p>
+							</div>		
+						</div>
 					</div>
-			    	<form action="order" method="post">
-			    		<input type="hidden" name="diaChiMacDinh" value="${diaChiMacDinh}">
-				    	<div>
-				    		<!-- khúc này chỉ xử lí client cho vui chớ chưa đưa vô cơ sở dữ liệu -->
-				    		<h5>1. Chọn hình thức giao hàng</h5>
-			    			<input name="giaoHang" type="radio" checked="checked" value="Giao hàng nhanh" onclick="tinhPhiShip()">  Giao hàng nhanh</br>
-			    			<input name="giaoHang" type="radio" value="Giao hàng tiết kiệm" onclick="tinhPhiShip()">  Giao hàng tiết kiệm</br>
-				    	</div>
-				    	<div>
-				    		<!-- khúc này chọn cho vui chớ không xử lí gì cả -->
-				    		<h5>2. Chọn hình thức thanh toán</h5>
-			    			<input name="thanhToan" type="radio" checked="checked" value="Thanh toán khi nhận hàng">  Thanh toán khi nhận hàng</br>
-			    			<input name="thanhToan" type="radio" value="Thanh toán qua Momo">  Thanh toán qua Momo</br>
-			    			<input name="thanhToan" type="radio" value="Thanh toán qua ZaloPay">  Thanh toán qua ZaloPay</br>
-				    	</div>
-				    	<div class="thanh-toan" style="border: none;">
-							<p>Tiền tạm tính: 
-								<i id="tongTien">
-									<fmt:formatNumber type="number" maxFractionDigits="3" value="${tongTien}"/> đ
-								</i>
-							</p>
-							<!-- <p>Phí ship: <i id="phiShip">30000</i></p> -->
-							<p>Tổng thanh toán: 
-								<i style="color: #d95719; font-size: 20px; font-weight: bold;" id="tongThanhToan">
-									<fmt:formatNumber type="number" maxFractionDigits="3" value="${tongTien}"/> đ
-								</i>
-							</p>
-							<input type="submit" value="ĐẶT MUA">
-						</div>		
-					</form>	
-				</c:if>
-			</div>
+					<input type="hidden" name="tongTien" value="${tongTien}">
+					<input type="hidden" name="tongThanhToan" value="${tongThanhToan}">
+					<input type="hidden" name="diaChiMacDinh" value="${diaChiMacDinh}">
+					<input type="submit" value="ĐẶT MUA">
+				</form>
+			</c:if>
 		</div>
 	</div>
 	

@@ -7,19 +7,20 @@
 <head>
     <meta charset="utf-8">
     <title>Đơn hàng của tôi</title>
-    <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
+    
     <link rel="stylesheet" type="text/css" href="views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="views/lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="views/styles/style_user.css"/>
 </head>
 <body>
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/menu.jsp" %>
     
     <div style="background-color: white;" class="main-block">
-    	<div class="content">
-    		<div style="width: 80%; margin: auto; text-align: center; font-size: 20px; margin-bottom: 30px;" class="name">ĐƠN HÀNG CỦA TÔI</div>
+    	<div style="width: 70%;" class="content">
+    		<div style="margin-bottom: 30px;" class="name">ĐƠN HÀNG CỦA TÔI</div>
 	    	<c:if test="${! empty listHoaDon}">
-			    <table class="bang-sp">
+			    <table style="width: 100%; margin: 0px;"class="bang-sp">
 			    	<tr style="margin-bottom: 30px; border-bottom: 5px solid #F0F0F0; padding: 10px;">
 			    		<th>Ngày đặt</th>
 			    		<th>Trạng thái</th>

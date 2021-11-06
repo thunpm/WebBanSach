@@ -97,6 +97,7 @@ public class AdminAddSanPhamServlet extends HttpServlet {
 			
 			rd = request.getRequestDispatcher("/views/admin/add_sanpham.jsp");
 		}
+		
 		request.setAttribute("message", message);
 		rd.forward(request, response);
 	}

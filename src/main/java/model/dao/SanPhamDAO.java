@@ -1,6 +1,5 @@
 package model.dao;
 
-import java.awt.print.Book;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import common.StringCommon;
 import model.bean.SanPham;
 
 public class SanPhamDAO extends BaseDAO {
@@ -368,7 +366,7 @@ public class SanPhamDAO extends BaseDAO {
 	
 	public ArrayList<SanPham> getSanPhamBySearch(String searchText) {
 		Connection connection = getConnection();
-        String sql = "SELECT * FROM SANPHAM WHERE (TenSanPham LIKE ? OR TacGia LIKE ? OR NhaXuatBan LIKE ? OR MoTa LIKE ?) AND del_flag = 1 ";
+        String sql = "SELECT * FROM SANPHAM WHERE (TenSanPham LIKE LOWER(?) OR TacGia LIKE LOWER(?) OR NhaXuatBan LIKE LOWER(?) OR MoTa LIKE LOWER(?)) AND del_flag = 1 ";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<SanPham> listSanPham = new ArrayList<SanPham>();
@@ -379,6 +377,7 @@ public class SanPhamDAO extends BaseDAO {
         	pstmt.setString(1, "%" + searchText + "%");
         	pstmt.setString(2, "%" + searchText + "%");
         	pstmt.setString(3, "%" + searchText + "%");
+        	pstmt.setString(4, "%" + searchText + "%");
         	rs = pstmt.executeQuery();
         	
         	while (rs.next()) {
@@ -486,14 +485,14 @@ public class SanPhamDAO extends BaseDAO {
         	pstmt.setString(8, moTa);
         	pstmt.setString(9, idTheLoai);
         	
+        	pstmt.executeUpdate();
+        	
         	AnhSanPhamDAO anhSanPhamDAO = new AnhSanPhamDAO();
         	
         	if (! anhSanPhamDAO.add(idSP, hinhAnh)) {
+        		delete(idSP);
         		return 2;
-        	}
-        	pstmt.executeUpdate();
-        	
-        	
+        	} 	
         	
         } catch (SQLException e) {	
         	e.printStackTrace();
