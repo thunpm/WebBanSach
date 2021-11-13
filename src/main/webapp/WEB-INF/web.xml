@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>WebBanSach</display-name>
   <welcome-file-list>
@@ -263,26 +264,6 @@
   <servlet-mapping>
     <servlet-name>AdminShowKhachHangServlet</servlet-name>
     <url-pattern>/admin/quanLyKhachHang</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>AdminShowUpdatePasswordKhachHangServlet</display-name>
-    <servlet-name>AdminShowUpdatePasswordKhachHangServlet</servlet-name>
-    <servlet-class>controller.admin.AdminShowUpdatePasswordKhachHangServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminShowUpdatePasswordKhachHangServlet</servlet-name>
-    <url-pattern>/admin/quanLyKhachHang/update</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>AdminUpdatePasswordKhachHangServlet</display-name>
-    <servlet-name>AdminUpdatePasswordKhachHangServlet</servlet-name>
-    <servlet-class>controller.admin.AdminUpdatePasswordKhachHangServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminUpdatePasswordKhachHangServlet</servlet-name>
-    <url-pattern>/admin/quanLyKhachHang/updated</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

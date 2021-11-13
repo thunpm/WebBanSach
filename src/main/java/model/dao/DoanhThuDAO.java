@@ -13,11 +13,11 @@ public class DoanhThuDAO extends BaseDAO {
 
 	public ArrayList<ThongKe> getSanPhamDaBan(Date date1, Date date2) {
 		Connection connection = getConnection();
-        String sql = "SELECT IdHangHoa, TenSanPham, Gia, KhuyenMai, SUM(SoLuong) AS DaBan FROM CHITIETHOADON "
+        String sql = "SELECT IdHangHoa, TenSanPham, SUM(SoLuong) AS DaBan, SUM(SoLuong*(DonGia - CHITIETHOADON.KhuyenMai/100.0*DonGia)) as TienThu FROM CHITIETHOADON "
         		+ "INNER JOIN SANPHAM ON CHITIETHOADON.IdHangHoa = SANPHAM.Id "
         		+ "INNER JOIN HOADON ON HOADON.Id = CHITIETHOADON.IdHoaDon "
         		+ "WHERE ThoiGianLap BETWEEN ? AND ? "
-        		+ "GROUP BY IdHangHoa, TenSanPham, Gia, KhuyenMai "
+        		+ "GROUP BY IdHangHoa, TenSanPham "
         		+ "ORDER BY SUM(SoLuong) DESC";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -35,11 +35,8 @@ public class DoanhThuDAO extends BaseDAO {
         		
         		thongKe.setIdHangHoa(rs.getString("IdHangHoa"));
         		thongKe.setTenSanPham(rs.getString("TenSanPham"));
-        		thongKe.setGia(rs.getDouble("Gia"));
-        		thongKe.setKhuyenMai(rs.getDouble("KhuyenMai"));
+        		thongKe.setTienThu(rs.getDouble("TienThu"));
         		thongKe.setDaBan(rs.getInt("DaBan"));
-        		
-        		System.out.println(thongKe);
         		
         		listSanPham.add(thongKe);
         	}

@@ -43,11 +43,13 @@ public class AddToCartServlet extends HttpServlet {
 			if (cart.getMatHang().get(i).getSanPham().getId().equals(id)) {
 				int soLuong = cart.getMatHang().get(i).getSoLuong() + 1;
 				cart.getMatHang().get(i).setSoLuong(soLuong);
+				cart.getMatHang().get(i).setDonGia(sanPham.getGia());
+				cart.getMatHang().get(i).setKhuyenMai(sanPham.getKhuyenMai());
 				daCo = true;
 			}
 		}
 		if (daCo == false) {
-			MatHang matHang = new MatHang(sanPham, 1);
+			MatHang matHang = new MatHang(sanPham, 1, sanPham.getGia(), sanPham.getKhuyenMai());
 			cart.getMatHang().add(matHang);
 		}
 		

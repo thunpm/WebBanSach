@@ -3,20 +3,18 @@ package model.bean;
 public class ThongKe {
 	private String idHangHoa;
 	private String tenSanPham;
-	private double gia;
-	private double khuyenMai;
+	private double tienThu;
 	private int daBan;
 	
 	public ThongKe() {
 		super();
 	}
 
-	public ThongKe(String idHangHoa, String tenSanPham, double gia, double khuyenMai, int daBan) {
+	public ThongKe(String idHangHoa, String tenSanPham, double tienThu, int daBan) {
 		super();
 		this.idHangHoa = idHangHoa;
 		this.tenSanPham = tenSanPham;
-		this.gia = gia;
-		this.khuyenMai = khuyenMai;
+		this.tienThu = tienThu;
 		this.daBan = daBan;
 	}
 
@@ -36,20 +34,12 @@ public class ThongKe {
 		this.tenSanPham = tenSanPham;
 	}
 	
-	public double getGia() {
-		return gia;
+	public double getTienThu() {
+		return tienThu;
 	}
 	
-	public void setGia(double gia) {
-		this.gia = gia;
-	}
-	
-	public double getKhuyenMai() {
-		return khuyenMai;
-	}
-
-	public void setKhuyenMai(double khuyenMai) {
-		this.khuyenMai = khuyenMai;
+	public void setTienThu(double tienThu) {
+		this.tienThu = tienThu;
 	}
 
 	public int getDaBan() {

@@ -12,10 +12,10 @@ import model.bean.SanPham;
 
 public class ChiTietHoaDonDAO extends BaseDAO {
 
-	public void insertChiTietHoaDon(String lastestMaHD, String idHangHoa, int soLuong) {
+	public void insertChiTietHoaDon(String lastestMaHD, String idHangHoa, int soLuong, double donGia, double khuyenMai) {
 		Connection connection = getConnection();
-        String sql = "INSERT INTO CHITIETHOADON (IdHoaDon, IdHangHoa, SoLuong)"
-        		+ " VALUES (?, ?, ?)";
+        String sql = "INSERT INTO CHITIETHOADON (IdHoaDon, IdHangHoa, SoLuong, DonGia, KhuyenMai)"
+        		+ " VALUES (?, ?, ?, ?, ?)";
         PreparedStatement pstmt = null;
 
         try {
@@ -23,6 +23,8 @@ public class ChiTietHoaDonDAO extends BaseDAO {
         	pstmt.setString(1, lastestMaHD);
         	pstmt.setString(2, idHangHoa);
         	pstmt.setInt(3, soLuong);
+        	pstmt.setDouble(4, donGia);
+        	pstmt.setDouble(5, khuyenMai);
         	
         	SanPhamDAO sanPhamDAO = new SanPhamDAO();
         	sanPhamDAO.updateSoLuong(idHangHoa, soLuong);
@@ -62,7 +64,7 @@ public class ChiTietHoaDonDAO extends BaseDAO {
 
 	public ArrayList<MatHang> getMatHangByIdHoaDon(String idDonHang) {
 		Connection connection = getConnection();
-        String sql = "SELECT SANPHAM.Id, TenSanPham, Gia, KhuyenMai, SoLuong, SANPHAM.IdTheLoai FROM CHITIETHOADON"
+        String sql = "SELECT SANPHAM.Id, TenSanPham, SoLuong, DonGia, CHITIETHOADON.KhuyenMai, SANPHAM.IdTheLoai FROM CHITIETHOADON"
         		+ " INNER JOIN SANPHAM ON CHITIETHOADON.IdHangHoa = SANPHAM.Id"
         		+ " WHERE IdHoaDon = ?";
         PreparedStatement pstmt = null;
@@ -83,11 +85,11 @@ public class ChiTietHoaDonDAO extends BaseDAO {
         		
         		sanPham.setId(rs.getString("Id"));
         		sanPham.setTenSanPham(rs.getString("TenSanPham"));
-        		sanPham.setGia(rs.getDouble("Gia"));
-        		sanPham.setKhuyenMai(rs.getDouble("KhuyenMai"));
         		sanPham.setIdTheLoai(rs.getString("IdTheLoai"));
         		matHang.setSanPham(sanPham);
         		matHang.setSoLuong(rs.getInt("SoLuong"));
+        		matHang.setDonGia(rs.getDouble("DonGia"));
+        		matHang.setKhuyenMai(rs.getDouble("KhuyenMai"));
         			
         		listMatHang.add(matHang);
         	}

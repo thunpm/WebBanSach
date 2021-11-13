@@ -9,7 +9,7 @@ CREATE TABLE KHACHHANG (
 	TenDangNhap varchar(50) not null,
 	HoTen nvarchar(50),
 	SoDienThoai varchar(12) not null,
-	MatKhau nvarchar(50) not null,
+	MatKhau varchar(50) not null,
 	Email varchar(50),
 	GioiTinh nvarchar(10),
 	NgaySinh date,
@@ -80,8 +80,8 @@ CREATE TABLE SANPHAM (
 	TacGia nvarchar(50),
 	NhaXuatBan nvarchar(50),
 	Gia money,
-	KhuyenMai money,
-	SoLuongCo money,
+	KhuyenMai int,
+	SoLuongCo int,
 	MoTa nvarchar(max),
 	IdTheLoai varchar(10) not null,
 	del_flag bit default(1),
@@ -322,6 +322,8 @@ CREATE TABLE CHITIETHOADON (
 	IdHoaDon varchar(10) not null,
 	IdHangHoa varchar(10) not null,
 	SoLuong int not null,
+	DonGia money not null,
+	KhuyenMai int,
 	del_flag bit default(1),
 	
 	primary key (IdHoaDon, IdHangHoa),
@@ -336,8 +338,8 @@ CREATE TABLE CHITIETHOADON (
 CREATE TABLE ADM (
 	Id varchar(10) not null,
 	TenDangNhap varchar(50) not null,
-	HoTen nvarchar(50) null,
-	MatKhau nvarchar(50) not null,
+	HoTen nvarchar(50),
+	MatKhau varchar(50) not null,
 	del_flag bit default(1),
 
 	primary key (Id)
@@ -411,7 +413,7 @@ VALUES
 CREATE TABLE PHANHOI (
 	Id varchar(10) not null,
 	HoTen nvarchar(50),
-	Email nvarchar(50),
+	Email varchar(50),
 	SoDienThoai varchar(50),
 	YKien nvarchar(max),
 
@@ -445,4 +447,19 @@ INNER JOIN HOADON ON HOADON.Id = CHITIETHOADON.IdHoaDon
 WHERE ThoiGianLap BETWEEN '09/28/2021' AND '12/01/2021'
 GROUP BY IdHangHoa, TenSanPham, Gia, KhuyenMai
 ORDER BY SUM(SoLuong) DESC
+
+SELECT IdHangHoa, TenSanPham, SUM(SoLuong) AS DaBan, SUM(SoLuong*(DonGia - CHITIETHOADON.KhuyenMai*DonGia)) as TienThu FROM CHITIETHOADON
+INNER JOIN SANPHAM ON CHITIETHOADON.IdHangHoa = SANPHAM.Id
+INNER JOIN HOADON ON HOADON.Id = CHITIETHOADON.IdHoaDon
+WHERE ThoiGianLap BETWEEN '09/28/2021' AND '12/01/2021'
+GROUP BY IdHangHoa, TenSanPham
+ORDER BY SUM(SoLuong) DESC
 */
+
+SELECT IdHangHoa, TenSanPham, SUM(SoLuong) AS DaBan, SUM(SoLuong*(DonGia - CHITIETHOADON.KhuyenMai/100.0*DonGia)) as TienThu FROM CHITIETHOADON
+INNER JOIN SANPHAM ON CHITIETHOADON.IdHangHoa = SANPHAM.Id
+INNER JOIN HOADON ON HOADON.Id = CHITIETHOADON.IdHoaDon
+WHERE ThoiGianLap BETWEEN '09/28/2021' AND '12/01/2021'
+GROUP BY IdHangHoa, TenSanPham
+ORDER BY SUM(SoLuong) DESC
+

@@ -18,7 +18,7 @@
     <script src="${root}/views/lib/popper.min.js"></script>
     <script src="${root}/views/lib/bootstrap/js/bootstrap.min.js"></script>
    
-<!--   	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+   	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
   	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
   	<script src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
  
@@ -51,44 +51,18 @@
   		#example_filter {
   			display: none;
   		}
-  	</style> -->
+  	</style>
 </head>
 <body>
     <div class="main-block">
     	<c:if test="${! empty sessionScope.admin}">
 	    	<div class="khoi">
-	   			<div class="danh-muc list-group">
-	   				<div class="muc-quan-ly">TRANG QUẢN LÝ</div>
-			   		<a class="list-group-item" href="${root}/admin/quanLyKhachHang">Quản lý khách hàng</a>
-			   		<a class="list-group-item" href="${root}/admin/quanLyDanhMuc">Quản lý danh mục</a>
-			   		<a class="list-group-item" href="${root}/admin/quanLyTheLoai">Quản lý thể loại</a>
-			   		<a class="list-group-item" href="${root}/admin/quanLySanPham">Quản lý sản phẩm</a>
-			   		<a class="list-group-item" href="${root}/admin/quanLyHoaDon">Quản lý hóa đơn</a>
-			   		<a class="list-group-item" href="${root}/admin/thongKe">Thống kê</a>
-			   		<a class="list-group-item" href="${root}/admin/phanHoi">Phản hồi của khách</a>
-		   		</div>
+	   			<%@ include file="include/danhmuc.jsp" %>
+	   			
 		   		<div class="content">
-		   			<div class="menu">
-			    		<a class="menu-item" href="${root}/admin/trangchu">Trang chủ</a>
-			    		<div style="cursor: pointer;" class="dropdown menu-item">
-			    			<a data-toggle="dropdown">
-			    				<i class="far fa-bell"></i> Duyệt đơn hàng
-			    			</a>
-			    			<ul class="dropdown-menu">
-			    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=mua">Đơn mua mới</a></li>
-			    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=huy">Đơn hủy mới</a></li>
-			  				</ul>
-						</div>
-			    		<div style="cursor: pointer;" class="dropdown menu-item">
-			    			<a data-toggle="dropdown">
-			    				<i class="fas fa-user-shield"></i> ${sessionScope.admin.tenDangNhap}
-			    			</a>
-			    			<ul class="dropdown-menu">
-			    				<li><a class="dropdown-item" href="${root}/admin/showAdmin">Thông tin Admin</a></li>
-			    				<li><a class="dropdown-item" href="${root}/admin/logoutAdmin">Đăng xuất</a></li>
-			  				</ul>
-						</div>
-			    	</div>
+		   		
+		   			<%@ include file="include/menu.jsp" %>
+		   			
 			    	<div class="noi-dung">
 			   			<h5 style="margin: auto; margin-bottom: 50px;">SẢN PHẨM</h5>
 				    	<p style="color: red;">${message}</p>

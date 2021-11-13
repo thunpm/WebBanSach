@@ -35,22 +35,22 @@
 								<a href="showDetailProduct?idProduct=${matHang.sanPham.id}">${matHang.sanPham.tenSanPham}</a>	
 							</td> 
 							<td>
-								<c:if test="${matHang.sanPham.khuyenMai > 0}">
+								<c:if test="${matHang.khuyenMai > 0}">
 									<p style="text-decoration: line-through;">
-										<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.sanPham.gia}"/> đ
+										<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.donGia}"/> đ
 									</p>
-									<c:set var="thanhTien" value="${matHang.sanPham.gia*(1 - matHang.sanPham.khuyenMai/100.0)}" />
+									<c:set var="thanhTien" value="${matHang.donGia*(1 - matHang.khuyenMai/100.0)}" />
 									<p style="color: #C92127;">
 										<fmt:formatNumber type="number" maxFractionDigits="3" value="${thanhTien}"/> đ 
-										(-<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.sanPham.khuyenMai}"/>%)
+										(-<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.khuyenMai}"/>%)
 									</p>
 								</c:if>
-								<c:if test="${matHang.sanPham.khuyenMai <= 0}">
-									<p><fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.sanPham.gia}"/> đ</p>
+								<c:if test="${matHang.khuyenMai <= 0}">
+									<p><fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.donGia}"/> đ</p>
 								</c:if>
 							</td>
 							<td>${matHang.soLuong}</td>
-							<c:set var="tien" value="${matHang.soLuong * matHang.sanPham.gia*(1 - matHang.sanPham.khuyenMai/100.0)}" />
+							<c:set var="tien" value="${matHang.soLuong * matHang.donGia*(1 - matHang.khuyenMai/100.0)}" />
 							<c:set var="tongTien" value="${tongTien + tien}" /> 
 							<td class="thanh-tien">
 								<fmt:formatNumber type="number" maxFractionDigits="3" value="${tien}"/> đ

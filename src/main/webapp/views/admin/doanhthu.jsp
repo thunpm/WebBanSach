@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Trang chủ Admin</title>
+    <title>Doanh thu</title>
     
     <link rel="stylesheet" type="text/css" href="${root}/views/lib/font-awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="${root}/views/lib/bootstrap/css/bootstrap.min.css"/>
@@ -17,40 +17,15 @@
     <div class="main-block">
     	<c:if test="${! empty sessionScope.admin}">
 	    	<div class="khoi">
-	   			<div class="danh-muc list-group">
-	   				<div class="muc-quan-ly">TRANG QUẢN LÝ</div>
-			   		<a class="list-group-item" href="${root}/admin/quanLyKhachHang">Quản lý khách hàng</a>
-			   		<a class="list-group-item" href="${root}/admin/quanLyDanhMuc">Quản lý danh mục</a>
-			   		<a class="list-group-item" href="${root}/admin/quanLyTheLoai">Quản lý thể loại</a>
-			   		<a class="list-group-item" href="${root}/admin/quanLySanPham">Quản lý sản phẩm</a>
-			   		<a class="list-group-item" href="${root}/admin/quanLyHoaDon">Quản lý hóa đơn</a>
-			   		<a class="list-group-item" href="${root}/admin/thongKe">Thống kê</a>
-			   		<a class="list-group-item" href="${root}/admin/phanHoi">Phản hồi của khách</a>
-		   		</div>
+	    	    <%@ include file="include/danhmuc.jsp" %>
+	   			
 		   		<div class="content">
-		   			<div class="menu">
-			    		<a class="menu-item" href="${root}/admin/trangchu">Trang chủ</a>
-			    		<div style="cursor: pointer;" class="dropdown menu-item">
-			    			<a data-toggle="dropdown">
-			    				<i class="far fa-bell"></i> Duyệt đơn hàng
-			    			</a>
-			    			<ul class="dropdown-menu">
-			    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=mua">Đơn mua mới</a></li>
-			    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=huy">Đơn hủy mới</a></li>
-			  				</ul>
-						</div>
-			    		<div style="cursor: pointer;" class="dropdown menu-item">
-			    			<a data-toggle="dropdown">
-			    				<i class="fas fa-user-shield"></i> ${sessionScope.admin.tenDangNhap}
-			    			</a>
-			    			<ul class="dropdown-menu">
-			    				<li><a class="dropdown-item" href="${root}/admin/showAdmin">Thông tin Admin</a></li>
-			    				<li><a class="dropdown-item" href="${root}/admin/logoutAdmin">Đăng xuất</a></li>
-			  				</ul>
-						</div>
-			    	</div>
+		   		
+		   			<%@ include file="include/menu.jsp" %>
+		   			
 			    	<div class="noi-dung">
 			   			<h5 style="margin: auto;">SẢN PHẨM</h5>
+			   			<p>Doanh thu từ ${ngay1}/${thang1}/${nam1} đến ${ngay2}/${thang2}/${nam2}</p>
 				    	<p style="color: red;">${message}</p>
 				    	<div class="">
 					    	<c:if test="${(! empty listSanPham)}">
@@ -60,27 +35,22 @@
 								    <table class="">
 								    	<tr>
 								    		<th>Id hàng hóa</th>
-								    		<th>Tên sản phẩm</th>
-								    		<th>Giá</th>
-								    		<th>Khuyến Mãi</th>
+								    		<th style="width: 60%;">Tên sản phẩm</th>
 								    		<th>Đã bán</th>
+								    		<th>Tiền thu</th>		
 								    	</tr>
 										<c:forEach items="${listSanPham}" var="thongKe">
 											<tr>
 												<td>${thongKe.idHangHoa}</td> 
-												<td>${thongKe.tenSanPham}</td>
-												<td>
-													<fmt:formatNumber type="number" maxFractionDigits="3" value="${thongKe.gia}"/> đ
-												</td>
-												<td>
-													<fmt:formatNumber type="number" maxFractionDigits="3" value="${thongKe.khuyenMai}"/>%
-												</td>
+												<td style="width: 60%;">${thongKe.tenSanPham}</td>
 												<td>
 													<fmt:formatNumber type="number" maxFractionDigits="3" value="${thongKe.daBan}"/>
 												</td>
+												<td>
+													<fmt:formatNumber type="number" maxFractionDigits="3" value="${thongKe.tienThu}"/> đ
+												</td>
 											</tr>	
-											<c:set var="tien" value="${thongKe.daBan * thongKe.gia*(1 - thongKe.khuyenMai/100.0)}" />
-											<c:set var="tongTien" value="${tongTien + tien}" /> 
+											<c:set var="tongTien" value="${tongTien + thongKe.tienThu}" /> 
 											<c:set var="tongSanPham" value="${tongSanPham + thongKe.daBan}" /> 
 										</c:forEach>	
 									</table>

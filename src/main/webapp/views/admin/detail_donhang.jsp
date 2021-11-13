@@ -17,38 +17,12 @@
     <div class="main-block">
     	<c:if test="${! empty sessionScope.admin}">
 	    	<div class="khoi">
-	   			<div class="danh-muc list-group">
-	   				<div class="muc-quan-ly">TRANG QUẢN LÝ</div>
-			   		<a class="list-group-item" href="${root}/admin/quanLyKhachHang">Quản lý khách hàng</a>
-			   		<a class="list-group-item" href="${root}/admin/quanLyDanhMuc">Quản lý danh mục</a>
-			   		<a class="list-group-item" href="${root}/admin/quanLyTheLoai">Quản lý thể loại</a>
-			   		<a class="list-group-item" href="${root}/admin/quanLySanPham">Quản lý sản phẩm</a>
-			   		<a class="list-group-item" href="${root}/admin/quanLyHoaDon">Quản lý hóa đơn</a>
-			   		<a class="list-group-item" href="${root}/admin/thongKe">Thống kê</a>
-			   		<a class="list-group-item" href="${root}/admin/phanHoi">Phản hồi của khách</a>
-		   		</div>
+	   			<%@ include file="include/danhmuc.jsp" %>
+	   			
 		   		<div class="content">
-		   			<div class="menu">
-			    		<a class="menu-item" href="${root}/admin/trangchu">Trang chủ</a>
-			    		<div style="cursor: pointer;" class="dropdown menu-item">
-			    			<a data-toggle="dropdown">
-			    				<i class="far fa-bell"></i> Duyệt đơn hàng
-			    			</a>
-			    			<ul class="dropdown-menu">
-			    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=mua">Đơn mua mới</a></li>
-			    				<li><a class="dropdown-item" href="${root}/admin/quanLyHoaDon?don=huy">Đơn hủy mới</a></li>
-			  				</ul>
-						</div>
-			    		<div style="cursor: pointer;" class="dropdown menu-item">
-			    			<a data-toggle="dropdown">
-			    				<i class="fas fa-user-shield"></i> ${sessionScope.admin.tenDangNhap}
-			    			</a>
-			    			<ul class="dropdown-menu">
-			    				<li><a class="dropdown-item" href="${root}/admin/showAdmin">Thông tin Admin</a></li>
-			    				<li><a class="dropdown-item" href="${root}/admin/logoutAdmin">Đăng xuất</a></li>
-			  				</ul>
-						</div>
-			    	</div>
+		   		
+		   			<%@ include file="include/menu.jsp" %>
+		   			
 			    	<div class="noi-dung">
 			   			<c:if test="${detail eq 'matHang'}">
 			   			<h5>Chi tiết đơn hàng</h5>
@@ -67,15 +41,15 @@
 										<tr>
 											<td>${matHang.sanPham.tenSanPham}</td> 
 											<td>
-												<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.sanPham.gia}"/> đ
+												<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.donGia}"/> đ
 											</td>
 											<td>
-												<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.sanPham.khuyenMai}"/>%
+												<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.khuyenMai}"/>%
 											</td>
 											<td>
 												<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.soLuong}"/>
 											</td>
-											<c:set var="tien" value="${matHang.soLuong * matHang.sanPham.gia*(1 - matHang.sanPham.khuyenMai/100.0)}" />
+											<c:set var="tien" value="${matHang.soLuong * matHang.donGia*(1 - matHang.khuyenMai/100.0)}" />
 											<c:set var="tongTien" value="${tongTien + tien}" /> 
 											<td class="thanh-tien">
 												<fmt:formatNumber type="number" maxFractionDigits="3" value="${tien}"/> đ

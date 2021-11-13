@@ -17,7 +17,6 @@ public class DoanhThuBO {
 		try {
 			date1 = Date.valueOf(year1 + "-" + month1 + "-"  + day1);
 			date2 = Date.valueOf(year2 + "-" + month2 + "-"  + day2);
-			System.out.println(date1 + " " + date2);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

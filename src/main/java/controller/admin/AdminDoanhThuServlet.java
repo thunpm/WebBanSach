@@ -50,6 +50,12 @@ public class AdminDoanhThuServlet extends HttpServlet {
 			request.setAttribute("message", message);
 			rd = request.getRequestDispatcher("/views/admin/thongke.jsp");
 		}
+		request.setAttribute("ngay1", day1);	
+		request.setAttribute("thang1", month1);
+		request.setAttribute("nam1", year1);
+		request.setAttribute("ngay2", day2);
+		request.setAttribute("thang2", month2);
+		request.setAttribute("nam2", year2);
 		
 		rd.forward(request, response);
 	}

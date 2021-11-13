@@ -60,7 +60,6 @@ public class OrderServlet extends HttpServlet {
 			ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
 			khachHang = showKhachHangBO.getAccount(khachHang.getTenDangNhap());
 			Timestamp thoiGian = new Timestamp(System.currentTimeMillis());
-			System.out.print(thoiGian);
 			check = updateHoaDonBO.insertHoaDon(khachHang.getId(), thoiGian, "Đang chờ xác nhận");
 			
 			if (check == 6) {
@@ -74,7 +73,7 @@ public class OrderServlet extends HttpServlet {
 			
 				UpdateChiTietHoaDonBO updateChiTietHoaDonBO = new UpdateChiTietHoaDonBO();
 				for (int i = 0; i < gioHang.getMatHang().size(); i++) {
-					updateChiTietHoaDonBO.insertChiTietHoaDon(gioHang.getMatHang().get(i).getSanPham(), gioHang.getMatHang().get(i).getSoLuong());
+					updateChiTietHoaDonBO.insertChiTietHoaDon(gioHang.getMatHang().get(i).getSanPham(), gioHang.getMatHang().get(i).getSoLuong(), gioHang.getMatHang().get(i).getDonGia(), gioHang.getMatHang().get(i).getKhuyenMai());
 				}
 			}
 			

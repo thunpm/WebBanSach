@@ -51,6 +51,7 @@ button:focus {
 	border: 1px solid #dc3545;
 	margin-top: 30px;
 	margin-bottom: 30px;
+	margin-right: 20px;
 	border-radius: 5px;
 	color: white;
 }
@@ -81,10 +82,16 @@ button:focus {
     margin: auto;
 }
 
-.main-block .menu a:hover, .main-block .danh-muc a:hover {
-    text-decoration: none;
-    background-color: #ffc107;
+.main-block .menu a {
     padding: 7px;
+    color: white;
+    text-decoration: none;
+}
+
+.main-block .menu .menu-item:hover, .main-block .danh-muc a:hover {
+   	text-decoration: none;
+    background-color: #ffc107;
+    transform: scale(1.05);
 }
 
 .main-block .khoi {
@@ -208,5 +215,9 @@ button:focus {
 .main-block .content .sap-xep button {
 	height: 38px;
 	margin-top: 21px;
+}
+
+.main-block .menu a.dropdown-item {
+	color: #009df7;
 }
 
