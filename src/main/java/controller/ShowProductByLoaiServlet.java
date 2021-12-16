@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.bean.DanhMucSanPham;
 import model.bean.LoaiSanPham;
 import model.bean.SanPham;
-import model.bo.ShowDanhMucBO;
+import model.bo.DanhMucBO;
 import model.bo.ShowLoaiSanPhamBO;
 import model.bo.ShowSanPhamBO;
 
@@ -30,11 +30,12 @@ public class ShowProductByLoaiServlet extends HttpServlet {
 		String sapXep = request.getParameter("sanPham");
 		String trang = request.getParameter("trangHienTai");
 		
+		// lấy danh mục
 		ShowSanPhamBO showSanPhamBO = new ShowSanPhamBO();
-		ShowDanhMucBO  showDanhMucBO = new ShowDanhMucBO();
+		DanhMucBO  danhMucBO = new DanhMucBO();
 		ShowLoaiSanPhamBO showLoaiSanPhamBO = new ShowLoaiSanPhamBO();
 		
-		ArrayList<DanhMucSanPham> listDanhMuc = showDanhMucBO.getAllDanhMuc();
+		ArrayList<DanhMucSanPham> listDanhMuc = danhMucBO.getAllDanhMuc();
 		ArrayList<LoaiSanPham> listLoaiSanPham = null;
 		
 		for (int i = 0; i < listDanhMuc.size(); i++) {
@@ -42,7 +43,10 @@ public class ShowProductByLoaiServlet extends HttpServlet {
 			listDanhMuc.get(i).setListLoaiSanPham(listLoaiSanPham);
 		}
 		
+		// lấy sản phẩm theo loại
 		ArrayList<SanPham> listSanPham = showSanPhamBO.getAllSanPhamByLoai(maLoai);
+		
+		// --- Phân trang ----
 		int tongSoTrang = 0, batDauSP = 0, ketThucSP = 0;
 		
 		if (sapXep == null || "".equals(sapXep)) {

@@ -65,7 +65,7 @@ button:focus {
 .main-block .menu {
 	display: flex;
 	justify-content: space-around;
-	background-color: #545b62;
+	background-color: #bd2130;
     padding: 10px;
    	height: 70px;
 }
@@ -90,8 +90,7 @@ button:focus {
 
 .main-block .menu .menu-item:hover, .main-block .danh-muc a:hover {
    	text-decoration: none;
-    background-color: #ffc107;
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .main-block .khoi {
@@ -104,11 +103,12 @@ button:focus {
 	width: 100%;
 	height: 70px;
 	padding: 20px 0px 10px 10px;
-    background-color: #545b62;
+    background-color: #bd2130;
 	color: white;
     font-size: 22px;
     text-transform: uppercase;
     font-weight: 700;
+    text-align: center;
 }
 .main-block .danh-muc {
     width: 17%;   
@@ -121,6 +121,7 @@ button:focus {
     border: none;
     background-color: #ebeaea;
     font-size: 18px;
+    margin-top: 10px;
 }
 
 .main-block .content {
@@ -221,3 +222,21 @@ button:focus {
 	color: #009df7;
 }
 
+.main-block .thong-ke-so-luong {
+	display: flex;
+	justify-content: space-around;
+	margin-bottom: 50px;
+}
+
+.main-block .thong-ke-so-luong .block {
+    width: 22%;
+    height: 177px;
+    margin-top: 40px;
+    border-radius: 25px;
+    background-color: #105299;
+    color: white;
+	font-weight: bold;
+    line-height: 20px;
+    text-align: center;
+    padding-top: 60px;
+}

@@ -19,6 +19,7 @@ public class ShowOrderServlet extends HttpServlet {
 		RequestDispatcher rd = null;
 		HttpSession session = request.getSession();
 		
+		// hiển thị trang thanh toán khi người dùng đã đăng nhập
 		if (session.getAttribute("user") == null) {
 			rd = request.getRequestDispatcher("showLogin");
 			rd.forward(request, response);
@@ -28,11 +29,7 @@ public class ShowOrderServlet extends HttpServlet {
 		
 		request.setAttribute("tongTien", tongTien);
 		
-		if (session.getAttribute("user") == null) {
-			rd = request.getRequestDispatcher("views/user/login.jsp");
-		} else {
-			rd = request.getRequestDispatcher("views/user/order.jsp");
-		}
+		rd = request.getRequestDispatcher("views/user/order.jsp");
 		
 		rd.forward(request, response);
 	}

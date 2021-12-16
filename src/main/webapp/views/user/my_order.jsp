@@ -34,7 +34,7 @@
 							<td>
 								<a href="showDetailDonHang?idDonHang=${hoaDon.id}">Chi tiết</a>
 							</td>
-							<c:if test='${hoaDon.trangThai ne "Đang giao" and hoaDon.trangThai ne "Đã hủy"}'>
+							<c:if test='${hoaDon.trangThai ne "Đang giao" and hoaDon.trangThai ne "Đã hủy" and hoaDon.trangThai ne "Đã giao"}'>
 			    				<td>
 									<a href="updateDonHang?idDonHang=${hoaDon.id}">Hủy đơn</a>
 								</td>

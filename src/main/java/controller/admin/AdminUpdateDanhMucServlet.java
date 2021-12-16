@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.bean.DanhMucSanPham;
-import model.bo.UpdateDanhMucBO;
+import model.bo.DanhMucBO;
 
 public class AdminUpdateDanhMucServlet extends HttpServlet {
 	
@@ -27,13 +27,13 @@ public class AdminUpdateDanhMucServlet extends HttpServlet {
 			rd.forward(request, response);
 		} 
 		
-		UpdateDanhMucBO updateDanhMucBO = new UpdateDanhMucBO();
+		DanhMucBO danhMucBO = new DanhMucBO();
 		String message = "";
 		
 		String id = request.getParameter("idDanhMuc");
 		String tenDanhMuc = request.getParameter("tenDanhMuc");
 		DanhMucSanPham danhMuc = new DanhMucSanPham(id, tenDanhMuc);
-		int check = updateDanhMucBO.update(id, tenDanhMuc);
+		int check = danhMucBO.update(id, tenDanhMuc);
 		
 		if (check == 0) {
 			message = "Đã update danh mục " + id;

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.bean.DanhMucSanPham;
-import model.bo.ShowDanhMucBO;
+import model.bo.DanhMucBO;
 
 public class AdminShowUpdateDanhMucServlet extends HttpServlet {
 
@@ -29,9 +29,9 @@ public class AdminShowUpdateDanhMucServlet extends HttpServlet {
 		
 		String idDanhMuc = request.getParameter("idDanhMuc");
 		
-		ShowDanhMucBO showDanhMucBO = new ShowDanhMucBO();
+		DanhMucBO danhMucBO = new DanhMucBO();
 		
-		DanhMucSanPham danhMuc = showDanhMucBO.getDanhMucById(idDanhMuc);
+		DanhMucSanPham danhMuc = danhMucBO.getDanhMucById(idDanhMuc);
 		
 		request.setAttribute("danhMuc", danhMuc);		
 		

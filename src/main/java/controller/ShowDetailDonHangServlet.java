@@ -20,6 +20,7 @@ public class ShowDetailDonHangServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("text/html");
 		
+		// lấy chi tiết đơn hàng của khách hàng
 		RequestDispatcher rd = null;
 		HttpSession session = request.getSession();
 		

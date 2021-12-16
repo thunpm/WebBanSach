@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.bo.DeleteDonHangBO;
-import model.bo.DeleteSanPhamBO;
+import model.bo.HoaDonBO;
 
 public class AdminDeleteDonHangServlet extends HttpServlet {
 
@@ -27,12 +26,12 @@ public class AdminDeleteDonHangServlet extends HttpServlet {
 			rd.forward(request, response);
 		} 
 	
-		DeleteDonHangBO deleteDonHangBO = new DeleteDonHangBO();
+		HoaDonBO donHangBO = new HoaDonBO();
 		String message = "";
 		
 		String id = request.getParameter("idDonHang");
 		
-		int check = deleteDonHangBO.delete(id);
+		int check = donHangBO.delete(id);
 		
 		if (check == 0) {
 			message = "Đã xóa thành công!";

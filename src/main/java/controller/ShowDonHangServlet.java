@@ -22,6 +22,7 @@ public class ShowDonHangServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("text/html");
 		
+		// hiển thị đơn hàng của người dùng
 		RequestDispatcher rd = null;
 		HttpSession session = request.getSession();
 		

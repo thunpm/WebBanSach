@@ -35,17 +35,20 @@ public class AdminAddSanPhamServlet extends HttpServlet {
 			rd.forward(request, response);
 		} 
 		
+		// lấy đường dẫn của ảnh sản phẩm
 		String filename = "";
 		try {
 			Part part = request.getPart("hinhAnh");
-			String realPath = request.getServletContext().getRealPath("/views/images");
-			filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+			String realPath = request.getServletContext().getRealPath("/views/images"); // lấy đường dẫn đến thư mục images
+			filename = Paths.get(part.getSubmittedFileName()).getFileName().toString(); // lấy tên tệp
+			
+			System.out.println(realPath + " " + filename);
 			
 			if (Files.exists(Paths.get(realPath))) {
 				if (Files.exists(Paths.get(realPath + "/" + filename))) {
-					filename = "1" + filename;
+					filename = "1" + filename; // nếu tên tệp đã tồn tại trong thư mục thì sửa lại tên tránh lỗi
 				}
-				part.write(realPath + "/" + filename);
+				part.write(realPath + "/" + filename); // ghi tệp hình ảnh mới vào thư mục
 			}
 			
 		} catch (Exception e) {

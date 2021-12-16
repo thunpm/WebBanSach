@@ -21,12 +21,12 @@
     <div class="main-block">
     	<div class="content">
     		<div class="khoi-banner-danh-muc" style="width: 100%; height: auto; display: flex; justify-content: space-between; margin: 0px 0px 30px 0px;">
-		   		<div class="danh-muc">
+		   		<div class="danh-muc danh-muc-chinh">
 		   			<h5 class="tieu-de list-group">Danh Mục Sản Phẩm</h5>
 					<c:forEach items="${listDanhMuc}" var="danhMuc">
 						<div class="list-group-item dropdown dropright">
 							<div data-toggle="dropdown">${danhMuc.tenDanhMuc}</div>
-		  					<div class="dropdown-menu">
+		  					<div class="dropdown-menu" style="transform: translate3d(0px, 60px, 0px);">
 								<c:forEach items="${danhMuc.listLoaiSanPham}" var="loaiSanPham">
 		   							<div>
 		   								<a class="dropdown-item" href="showProductByLoai?maLoai=${loaiSanPham.id}&tenLoai=${loaiSanPham.tenLoaiSanPham}">${loaiSanPham.tenLoaiSanPham}</a>
@@ -54,7 +54,10 @@
 	   		</div>
 	        <div class="sach">
 		        <div class="tieu-de">
-		        	<div class="name">TẤT CẢ SẢN PHẨM</div>
+		        	<div class="name">
+		        		TẤT CẢ SẢN PHẨM
+		        		<div class="label-name"></div>
+	        		</div>
 		        	<c:if test="${sanPham eq 'sanPhamMoi'}">    
 		        		<a style="border-bottom: 2px solid #d95719;" href="showIndex?sanPham=sanPhamMoi">Hàng Mới</a>
 		        	</c:if>

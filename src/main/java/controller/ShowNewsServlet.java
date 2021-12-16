@@ -11,11 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.bean.DanhMucSanPham;
 import model.bean.LoaiSanPham;
-import model.bean.SanPham;
 import model.bean.TinTuc;
-import model.bo.ShowDanhMucBO;
+import model.bo.DanhMucBO;
 import model.bo.ShowLoaiSanPhamBO;
-import model.bo.ShowSanPhamBO;
 import model.bo.ShowTinTucBO;
 
 public class ShowNewsServlet extends HttpServlet {
@@ -26,12 +24,12 @@ public class ShowNewsServlet extends HttpServlet {
 		
 		RequestDispatcher rd = null;
 		
-		ShowDanhMucBO  showDanhMucBO = new ShowDanhMucBO();
+		DanhMucBO  danhMucBO = new DanhMucBO();
 		ShowLoaiSanPhamBO showLoaiSanPhamBO = new ShowLoaiSanPhamBO();
 		ShowTinTucBO showTinTucBO = new ShowTinTucBO();
 	
 		int tongSoTrang = 0, batDauSP = 0, ketThucSP = 0;
-		ArrayList<DanhMucSanPham> listDanhMuc = showDanhMucBO.getAllDanhMuc();
+		ArrayList<DanhMucSanPham> listDanhMuc = danhMucBO.getAllDanhMuc();
 		ArrayList<LoaiSanPham> listLoaiSanPham = null;
 		ArrayList<TinTuc> listTinTuc = new ArrayList<>();
 		

@@ -19,6 +19,7 @@ public class ContactServlet extends HttpServlet {
 		
 		RequestDispatcher rd = null;
 		
+		// lấy thông tin phản hồi
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
@@ -27,6 +28,7 @@ public class ContactServlet extends HttpServlet {
 		PhanHoiBO phanHoiBO = new PhanHoiBO();
 		phanHoiBO.addReport(name, email, phone, report);
 		
+		// nếu phản hồi thành công thì trả attribute 'done' để xổ hộp thoại thông báo
 		request.setAttribute("done", "done");
 		
 		rd = request.getRequestDispatcher("views/user/contact.jsp");

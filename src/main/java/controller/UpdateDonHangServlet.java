@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.bean.MatHang;
-import model.bo.UpdateHoaDonBO;
+import model.bo.HoaDonBO;
 
 public class UpdateDonHangServlet extends HttpServlet {
 
@@ -23,13 +23,14 @@ public class UpdateDonHangServlet extends HttpServlet {
 		RequestDispatcher rd = null;
 		HttpSession session = request.getSession();
 		
+		// khi khách hàng hủy đơn
 		if (session.getAttribute("user") == null) {
 			rd = request.getRequestDispatcher("showLogin");
 			rd.forward(request, response);
 		} 
 		String idDonHang = request.getParameter("idDonHang");
 		
-		UpdateHoaDonBO updateHoaDonBO = new UpdateHoaDonBO();
+		HoaDonBO updateHoaDonBO = new HoaDonBO();
 		updateHoaDonBO.huyDonHang(idDonHang);
 		
 		rd = request.getRequestDispatcher("showDonHang");

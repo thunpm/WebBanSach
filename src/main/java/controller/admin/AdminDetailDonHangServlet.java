@@ -32,6 +32,7 @@ public class AdminDetailDonHangServlet extends HttpServlet {
 			rd.forward(request, response);
 		} 
 		
+		// trong chi tiết đơn hàng có chi tiết các sản phẩm đã đặt và chi tiết thông tin người dùng
 		String idDonHang = request.getParameter("idDonHang");
 		String idKhachHang = request.getParameter("idKhachHang");
 		

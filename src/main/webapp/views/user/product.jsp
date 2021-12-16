@@ -47,7 +47,10 @@
 		   			<div class="ten-danh-muc"></div>
 		   			<div class="sach">
 				        <div class="tieu-de">
-				        	<div class="name">${tenLoai}</div>
+				        	<div class="name">
+				        		${tenLoai}
+				        		<div class="label-name"></div>
+				        	</div>
 				        	<c:if test="${sanPham eq 'sanPhamMoi'}">    
 				        		<a style="border-bottom: 2px solid #d95719;" href="showProductByLoai?sanPham=sanPhamMoi&maLoai=${maLoai}&tenLoai=${tenLoai}">Hàng Mới</a>
 				        	</c:if>

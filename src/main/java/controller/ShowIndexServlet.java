@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.bean.DanhMucSanPham;
 import model.bean.LoaiSanPham;
 import model.bean.SanPham;
-import model.bo.ShowDanhMucBO;
+import model.bo.DanhMucBO;
 import model.bo.ShowLoaiSanPhamBO;
 import model.bo.ShowSanPhamBO;
 
@@ -24,12 +24,12 @@ public class ShowIndexServlet extends HttpServlet {
 		
 		RequestDispatcher rd = null;
 		
-		ShowDanhMucBO  showDanhMucBO = new ShowDanhMucBO();
+		DanhMucBO  danhMucBO = new DanhMucBO();
 		ShowLoaiSanPhamBO showLoaiSanPhamBO = new ShowLoaiSanPhamBO();
 		ShowSanPhamBO showSanPhamBO = new ShowSanPhamBO();
 	
 		int tongSoTrang = 0, batDauSP = 0, ketThucSP = 0;
-		ArrayList<DanhMucSanPham> listDanhMuc = showDanhMucBO.getAllDanhMuc();
+		ArrayList<DanhMucSanPham> listDanhMuc = danhMucBO.getAllDanhMuc();
 		ArrayList<LoaiSanPham> listLoaiSanPham = null;
 		ArrayList<SanPham> listSanPham = null;
 		

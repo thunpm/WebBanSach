@@ -45,8 +45,8 @@
 				   		<form action="${root}/admin/quanLyHoaDon" class="sap-xep">
 							<select name="thuTuSapXep" style="width: 23%;">
 								<option value="${thuTuSapXep}">${thuTuSapXep}</option>
-								<option value="az">Mới nhất</option>
-								<option value="za">Cũ nhất</option>
+								<option value="Mới nhất">Mới nhất</option>
+								<option value="Cũ nhất">Cũ nhất</option>
 							</select>
 							<button class="btn btn-warning" type="submit">Sắp xếp</button>
 						</form>

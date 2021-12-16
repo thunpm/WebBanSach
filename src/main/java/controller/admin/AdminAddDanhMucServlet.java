@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.bo.AddDanhMucBO;
+import model.bo.DanhMucBO;
 
 public class AdminAddDanhMucServlet extends HttpServlet {
 
@@ -33,13 +33,14 @@ public class AdminAddDanhMucServlet extends HttpServlet {
 		
 		String tenDanhMuc = request.getParameter("tenDanhMuc");
 		String message = "";
-		AddDanhMucBO addDanhMucBO = new AddDanhMucBO();
+		DanhMucBO danhMucBO = new DanhMucBO();
 		
-		int check = addDanhMucBO.add(tenDanhMuc);
+		int check = danhMucBO.add(tenDanhMuc);
 		
 		if (check == 0) {
 			message = "Đã thêm thành công!";
 			
+			request.setAttribute("message", message);
 			rd = request.getRequestDispatcher("/admin/quanLyDanhMuc");
 		} else {
 			if (check == 1) {
@@ -48,10 +49,9 @@ public class AdminAddDanhMucServlet extends HttpServlet {
 				message = "Lỗi không xác định!";
 			}
 			
+			request.setAttribute("message", message);
 			rd = request.getRequestDispatcher("/views/admin/add_danhmuc.jsp");
 		}
-		
-		rd = request.getRequestDispatcher("/admin/quanLyDanhMuc");
 		
 		rd.forward(request, response);
 	}

@@ -6,10 +6,10 @@ import java.sql.Timestamp;
 import common.StringCommon;
 import model.dao.HoaDonDAO;
 
-public class UpdateHoaDonBO {
+public class HoaDonBO {
 	HoaDonDAO hoaDonDAO = new HoaDonDAO();
 	
-	public int insertHoaDon(String idKhachHang, Timestamp thoiGian, String trangThai) {
+	public String insertHoaDon(String idKhachHang, Timestamp thoiGian, String trangThai) {
 		String lastestMaHD = hoaDonDAO.getLastestMaHD();
 		String id = "";
 		
@@ -30,6 +30,10 @@ public class UpdateHoaDonBO {
 
 	public void updateTrangThai(String id, String trangThai) {
 		hoaDonDAO.updateTrangThai(id, trangThai);
+	}
+	
+	public int delete(String id) {
+		return hoaDonDAO.delete(id);
 	}
 
 }

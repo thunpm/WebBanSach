@@ -18,12 +18,12 @@
     <script src="${root}/views/lib/popper.min.js"></script>
     <script src="${root}/views/lib/bootstrap/js/bootstrap.min.js"></script>
    
-   	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+   	<!--	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
   	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
   	<script src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
  
-   	<script>
-    	$(document).ready(function(){
+    <script>
+    	 $(document).ready(function(){
      
     	// Cấu hình các nhãn phân trang
     		$('#example').dataTable({
@@ -51,7 +51,7 @@
   		#example_filter {
   			display: none;
   		}
-  	</style>
+  	</style>  -->
 </head>
 <body>
     <div class="main-block">
@@ -77,15 +77,15 @@
 					   		<form action="${root}/admin/quanLySanPham" class="sap-xep">
 						   		<select name="cotSapXep" style="width: 23%;">
 						   			<option value="${cotSapXep}">${cotSapXep}</option>
-									<option value="id">Id</option>
-									<option value="tenSanPham">Tên sản phẩm</option>
-									<option value="gia">Giá</option>
-									<option value="khuyenMai">Khuyến mãi</option>
+									<option value="Id">Id</option>
+									<option value="Tên sản phẩm">Tên sản phẩm</option>
+									<option value="Giá">Giá</option>
+									<option value="Khuyến mãi">Khuyến mãi</option>
 								</select>
 								<select name="thuTuSapXep" style="width: 23%;">
 									<option value="${thuTuSapXep}">${thuTuSapXep}</option>
-									<option value="az">Thấp đến cao</option>
-									<option value="za">Cao đến thấp</option>
+									<option value="Thấp đến cao">Thấp đến cao</option>
+									<option value="Cao đến thấp">Cao đến thấp</option>
 								</select>
 								<button class="btn btn-warning" type="submit">Sắp xếp</button>
 							</form>

@@ -11,9 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.bean.DanhMucSanPham;
-import model.bo.AddDanhMucBO;
 import model.bo.AddTheLoaiBO;
-import model.bo.ShowDanhMucBO;
+import model.bo.DanhMucBO;
 
 public class AdminAddTheLoaiServlet extends HttpServlet {
 
@@ -34,8 +33,8 @@ public class AdminAddTheLoaiServlet extends HttpServlet {
 		String idDanhMuc = request.getParameter("idDanhMuc");
 		String message = "";
 		AddTheLoaiBO addTheLoaiBO = new AddTheLoaiBO();
-		ShowDanhMucBO  showDanhMucBO = new ShowDanhMucBO();
-		ArrayList<DanhMucSanPham> listDanhMuc = showDanhMucBO.getAllDanhMuc();
+		DanhMucBO  danhMucBO = new DanhMucBO();
+		ArrayList<DanhMucSanPham> listDanhMuc = danhMucBO.getAllDanhMuc();
 		request.setAttribute("listDanhMuc", listDanhMuc);
 		
 		int check = addTheLoaiBO.add(tenTheLoai, idDanhMuc);

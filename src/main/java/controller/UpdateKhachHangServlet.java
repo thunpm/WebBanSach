@@ -37,7 +37,7 @@ public class UpdateKhachHangServlet extends HttpServlet {
 		String message = "";
 		KhachHang khachHang = (KhachHang) session.getAttribute("user");
 		
-		if ("information".equals(key)) {
+		if ("information".equals(key)) { // thông tin cá nhân
 			UpdateKhachHangBO updateKhachHangBO = new UpdateKhachHangBO();
 			
 			String tenDangNhap = request.getParameter("tenDangNhap");
@@ -49,13 +49,15 @@ public class UpdateKhachHangServlet extends HttpServlet {
 			String thangSinh = request.getParameter("thangSinh");
 			String namSinh = request.getParameter("namSinh");
 			check = updateKhachHangBO.checkUpdateInformation(tenDangNhap, hoTen, soDienThoai, email, gioiTinh, ngaySinh, thangSinh, namSinh);
-			if (check == 0) {
+			if (check == 0) { // hợp lệ thì tiến hành cập nhật lại thông tin trong session
 				ShowKhachHangBO showKhachHangBO = new ShowKhachHangBO();
 				ShowDiaChiBO showDiaChiBO = new ShowDiaChiBO();
 				ArrayList<DiaChi> diaChiKH = new ArrayList<>();
+				
 				khachHang = showKhachHangBO.getAccount(tenDangNhap);
 				diaChiKH = showDiaChiBO.getDiaChi(khachHang.getId());
 				khachHang.setDiaChi(diaChiKH);
+				
 				session.setAttribute("user", khachHang);
 				message = "Đã cập nhật thành công!";
 			} else {
@@ -83,7 +85,7 @@ public class UpdateKhachHangServlet extends HttpServlet {
 			String nhapLaiMatKhau = request.getParameter("nhapLaiMatKhau"); 
 			
 			check = updateKhachHangBO.checkUpdateInformation(tenDangNhap, matKhauCu, matKhauMoi, nhapLaiMatKhau);
-			if (check == 0) {
+			if (check == 0) { // đổi mật khẩu thành công thì đăng xuất để đăng nhập lại
 				session.removeAttribute("user");	
 				rd = request.getRequestDispatcher("views/user/login.jsp");
 			} else {
@@ -108,8 +110,8 @@ public class UpdateKhachHangServlet extends HttpServlet {
 			String xa = request.getParameter("xa");
 			String diaChi = request.getParameter("diaChi");
 			
-			if ("add".equals(action)) {
-				if (khachHang.getDiaChi().size() == 0) {
+			if ("add".equals(action)) { // thêm địa chỉ
+				if (khachHang.getDiaChi().size() == 0) { // nếu chưa có địa chỉ nào thì địa chỉ vừa thêm sẽ là mặc định
 					check = updateDiaChiBO.insertDiaChi(idKhachHang, tinh, huyen, xa, diaChi, 1);
 				} else {
 					check = updateDiaChiBO.insertDiaChi(idKhachHang, tinh, huyen, xa, diaChi, 0);
@@ -178,7 +180,7 @@ public class UpdateKhachHangServlet extends HttpServlet {
 					message = "Đã xảy ra lỗi, vui lòng thử lại sau!";
 					
 				}
-			} else if ("setDefault".equals(action)) {
+			} else if ("setDefault".equals(action)) { // set địa chỉ mặc định
 				String idDiaChi = request.getParameter("idDiaChi");
 				
 				check = updateDiaChiBO.updateDiaChi(idDiaChi, 1);

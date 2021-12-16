@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,13 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.bean.DanhMucSanPham;
-import model.bean.LoaiSanPham;
-import model.bean.SanPham;
 import model.bean.TinTuc;
-import model.bo.ShowDanhMucBO;
-import model.bo.ShowLoaiSanPhamBO;
-import model.bo.ShowSanPhamBO;
 import model.bo.ShowTinTucBO;
 
 public class ShowDetailNewsServlet extends HttpServlet {
@@ -28,7 +21,7 @@ public class ShowDetailNewsServlet extends HttpServlet {
 		
 		ShowTinTucBO showTinTucBO = new ShowTinTucBO();
 		
-		// lấy tin tức
+		// lấy chi tiết tin tức
 		String idTinTuc = request.getParameter("idTinTuc");
 		TinTuc tinTuc = showTinTucBO.getTinTucById(idTinTuc);
 		

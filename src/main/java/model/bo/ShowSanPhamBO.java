@@ -52,24 +52,24 @@ public class ShowSanPhamBO {
 	public ArrayList<SanPham> getAllSanPhamMoi(String cotSapXep, String thuTuSapXep) {
 		ArrayList<SanPham> list = sanPhamDAO.getAllSanPhamMoi();
 		
-		if ("id".equals(cotSapXep)) {
+		if ("Id".equals(cotSapXep)) {
 			Collections.sort(list, new SortId());
-			if ("za".equals(thuTuSapXep)) {
+			if ("Cao đến thấp".equals(thuTuSapXep)) {
 				Collections.reverse(list);
 			}
-		} else if ("tenSanPham".equals(cotSapXep)) {
+		} else if ("Tên sản phẩm".equals(cotSapXep)) {
 			Collections.sort(list, new SortTen());
-			if ("za".equals(thuTuSapXep)) {
+			if ("Cao đến thấp".equals(thuTuSapXep)) {
 				Collections.reverse(list);
 			}
-		} else if ("gia".equals(cotSapXep)) {
+		} else if ("Giá".equals(cotSapXep)) {
 			Collections.sort(list, new SortGia());
-			if ("za".equals(thuTuSapXep)) {
+			if ("Cao đến thấp".equals(thuTuSapXep)) {
 				Collections.reverse(list);
 			}
-		} else if ("khuyenMai".equals(cotSapXep)) {
+		} else if ("Khuyến mãi".equals(cotSapXep)) {
 			Collections.sort(list, new SortKhuyenMai());
-			if ("za".equals(thuTuSapXep)) {
+			if ("Cao đến thấp".equals(thuTuSapXep)) {
 				Collections.reverse(list);
 			}
 		}

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.bean.DanhMucSanPham;
-import model.bo.ShowDanhMucBO;
+import model.bo.DanhMucBO;
 
 public class AdminShowAddTheLoaiServlet extends HttpServlet {
 
@@ -28,8 +28,8 @@ public class AdminShowAddTheLoaiServlet extends HttpServlet {
 			rd.forward(request, response);
 		} 
 		
-		ShowDanhMucBO  showDanhMucBO = new ShowDanhMucBO();
-		ArrayList<DanhMucSanPham> listDanhMuc = showDanhMucBO.getAllDanhMuc();
+		DanhMucBO  danhMucBO = new DanhMucBO();
+		ArrayList<DanhMucSanPham> listDanhMuc = danhMucBO.getAllDanhMuc();
 		request.setAttribute("listDanhMuc", listDanhMuc);
 		
 		rd = request.getRequestDispatcher("/views/admin/add_theloai.jsp");

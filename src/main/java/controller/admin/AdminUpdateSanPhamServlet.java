@@ -40,17 +40,17 @@ public class AdminUpdateSanPhamServlet extends HttpServlet {
 		String filename = "";
 		try {
 			Part part = request.getPart("hinhAnh");
-			String realPath = request.getServletContext().getRealPath("/views/images");
-			filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+			String realPath = request.getServletContext().getRealPath("/views/images"); // lấy đường dẫn đến thư mục ni
+			filename = Paths.get(part.getSubmittedFileName()).getFileName().toString(); // lấy tên tệp hình ảnh
 			
-			if (filename == null || "".equals(filename)) {
+			if (filename == null || "".equals(filename)) { // file không tìm thấy hoặc chưa tải lên thì lấy lại link ảnh cũ
 				filename = request.getParameter("hinhAnhCu");
 			} else {
 				if (Files.exists(Paths.get(realPath))) {
 					if (Files.exists(Paths.get(realPath + "/" + filename))) {
 						filename = "1" + filename;
 					}
-					part.write(realPath + "/" + filename);
+					part.write(realPath + "/" + filename); // tải ảnh vô thư mục images
 				}
 			}
 			

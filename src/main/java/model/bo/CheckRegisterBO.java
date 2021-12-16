@@ -21,6 +21,7 @@ public class CheckRegisterBO {
 		}
 		
 		if (ValidateCommon.checkRequiredFileds(email)) {
+			// bắt đầu _,-,+,chữ và số 1 lần trở lên, rồi có thể có . gì đó, rồi @, rồi chữ và số 1 lần trở lên, rồi có thể có . gì đó tiếp, rồi . chữ và số 2 lần trở lên, kết thúc
 			if (! email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
 				return 3;
 			}

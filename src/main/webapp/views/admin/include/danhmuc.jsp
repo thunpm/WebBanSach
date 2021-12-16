@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="danh-muc list-group">
-	<div class="muc-quan-ly">TRANG QUẢN LÝ</div>
+	<a class="muc-quan-ly" href="${root}/showIndex">THUBOOK</a>
  	<a class="list-group-item" href="${root}/admin/quanLyKhachHang">Quản lý khách hàng</a>
  	<a class="list-group-item" href="${root}/admin/quanLyDanhMuc">Quản lý danh mục</a>
 	<a class="list-group-item" href="${root}/admin/quanLyTheLoai">Quản lý thể loại</a>

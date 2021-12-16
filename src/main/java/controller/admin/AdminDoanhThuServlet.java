@@ -28,6 +28,7 @@ public class AdminDoanhThuServlet extends HttpServlet {
 			rd.forward(request, response);
 		} 
 		
+		// tính doanh thu trong khoảng thời gian
 		String day1 = request.getParameter("ngay1");
 		String month1 = request.getParameter("thang1");
 		String year1 = request.getParameter("nam1");

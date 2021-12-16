@@ -24,6 +24,7 @@ public class DoanhThuBO {
 		return doanhThuDAO.getSanPhamDaBan(date1, date2);
 	}
 
+	// check ngày coi có hợp lệ không
 	public int check(String day1, String month1, String year1, String day2, String month2, String year2) {
 		if (ValidateCommon.checkRequiredFileds(day1, month1, year1, day2, month2, year2)) {
 			int ngay1 = Integer.valueOf(day1), thang1 = Integer.valueOf(month1), nam1 = Integer.valueOf(year1),

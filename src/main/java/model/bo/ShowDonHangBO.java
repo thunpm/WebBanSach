@@ -29,7 +29,7 @@ public class ShowDonHangBO {
 
 	public ArrayList<HoaDon> sapXep(String thuTuSapXep, ArrayList<HoaDon> list) {
 		Collections.sort(list, new SortNgay());
-		if ("za".equals(thuTuSapXep)) {
+		if ("Cũ nhất".equals(thuTuSapXep)) {
 			Collections.reverse(list);
 		}
 		

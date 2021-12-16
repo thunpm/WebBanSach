@@ -41,11 +41,6 @@ public class AdminShowKhachHangServlet extends HttpServlet {
 
 		listKhachHang = showKhachHangBO.getAllKhachHang();
 
-//		if ("moiNhat".equals(sapXep)) { Collections.sort(listKhachHang, new
-//		SortMoiNhat()); sapXep = "Mới nhất"; } else if ("cuNhat".equals(sapXep)) {
-//		Collections.sort(listKhachHang, new SortMoiNhat());
-//		Collections.reverse(listKhachHang); sapXep = "Cũ nhất"; }
-
 		for (int i = 0; i < listKhachHang.size(); i++) {
 			listDiaChi = showDiaChiBO.getDiaChi(listKhachHang.get(i).getId());
 			listKhachHang.get(i).setDiaChi(listDiaChi);

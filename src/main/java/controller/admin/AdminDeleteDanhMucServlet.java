@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.bo.DeleteDanhMucBO;
+import model.bo.DanhMucBO;
 import model.bo.DeleteKhachHangBO;
 
 public class AdminDeleteDanhMucServlet extends HttpServlet {
@@ -27,7 +27,7 @@ public class AdminDeleteDanhMucServlet extends HttpServlet {
 			rd.forward(request, response);
 		} 
 	
-		DeleteDanhMucBO deleteDanhMucBO = new DeleteDanhMucBO();
+		DanhMucBO deleteDanhMucBO = new DanhMucBO();
 		String message = "";
 		
 		String idDanhMuc = request.getParameter("idDanhMuc");

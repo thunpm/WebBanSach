@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.bean.DanhMucSanPham;
 import model.bean.LoaiSanPham;
-import model.bo.ShowDanhMucBO;
+import model.bo.DanhMucBO;
 import model.bo.ShowLoaiSanPhamBO;
 
 public class ShowCartServlet extends HttpServlet {
@@ -22,9 +22,10 @@ public class ShowCartServlet extends HttpServlet {
 		
 		RequestDispatcher rd = null;
 		
-		ShowDanhMucBO  showDanhMucBO = new ShowDanhMucBO();
+		// lấy danh mục
+		DanhMucBO  danhMucBO = new DanhMucBO();
 		ShowLoaiSanPhamBO showLoaiSanPhamBO = new ShowLoaiSanPhamBO();
-		ArrayList<DanhMucSanPham> listDanhMuc = showDanhMucBO.getAllDanhMuc();
+		ArrayList<DanhMucSanPham> listDanhMuc = danhMucBO.getAllDanhMuc();
 		ArrayList<LoaiSanPham> listLoaiSanPham = null;
 		for (int i = 0; i < listDanhMuc.size(); i++) {
 			listLoaiSanPham = showLoaiSanPhamBO.getListLoaiSanPham(listDanhMuc.get(i).getId());

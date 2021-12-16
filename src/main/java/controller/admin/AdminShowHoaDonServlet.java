@@ -31,6 +31,7 @@ public class AdminShowHoaDonServlet extends HttpServlet {
 		ArrayList<HoaDon> listHoaDon = null;
 		String don = request.getParameter("don");
 		
+		// trong phần thông báo có mục đơn mua với đơn hủy nên thêm phần ni vô
 		if ("mua".equals(don)) {
 			listHoaDon = showDonHangBO.getAllDonMoi();
 		} else if ("huy".equals(don)) {
@@ -42,16 +43,10 @@ public class AdminShowHoaDonServlet extends HttpServlet {
 		String thuTuSapXep = request.getParameter("thuTuSapXep");
 		
 		if (thuTuSapXep == null) {
-			thuTuSapXep = "az";
+			thuTuSapXep = "Mới nhất";
 		}
 		
 		listHoaDon = showDonHangBO.sapXep(thuTuSapXep, listHoaDon);
-		
-		if ("za".equals(thuTuSapXep)) {
-			thuTuSapXep = "Cũ nhất";
-		} else if ("az".equals(thuTuSapXep)) {
-			thuTuSapXep = "Mới nhất";
-		}
 		
 		request.setAttribute("don", don);
 		request.setAttribute("thuTuSapXep", thuTuSapXep);

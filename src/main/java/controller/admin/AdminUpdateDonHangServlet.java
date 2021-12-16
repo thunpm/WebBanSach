@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.bo.UpdateHoaDonBO;
+import model.bo.HoaDonBO;
 
 
 public class AdminUpdateDonHangServlet extends HttpServlet {
@@ -30,6 +30,7 @@ public class AdminUpdateDonHangServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String trangThai = request.getParameter("trangThai");
 		
+		// update trạng thái đơn hàng
 		if ("2".equals(trangThai)) {
 			trangThai = "Đang chuẩn bị hàng";
 		} else if ("3".equals(trangThai)) {
@@ -38,7 +39,7 @@ public class AdminUpdateDonHangServlet extends HttpServlet {
 			trangThai = "Đã giao";
 		}
 		
-		UpdateHoaDonBO updateHoaDonBO = new UpdateHoaDonBO();
+		HoaDonBO updateHoaDonBO = new HoaDonBO();
 		updateHoaDonBO.updateTrangThai(id, trangThai);
 		
 		request.setAttribute("don", request.getAttribute("don"));

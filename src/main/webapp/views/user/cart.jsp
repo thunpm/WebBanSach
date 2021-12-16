@@ -42,7 +42,6 @@
 	   		</div>
 	    	<c:if test="${! empty sessionScope.cart}">
 		    	<c:if test="${sessionScope.cart.matHang.size() gt 0}">
-			    	<div style="text-align: center; margin-bottom: 30px;" class="name">GIỎ HÀNG</div>
 		   	    	<c:set var="tongTien" value="${0}"/>
 		   	    	<p style="color: red; margin-left: 60px;">${message}</p>
 		   	    	<div class="gio-hang">
@@ -57,8 +56,10 @@
 							<c:forEach items="${sessionScope.cart.matHang}" var="matHang">
 								<tr style="width: 100%; margin-bottom: 30px; border-bottom: 5px solid #F0F0F0;">
 									<td style="padding-left: 25px;">
-										<p>${matHang.sanPham.tenSanPham}</p>
-										<img style="margin-left: 20px; width: 150px; height: 150px;" src="views/images/${matHang.sanPham.anhSanPham.tenHinhAnh}"></img>
+										<a href="showDetailProduct?idProduct=${matHang.sanPham.id}">
+											<p>${matHang.sanPham.tenSanPham}</p>
+											<img style="margin-left: 20px; width: 150px; height: 150px;" src="views/images/${matHang.sanPham.anhSanPham.tenHinhAnh}"></img>
+										</a>
 									</td> 
 									<td>
 										<c:if test="${matHang.sanPham.khuyenMai > 0}">

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import model.bean.DanhMucSanPham;
 import model.bean.LoaiSanPham;
-import model.bo.ShowDanhMucBO;
+import model.bo.DanhMucBO;
 import model.bo.ShowLoaiSanPhamBO;
 
 public class AdminShowTheLoaiServlet extends HttpServlet {
@@ -30,8 +30,8 @@ public class AdminShowTheLoaiServlet extends HttpServlet {
 			rd.forward(request, response);
 		} 
 		
-		ShowDanhMucBO  showDanhMucBO = new ShowDanhMucBO();
-		ArrayList<DanhMucSanPham> listDanhMuc = showDanhMucBO.getAllDanhMuc();
+		DanhMucBO  danhMucBO = new DanhMucBO();
+		ArrayList<DanhMucSanPham> listDanhMuc = danhMucBO.getAllDanhMuc();
 		ShowLoaiSanPhamBO  showTheLoaiBO = new ShowLoaiSanPhamBO();
 		ArrayList<LoaiSanPham> listTheLoai;
 		

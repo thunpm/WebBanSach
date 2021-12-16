@@ -18,7 +18,10 @@ public class LogoutServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = null;
 		
+		// remove luôn khách hàng với giỏ hàng
 		session.removeAttribute("user");
+		session.removeAttribute("cart");
+		
 		rd = request.getRequestDispatcher("showIndex");
 		rd.forward(request, response);
 	}

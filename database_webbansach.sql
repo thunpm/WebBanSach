@@ -305,6 +305,20 @@ CREATE TABLE DIACHI (
 	references KHACHHANG(Id)
 )
 
+CREATE TABLE GIOHANG (
+	IdKhachHang varchar(10) not null,
+	IdHangHoa varchar(10) not null,
+	SoLuong int not null,
+	
+	primary key (IdKhachHang, IdHangHoa),
+	constraint fk_giohang_kh
+	foreign key (IdKhachHang)
+	references KHACHHANG(Id),
+	constraint fk_giohang_hh
+	foreign key (IdHangHoa)
+	references SANPHAM(Id)
+)
+
 CREATE TABLE HOADON (
 	Id varchar(10) not null,
 	IdKhachHang varchar(10) not null,
@@ -463,3 +477,11 @@ WHERE ThoiGianLap BETWEEN '09/28/2021' AND '12/01/2021'
 GROUP BY IdHangHoa, TenSanPham
 ORDER BY SUM(SoLuong) DESC
 
+select * from giohang
+
+SELECT IdHangHoa, TenSanPham, SUM(SoLuong) AS DaBan, SUM(SoLuong*(DonGia - CHITIETHOADON.KhuyenMai/100.0*DonGia)) as TienThu FROM CHITIETHOADON
+INNER JOIN SANPHAM ON CHITIETHOADON.IdHangHoa = SANPHAM.Id
+INNER JOIN HOADON ON HOADON.Id = CHITIETHOADON.IdHoaDon
+WHERE convert(date, ThoiGianLap) >= convert(date1, ?) AND convert(date, ThoiGianLap) <= convert(date2, ?)
+GROUP BY IdHangHoa, TenSanPham
+ORDER BY SUM(SoLuong) DESC

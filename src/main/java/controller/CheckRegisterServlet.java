@@ -22,6 +22,7 @@ public class CheckRegisterServlet extends HttpServlet {
 		
 		RequestDispatcher rd = null;
 		
+		// lấy toàn bộ thông tin đăng ký
 		String tenDangNhap = request.getParameter("tenDangNhap");
 		String hoTen = request.getParameter("hoTen");
 		String soDienThoai = request.getParameter("soDienThoai");
@@ -35,6 +36,8 @@ public class CheckRegisterServlet extends HttpServlet {
 		
 		String message = "";
 		CheckRegisterBO checkRegisterBO = new CheckRegisterBO();
+		
+		// kiểm tra đăng kí
 		int check = checkRegisterBO.checkRegister(tenDangNhap, hoTen, soDienThoai, email, gioiTinh, ngaySinh, thangSinh, namSinh, matKhau, nhapLaiMatKhau);
 		
 		if (check == 0) {
@@ -54,6 +57,7 @@ public class CheckRegisterServlet extends HttpServlet {
 				message = "Tên đăng nhập hoặc số điện thoại đã tồn tại!";
 			}
 			
+			// trả về ngày mặc định nếu như khách hàng nhập ngày tháng năm sinh không hợp lệ
 			Date date = Date.valueOf("2021-01-01");
 			try {
 				date = Date.valueOf(namSinh + "-" + thangSinh + "-"  + ngaySinh);

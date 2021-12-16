@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import model.bean.DanhMucSanPham;
 import model.bean.LoaiSanPham;
-import model.bo.ShowDanhMucBO;
+import model.bo.DanhMucBO;
 import model.bo.ShowLoaiSanPhamBO;
 
 public class AdminShowUpdateTheLoaiServlet extends HttpServlet {
@@ -36,8 +36,8 @@ public class AdminShowUpdateTheLoaiServlet extends HttpServlet {
 		LoaiSanPham loaiSanPham = showLoaiSanPhamBO.getTheLoaiById(idTheLoai);
 		request.setAttribute("loaiSanPham", loaiSanPham);		
 		
-		ShowDanhMucBO  showDanhMucBO = new ShowDanhMucBO();
-		ArrayList<DanhMucSanPham> listDanhMuc = showDanhMucBO.getAllDanhMuc();
+		DanhMucBO  danhMucBO = new DanhMucBO();
+		ArrayList<DanhMucSanPham> listDanhMuc = danhMucBO.getAllDanhMuc();
 		request.setAttribute("listDanhMuc", listDanhMuc);
 		
 		rd = request.getRequestDispatcher("/views/admin/update_theloai.jsp");

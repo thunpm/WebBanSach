@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.bean.DanhMucSanPham;
 import model.bean.SanPham;
-import model.bo.ShowDanhMucBO;
 import model.bo.ShowSanPhamBO;
 
 public class AdminShowSanPhamServlet extends HttpServlet {
@@ -34,32 +32,16 @@ public class AdminShowSanPhamServlet extends HttpServlet {
 		String thuTuSapXep = request.getParameter("thuTuSapXep");
 		
 		if (cotSapXep == null) {
-			cotSapXep = "id";
+			cotSapXep = "Id";
 		}
 		
 		if (thuTuSapXep == null) {
-			thuTuSapXep = "az";
+			thuTuSapXep = "Thấp đến cao";
 		}
 		
 		ShowSanPhamBO showSanPhamBO = new ShowSanPhamBO();
 		ArrayList<SanPham> listSanPham = showSanPhamBO.getAllSanPhamMoi(cotSapXep, thuTuSapXep);
 		String message = request.getParameter("message");
-		
-		if ("id".equals(cotSapXep)) {
-			cotSapXep = "Id";
-		} else if ("tenSanPham".equals(cotSapXep)) {
-			cotSapXep = "Tên sản phẩm";
-		} else if ("gia".equals(cotSapXep)) {
-			cotSapXep = "Giá";
-		} else if ("khuyenMai".equals(cotSapXep)) {
-			cotSapXep = "Khuyến mãi";
-		}
-		
-		if ("az".equals(thuTuSapXep)) {
-			thuTuSapXep = "Thấp đến cao";
-		} else if ("za".equals(thuTuSapXep)) {
-			thuTuSapXep = "Cao đến thấp";
-		}
 
 		request.setAttribute("cotSapXep", cotSapXep);
 		request.setAttribute("thuTuSapXep", thuTuSapXep);

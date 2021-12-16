@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.bean.DanhMucSanPham;
 import model.bean.LoaiSanPham;
 import model.bean.SanPham;
-import model.bo.ShowDanhMucBO;
+import model.bo.DanhMucBO;
 import model.bo.ShowDetailSanPhamBO;
 import model.bo.ShowLoaiSanPhamBO;
 import model.bo.ShowSanPhamBO;
@@ -30,13 +30,15 @@ public class ShowDetailProductServlet extends HttpServlet {
 		
 		String id = request.getParameter("idProduct");
 		
+		// lấy thông tin sản phẩm thông qua id
 		SanPham sanPham = showDetailSanPhamBO.getSanPhamById(id);
 		ArrayList<SanPham> listSanPham = showSanPhamBO.getAllSanPhamByLoai(sanPham.getIdTheLoai());
 		int ketThucSP = Math.min(6, listSanPham.size());
 		
-		ShowDanhMucBO  showDanhMucBO = new ShowDanhMucBO();
+		// lấy danh mục
+		DanhMucBO  danhMucBO = new DanhMucBO();
 		ShowLoaiSanPhamBO showLoaiSanPhamBO = new ShowLoaiSanPhamBO();
-		ArrayList<DanhMucSanPham> listDanhMuc = showDanhMucBO.getAllDanhMuc();
+		ArrayList<DanhMucSanPham> listDanhMuc = danhMucBO.getAllDanhMuc();
 		ArrayList<LoaiSanPham> listLoaiSanPham = null;
 		for (int i = 0; i < listDanhMuc.size(); i++) {
 			listLoaiSanPham = showLoaiSanPhamBO.getListLoaiSanPham(listDanhMuc.get(i).getId());

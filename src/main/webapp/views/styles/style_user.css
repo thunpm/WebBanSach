@@ -14,6 +14,7 @@ button:focus {
 .header {
 	width: 100%;
 	height: 120px;
+	padding: 10px;
 	background-color: #f3b535;
 	display: flex;
 	justify-content: space-between;
@@ -32,7 +33,7 @@ button:focus {
 }
 
 .header .find .search-box input {
-	width: 500px;
+	width: 450px;
     height: 40px;
     border: 2px solid #d95719;
     border-radius: 5px 0px 0px 5px;
@@ -84,32 +85,32 @@ button:focus {
 }
 
 .menu .menu-item {
-	height: 35px;
 	margin-right: 50px;
 	padding: 3px 10px 0px 10px;
 }
 
-.menu div a {
+.menu .menu-item a {
 	text-decoration: none;
 	color: white;
 }
 
 .menu .dropdown-menu.show {
 	background-color: white;
-	color: black;
 	width: 230px;
 }
+
+.menu .menu-item li a {
+	text-decoration: none;
+	color: black;
+	text-transform: none;
+}
+
 
 .menu .dropdown-item:focus, .menu .dropdown-item:hover {
 	color: black;
     text-decoration: none;
     background-color: #fffb82;
-    padding: 5px 15px 5px 20px;
-}
-
-
-.menu li a {
-	color: black;
+    padding: 5px 15px 5px 30px;
 }
 
 .menu .menu-item:hover {
@@ -117,9 +118,14 @@ button:focus {
 	transition: 1s;
 }
 
+.dropright .dropdown-menu {
+   margin-top: -21px;
+}
+
 .footer {
 	width: 100%;
-	height: 250px;
+	height: auto;
+	flex-wrap: wrap;
 	background-color: #d95719;
 	display: flex;
 	justify-content: center;
@@ -192,7 +198,16 @@ button:focus {
 
 .main-block .danh-muc div.dropdown-menu.show {
 	padding: 10px;
+	margin-left: -15px;
+    margin-top: 24px;
 }
+
+.main-block .danh-muc-chinh div.dropdown-menu.show {
+	padding: 10px;
+	margin-left: 1px;
+    margin-top: -23px;
+}
+
 
 .main-block .danh-muc .dropdown-item:focus, .main-block .danh-muc .dropdown-item:hover {
 	color: black;
@@ -211,6 +226,7 @@ img.d-block.w-100 {
 }
 
 .main-block .sach {
+	border-radius: 5px;
 	height: auto;
 	background-color: white;
 }
@@ -218,13 +234,14 @@ img.d-block.w-100 {
 .main-block .sach .tieu-de {
 	display: flex;
 	align-items: center;
-	height: 50px;
-    padding-left: 20px;
+    padding: 10px;
+    overflow: auto;
+  	white-space: nowrap;
     border-bottom: 1px solid #F0F0F0;
 }
 
 .main-block .sach .tieu-de a {
-	display: block;
+	display: inline-block;
 	margin-right: 20px;
 	color: #d95719;
 }
@@ -236,10 +253,26 @@ img.d-block.w-100 {
 
 .main-block .name {
 	margin-right: 35px;
-    color: #d95719;
+    color: white;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 20px; 
+    padding: 3px;
+    background-color: #d95719;
+    position: relative;
+    text-align: center;
+}
+
+.main-block .tieu-de .label-name {
+	display: inline-block;
+    margin-left: 3px;
+    vertical-align: middle;
+    border-top: 20px solid transparent;
+    border-left: 20px solid #d95719;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    position: absolute;
+    top: -2px;
 }
 
 .main-block .sach .san-pham {
@@ -264,6 +297,11 @@ img.d-block.w-100 {
 	box-shadow: rgb(0 0 0 / 10%) 0px 0px 20px;
 }
 
+.main-block .sach .card .ten-sach {
+    line-height: 19px;
+}
+
+
 .main-block .sach .card .gia-tien {
 	color: #C92127;
 }
@@ -276,7 +314,6 @@ img.d-block.w-100 {
 	width: 85%;
 	height: 50%;
 	margin: auto;
-	margin-bottom: 10px;
 }
 
 .main-block .sach .card .mo-ta {
@@ -492,25 +529,24 @@ img.d-block.w-100 {
 	flex-direction: row;
 }
 
-.menu .icon {
+.menu i {
   display: none;
 }
 
-@media screen and (max-width: 986px) {
-	.header {flex-wrap: wrap; justify-content: space-around;}
-	.header .logo {width: 100%;}
+.navbar-collapse {
+	flex-grow: 0;
+} 
+
+@media screen and (max-width: 1000px) {
+	.header {padding: 10px; height: auto;}
+	.header .logo {display: none;}
 	.header .find {margin-left: 60px;}
-	.main-block .content {padding: 0px 30px 0px 30px;}
+	.menu i {display: block;}
+	.main-block .content {padding: 0px;}
 	.main-block .danh-muc .list-group-item {max-height: 65px;}
 }
 
 @media screen and (max-width: 880px) {
-	.menu {height: 50px;}
-	.menu .icon {float: left; display: block;}
-	.menu .menu-item:not(:first-child) {display: none;}
-	.menu.responsive {position: relative; display: block; height: 100%;}
-  	.menu.responsive a.icon {position: absolute; right: 25px; top: 7px;}
-  	.menu.responsive .menu-item {float: none; display: block;}
   	.header #text-gio-hang {display: none;}
   	.header .cart {width: 60px;}
   	.main-block .danh-muc .tieu-de {display: none;}
@@ -518,7 +554,6 @@ img.d-block.w-100 {
 	.main-block .khoi-banner-danh-muc {flex-direction: column;}
 	.main-block .danh-muc .list-group-item {width: 100%;}
 	.main-block .banner {width: 100%;}
-	.footer {height: 280px}
 	.footer .khoi {margin: 30px 10px;}
 }
 
@@ -530,9 +565,7 @@ img.d-block.w-100 {
 	.main-block .danh-muc {flex-direction: column;}
 	.main-block .content {padding: 0px;}
 	.main-block .sach .card {width: 45%; height: 279px; font-size: 13px; margin: 0px; margin-bottom: 10px;}
-	.footer {display: none;}
 	.banner img.d-block.w-100 {height: auto;}
-	.main-block .sach .tieu-de {height: 85px;}
 	.main-block .name {font-size: 16px;}
 	.main-block .login-block {padding: 0px; width: 100%;}
 }

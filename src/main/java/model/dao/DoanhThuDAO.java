@@ -16,7 +16,7 @@ public class DoanhThuDAO extends BaseDAO {
         String sql = "SELECT IdHangHoa, TenSanPham, SUM(SoLuong) AS DaBan, SUM(SoLuong*(DonGia - CHITIETHOADON.KhuyenMai/100.0*DonGia)) as TienThu FROM CHITIETHOADON "
         		+ "INNER JOIN SANPHAM ON CHITIETHOADON.IdHangHoa = SANPHAM.Id "
         		+ "INNER JOIN HOADON ON HOADON.Id = CHITIETHOADON.IdHoaDon "
-        		+ "WHERE ThoiGianLap BETWEEN ? AND ? "
+        		+ "WHERE convert(date, ThoiGianLap) >= convert(date, ?) AND convert(date, ThoiGianLap) <= convert(date, ?)"
         		+ "GROUP BY IdHangHoa, TenSanPham "
         		+ "ORDER BY SUM(SoLuong) DESC";
         PreparedStatement pstmt = null;
@@ -29,7 +29,8 @@ public class DoanhThuDAO extends BaseDAO {
         	pstmt.setDate(1, date1);
         	pstmt.setDate(2, date2);
         	rs = pstmt.executeQuery();
-        	
+        	System.out.println(sql);
+                	
         	while (rs.next()) {
         		thongKe = new ThongKe();
         		

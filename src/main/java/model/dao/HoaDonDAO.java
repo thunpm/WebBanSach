@@ -13,7 +13,7 @@ import model.bean.LoaiSanPham;
 
 public class HoaDonDAO extends BaseDAO {
 
-	public int insertHoaDon(String id, String idKhachHang, Timestamp thoiGian, String trangThai) {
+	public String insertHoaDon(String id, String idKhachHang, Timestamp thoiGian, String trangThai) {
 		Connection connection = getConnection();
         String sql = "INSERT INTO HOADON (Id, IdKhachHang, ThoiGianLap, TrangThai)"
         		+ " VALUES (?, ?, ?, ?)";
@@ -29,11 +29,11 @@ public class HoaDonDAO extends BaseDAO {
 
         } catch (SQLException e) {	
         	e.printStackTrace();
-        	return 6;
+        	return "6";
         } finally {
         	closeConnection(connection, pstmt, null);
         }
-		return 0;
+		return id;
 	}
 
 	public String getLastestMaHD() {
@@ -61,7 +61,7 @@ public class HoaDonDAO extends BaseDAO {
 
 	public ArrayList<HoaDon> getHoaDonByIdKhachHang(String idKhachHang) {
 		Connection connection = getConnection();
-        String sql = "SELECT * FROM HOADON WHERE IdKhachHang = ? AND del_flag = 1";
+        String sql = "SELECT * FROM HOADON WHERE IdKhachHang = ? AND del_flag = 1 ORDER BY ThoiGianLap DESC";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
        
