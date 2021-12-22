@@ -206,27 +206,6 @@ public class KhachHangDAO extends BaseDAO {
         return listKhachHang;
 	}
 
-	public int setPassword(String idKhachHang, String matKhau) {
-		Connection connection = getConnection();
-        String sql = "UPDATE KHACHHANG SET MatKhau = ? WHERE Id = ?";
-        PreparedStatement pstmt = null;
-
-        try {
-        	pstmt = connection.prepareStatement(sql);
-        	pstmt.setString(1, matKhau);
-        	pstmt.setString(2, idKhachHang);
-        	pstmt.executeUpdate();
-        	
-        	return 0;
-        } catch (SQLException e) {	
-        	e.printStackTrace();
-        } finally {
-        	closeConnection(connection, pstmt, null);
-        }
-        
-        return 3;
-	}
-
 	public int deleteKhachHang(String idKhachHang) {
 		Connection connection = getConnection();
         String sql = "UPDATE KHACHHANG SET del_flag = 0 WHERE Id = ?";

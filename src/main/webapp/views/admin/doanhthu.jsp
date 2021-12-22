@@ -36,22 +36,31 @@
 								    	<tr>
 								    		<th>Id hàng hóa</th>
 								    		<th style="width: 60%;">Tên sản phẩm</th>
+								    		<th>Đơn giá bán</th>
+								    		<th>Khuyến mãi khi bán</th>
 								    		<th>Đã bán</th>
 								    		<th>Tiền thu</th>		
 								    	</tr>
-										<c:forEach items="${listSanPham}" var="thongKe">
+										<c:forEach items="${listSanPham}" var="matHang">
 											<tr>
-												<td>${thongKe.idHangHoa}</td> 
-												<td style="width: 60%;">${thongKe.tenSanPham}</td>
+												<td>${matHang.sanPham.id}</td> 
+												<td>${matHang.sanPham.tenSanPham}</td>
 												<td>
-													<fmt:formatNumber type="number" maxFractionDigits="3" value="${thongKe.daBan}"/>
+													<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.donGia}"/> đ
 												</td>
 												<td>
-													<fmt:formatNumber type="number" maxFractionDigits="3" value="${thongKe.tienThu}"/> đ
+													<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.khuyenMai}"/> %
+												</td>
+												<td>
+													<fmt:formatNumber type="number" maxFractionDigits="3" value="${matHang.soLuong}"/>
+												</td>
+												<td>
+													<c:set var="thanhTien" value="${matHang.soLuong*matHang.donGia*(1 - matHang.khuyenMai/100.0)}" />
+													<fmt:formatNumber type="number" maxFractionDigits="3" value="${thanhTien}"/> đ
 												</td>
 											</tr>	
-											<c:set var="tongTien" value="${tongTien + thongKe.tienThu}" /> 
-											<c:set var="tongSanPham" value="${tongSanPham + thongKe.daBan}" /> 
+											<c:set var="tongTien" value="${tongTien + thanhTien}" /> 
+											<c:set var="tongSanPham" value="${tongSanPham + matHang.soLuong}" /> 
 										</c:forEach>	
 									</table>
 								</form>

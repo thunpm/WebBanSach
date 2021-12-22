@@ -3,12 +3,8 @@ package model.bean;
 import java.sql.Date;
 import java.util.ArrayList;
 
-public class KhachHang {
-	private String id;
-	private String tenDangNhap;
-	private String hoTen;
+public class KhachHang extends NguoiDung {
 	private String soDienThoai;
-	private String matKhau;
 	private String email;
 	private String gioiTinh;
 	private Date ngaySinh;
@@ -59,44 +55,12 @@ public class KhachHang {
 		this.gioiTinh = gioiTinh;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getTenDangNhap() {
-		return tenDangNhap;
-	}
-
-	public void setTenDangNhap(String tenDangNhap) {
-		this.tenDangNhap = tenDangNhap;
-	}
-
-	public String getHoTen() {
-		return hoTen;
-	}
-
-	public void setHoTen(String hoTen) {
-		this.hoTen = hoTen;
-	}
-
 	public String getSoDienThoai() {
 		return soDienThoai;
 	}
 
 	public void setSoDienThoai(String soDienThoai) {
 		this.soDienThoai = soDienThoai;
-	}
-
-	public String getMatKhau() {
-		return matKhau;
-	}
-
-	public void setMatKhau(String matKhau) {
-		this.matKhau = matKhau;
 	}
 
 	public String getEmail() {

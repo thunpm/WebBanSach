@@ -13,6 +13,12 @@ public class SanPham {
 	private int daBan;
 	private AnhSanPham anhSanPham = new AnhSanPham();
 	
+	public SanPham(String id, String tenSanPham) {
+		super();
+		this.id = id;
+		this.tenSanPham = tenSanPham;
+	}
+	
 	public SanPham(String id, String tenSanPham, String tacGia, String nhaXuatBan, double gia, double khuyenMai,
 			double soLuongCo, String moTa, String idTheLoai) {
 		super();

@@ -61,8 +61,6 @@ public class UpdateCartServlet extends HttpServlet {
 							if (changeSoLuong > 0) { // số lượng nhập vào phải là số dương
 								if (sanPham.getSoLuongCo() < changeSoLuong) {
 									request.setAttribute("message", "Mặt hàng bạn vừa thay đổi chỉ còn " + sanPham.getSoLuongCo() + " sản phẩm, vui lòng chọn lại!");
-								} else if (changeSoLuong > 5) {
-									request.setAttribute("message", "Đơn bán lẻ chỉ cho phép mua tối đa 5 sản phẩm/1 mặt hàng!");
 								} else {
 									gioHang.getMatHang().get(i).setSoLuong(changeSoLuong); // hợp lệ thì đổi trong session
 									
@@ -93,8 +91,6 @@ public class UpdateCartServlet extends HttpServlet {
 					} else if ("tang".equals(doi)) {
 						if (sanPham.getSoLuongCo() < curSoLuong + 1) {
 							request.setAttribute("message", "Mặt hàng bạn vừa thay đổi chỉ còn " + sanPham.getSoLuongCo() + " sản phẩm, vui lòng chọn lại!");
-						} else if (curSoLuong > 4) {
-							request.setAttribute("message", "Đơn bán lẻ chỉ cho phép mua tối đa 5 sản phẩm/1 mặt hàng!");
 						} else {
 							gioHang.getMatHang().get(i).setSoLuong(curSoLuong + 1);
 							

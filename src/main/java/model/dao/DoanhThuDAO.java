@@ -7,22 +7,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.bean.ThongKe;
+import model.bean.MatHang;
+import model.bean.SanPham;
 
 public class DoanhThuDAO extends BaseDAO {
 
-	public ArrayList<ThongKe> getSanPhamDaBan(Date date1, Date date2) {
+	public ArrayList<MatHang> getSanPhamDaBan(Date date1, Date date2) {
 		Connection connection = getConnection();
-        String sql = "SELECT IdHangHoa, TenSanPham, SUM(SoLuong) AS DaBan, SUM(SoLuong*(DonGia - CHITIETHOADON.KhuyenMai/100.0*DonGia)) as TienThu FROM CHITIETHOADON "
-        		+ "INNER JOIN SANPHAM ON CHITIETHOADON.IdHangHoa = SANPHAM.Id "
-        		+ "INNER JOIN HOADON ON HOADON.Id = CHITIETHOADON.IdHoaDon "
-        		+ "WHERE convert(date, ThoiGianLap) >= convert(date, ?) AND convert(date, ThoiGianLap) <= convert(date, ?)"
-        		+ "GROUP BY IdHangHoa, TenSanPham "
+        String sql = "SELECT IdHangHoa, TenSanPham, SUM(SoLuong) AS DaBan, cthd.DonGia, cthd.KhuyenMai FROM CHITIETHOADON cthd "
+        		+ "INNER JOIN SANPHAM ON cthd.IdHangHoa = SANPHAM.Id "
+        		+ "INNER JOIN HOADON ON HOADON.Id = cthd.IdHoaDon "
+        		+ "WHERE convert(date, ThoiGianLap) >= convert(date, ?) AND convert(date, ThoiGianLap) <= convert(date, ?) "
+        		+ "GROUP BY IdHangHoa, TenSanPham, cthd.DonGia, cthd.KhuyenMai "
         		+ "ORDER BY SUM(SoLuong) DESC";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        ThongKe thongKe;
-        ArrayList<ThongKe> listSanPham = new ArrayList<ThongKe>();
+        MatHang matHang;
+        ArrayList<MatHang> listSanPham = new ArrayList<MatHang>();
 
         try {
         	pstmt = connection.prepareStatement(sql);
@@ -32,14 +33,14 @@ public class DoanhThuDAO extends BaseDAO {
         	System.out.println(sql);
                 	
         	while (rs.next()) {
-        		thongKe = new ThongKe();
+        		matHang = new MatHang();
         		
-        		thongKe.setIdHangHoa(rs.getString("IdHangHoa"));
-        		thongKe.setTenSanPham(rs.getString("TenSanPham"));
-        		thongKe.setTienThu(rs.getDouble("TienThu"));
-        		thongKe.setDaBan(rs.getInt("DaBan"));
+        		matHang.setSanPham(new SanPham(rs.getString("IdHangHoa"), rs.getString("TenSanPham")));
+        		matHang.setDonGia(rs.getDouble("DonGia"));
+        		matHang.setKhuyenMai(rs.getDouble("KhuyenMai"));
+        		matHang.setSoLuong(rs.getInt("DaBan"));
         		
-        		listSanPham.add(thongKe);
+        		listSanPham.add(matHang);
         	}
 
         } catch (SQLException e) {	

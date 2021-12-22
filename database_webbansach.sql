@@ -468,7 +468,6 @@ INNER JOIN HOADON ON HOADON.Id = CHITIETHOADON.IdHoaDon
 WHERE ThoiGianLap BETWEEN '09/28/2021' AND '12/01/2021'
 GROUP BY IdHangHoa, TenSanPham
 ORDER BY SUM(SoLuong) DESC
-*/
 
 SELECT IdHangHoa, TenSanPham, SUM(SoLuong) AS DaBan, SUM(SoLuong*(DonGia - CHITIETHOADON.KhuyenMai/100.0*DonGia)) as TienThu FROM CHITIETHOADON
 INNER JOIN SANPHAM ON CHITIETHOADON.IdHangHoa = SANPHAM.Id
@@ -485,3 +484,11 @@ INNER JOIN HOADON ON HOADON.Id = CHITIETHOADON.IdHoaDon
 WHERE convert(date, ThoiGianLap) >= convert(date1, ?) AND convert(date, ThoiGianLap) <= convert(date2, ?)
 GROUP BY IdHangHoa, TenSanPham
 ORDER BY SUM(SoLuong) DESC
+
+SELECT IdHangHoa, TenSanPham, SUM(SoLuong) AS DaBan, cthd.DonGia, cthd.KhuyenMai FROM CHITIETHOADON cthd
+INNER JOIN SANPHAM ON cthd.IdHangHoa = SANPHAM.Id
+INNER JOIN HOADON ON HOADON.Id = cthd.IdHoaDon
+WHERE convert(date, ThoiGianLap) >= convert(date, '2019-1-1') AND convert(date, ThoiGianLap) <= convert(date, '2021-12-22')
+GROUP BY IdHangHoa, TenSanPham, cthd.DonGia, cthd.KhuyenMai
+ORDER BY SUM(SoLuong) DESC
+*/

@@ -5,13 +5,13 @@ import java.util.ArrayList;
 
 import common.DateCommon;
 import common.ValidateCommon;
-import model.bean.ThongKe;
+import model.bean.MatHang;
 import model.dao.DoanhThuDAO;
 
 public class DoanhThuBO {
 	DoanhThuDAO doanhThuDAO = new DoanhThuDAO();
 
-	public ArrayList<ThongKe> getSanPhamDaBan(String day1, String month1, String year1, String day2, String month2,
+	public ArrayList<MatHang> getSanPhamDaBan(String day1, String month1, String year1, String day2, String month2,
 			String year2) {
 		Date date1 = null, date2 = null;
 		try {

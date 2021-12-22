@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.bean.ThongKe;
+import model.bean.MatHang;
 import model.bo.DoanhThuBO;
 
 public class AdminDoanhThuServlet extends HttpServlet {
@@ -41,7 +41,7 @@ public class AdminDoanhThuServlet extends HttpServlet {
 		int check = doanhThuBO.check(day1, month1, year1, day2, month2, year2);
 		
 		if (check == 0) {
-			ArrayList<ThongKe> listSanPham = doanhThuBO.getSanPhamDaBan(day1, month1, year1, day2, month2, year2);
+			ArrayList<MatHang> listSanPham = doanhThuBO.getSanPhamDaBan(day1, month1, year1, day2, month2, year2);
 			
 			request.setAttribute("listSanPham", listSanPham);
 			rd = request.getRequestDispatcher("/views/admin/doanhthu.jsp");
