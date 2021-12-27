@@ -41,6 +41,7 @@ encoding//src/main/java/controller/admin/AdminUpdateTheLoaiServlet.java=UTF-8
 encoding//src/main/java/model/bo/CartOfUserBO.java=UTF-8
 encoding//src/main/java/model/bo/CheckRegisterBO.java=UTF-8
 encoding//src/main/java/model/bo/DoanhThuBO.java=UTF-8
+encoding//src/main/java/model/bo/HoaDonBO.java=UTF-8
 encoding//src/main/java/model/bo/ShowDonHangBO.java=UTF-8
 encoding//src/main/java/model/bo/ShowSanPhamBO.java=UTF-8
 encoding//src/main/java/model/dao/DiaChiDAO.java=UTF-8

@@ -110,10 +110,10 @@
 												<td>${sanPham.tenSanPham}</td>
 												<td><img style="width:200px; height:150px;" src="${root}/views/images/${sanPham.anhSanPham.tenHinhAnh}"></td>
 												<td>
-													<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+													<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal${sanPham.id}">
 			           									Chi tiết
 			     				 					</button>
-			     				 					<div class="modal" id="myModal">
+			     				 					<div class="modal" id="myModal${sanPham.id}">
 											        	<div class="modal-dialog">
 											        		<div class="modal-content">          
 									               				<div class="modal-header">

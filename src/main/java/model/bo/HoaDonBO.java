@@ -1,10 +1,13 @@
 package model.bo;
 
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import common.StringCommon;
+import model.bean.MatHang;
+import model.dao.ChiTietHoaDonDAO;
 import model.dao.HoaDonDAO;
+import model.dao.SanPhamDAO;
 
 public class HoaDonBO {
 	HoaDonDAO hoaDonDAO = new HoaDonDAO();
@@ -25,6 +28,17 @@ public class HoaDonBO {
 	}
 
 	public void huyDonHang(String idDonHang) {
+		// update lại số lượng hàng hóa
+		ChiTietHoaDonDAO chiTietHoaDonDAO = new ChiTietHoaDonDAO();
+		SanPhamDAO sanPhamDAO = new SanPhamDAO();
+		
+		ArrayList<MatHang> matHang = chiTietHoaDonDAO.getMatHangByIdHoaDon(idDonHang);
+		
+		for (int i = 0; i < matHang.size(); i++) {
+			sanPhamDAO.updateSoLuong(matHang.get(i).getSanPham().getId(), - matHang.get(i).getSoLuong());
+		}
+		
+		// hủy đơn
 		hoaDonDAO.huyDonHang(idDonHang);
 	}
 
